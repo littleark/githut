@@ -500,16 +500,7 @@
 						.attr("cx",0)
 						.attr("cy",0)
 						.attr("r",5)
-						.on("mouseover",function(d){
-							if(d.column=="year") {
-								language.classed("highlight",function(l){
-											return l.values.year==d.value;
-										});
-							}
-						})
-						.on("mouseout",function(d){
-							language.classed("highlight",false)
-						})
+						
 
 				marker
 					.transition()
@@ -539,6 +530,22 @@
 						})
 						.attr("x2",function(d){
 							return width_scales[d.column](d.value/((options.dimensions.indexOf(d.column)>-1)?1:d.ref))/2
+						})
+
+				marker
+					.filter(function(d){
+						return d.column=="year"
+					})
+					.select("circle.hover")
+						//.attr("r",20)
+						.on("mouseover",function(d){
+							language.classed("highlight",function(l){
+										return l.values.year==d.value;
+							});
+							
+						})
+						.on("mouseout",function(d){
+							language.classed("highlight",false)
 						})
 
 			}
@@ -697,23 +704,22 @@
 
 			function updateLabels(duration) {
 
-				var label=language
-							.select("g.labels")
+				var labels=languages_group.selectAll(".lang")
 								.selectAll("g.label")
-								.data(function(d){
-									return options.columns.filter(function(col){
-											return col!=options.title_column
-										}).map(function(col){
-											return {
-												lang:d.key,
-												column:col,
-												value:d.values[col],
-												ref:d.values[options.ref]
-											}
-										})
-								});
+									.data(function(d){
+										return options.columns.filter(function(col){
+												return col!=options.title_column
+											}).map(function(col){
+												return {
+													lang:d.key,
+													column:col,
+													value:d.values[col],
+													ref:d.values[options.ref]
+												}
+											})
+									});
 
-				var new_label=label.enter()
+				var new_label=labels.enter()
 							.append("g")
 								.attr("class","label");
 
@@ -727,7 +733,7 @@
 					.attr("x",10)
 					.attr("y",0+3);
 
-				label
+				labels
 					.select("text")
 					.text(function(d){
 
@@ -743,13 +749,13 @@
 						return d3.format(y>100?",.0f":",.2f")(y) 
 					})
 
-				label
+				labels
 					.each(function(d) {
 						d.width = this.getBBox().width;
 					});
 
 				//language.selectAll("g.label")
-				label
+				labels
 					.select("rect")
 						.attr("width",function(d){
 							//console.log(d)
@@ -757,10 +763,12 @@
 						})
 
 				//language.selectAll("g.label")
-				label
+				labels
 					.transition()
 					.duration(duration || options.duration)
 					.attr("transform",function(d){
+
+						//console.log(d)
 
 						var x=xscale(d.column),
 							y=yscales[d.column](d.value);
@@ -776,6 +784,20 @@
 						}
 						return "translate("+x+","+y+")";
 					})
+
+				labels
+					.filter(function(d){
+						return d.column=="year"
+					})
+						.on("mouseover",function(d){
+							language.classed("highlight",function(l){
+										return l.values.year==d.value;
+							});
+							
+						})
+						.on("mouseout",function(d){
+							language.classed("highlight",false)
+						})
 
 			}
 
