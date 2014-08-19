@@ -1,0 +1,22 @@
+{
+  "name": "getCSVfromGithubArchive",
+  "version": "0.0.1",
+  "description": "download compressed CSV file from github archive and uncompress it",
+  "keywords": [
+    "github"
+  ],
+  "author": {
+    "name": "Carlo Zapponi",
+    "email": "me@carlo.im",
+    "url": "http://www.makinguse.com/"
+  },
+  
+  "dependencies": {
+    "request": "x",
+    "JSONStream":"x",
+    "event-stream":"x",
+    "moment":"x",
+    "mongodb":"x",
+    "json2csv":"x"
+  }
+}

@@ -1,0 +1,138 @@
+
+svg {
+	font-family: sans-serif;
+	border:1px solid #ddd;
+}
+svg #columns line {
+	shape-rendering: crispEdges;
+	stroke:#666;
+	stroke-width:1;
+	fill:none;
+}
+svg #languages circle {
+	stroke:none;
+	fill:#333;
+}
+svg #languages path {
+	stroke:#666;
+	stroke-opacity:0.2;
+	stroke-width:1;
+	fill:none;
+}
+svg #languages .connections line {
+	stroke:#666;
+	stroke-opacity:0.2;
+	stroke-width:1;
+	fill:none;
+}
+
+svg #languages g.top10 path {
+	stroke-opacity:0.5;
+}
+svg #languages text {
+	fill:#333;
+	font-size: 10px;
+	text-anchor: end;
+	
+}
+svg #languages g.top10 .lang-label text {
+	fill-opacity:1;	
+}
+svg #languages g:hover .lang-label text,
+svg #languages g.highlight .lang-label text {
+	fill-opacity:1;
+	font-weight: bold;
+	fill:#000;
+}
+svg #languages .lang-label rect {
+	fill:#dfdfdf;
+	fill-opacity:0;
+}
+svg #languages g:hover .lang-label rect,
+svg #languages g.highlight .lang-label rect {
+	fill-opacity:0.8;
+}
+svg #languages g:hover .lang-label rect.hover {
+	fill-opacity:0;
+}
+svg #languages .label text {
+	fill-opacity:0;
+	text-anchor:start;
+	font-weight: bold;
+	fill:#fff;
+}
+svg #languages .label rect {
+	display: none;
+	fill:#000;
+	fill-opacity:0.8;
+}
+svg #languages g:hover .label text,
+svg #languages g.highlight .label text {
+	fill-opacity:1;
+}
+svg #languages g:hover .label rect,
+svg #languages g.highlight .label rect {
+	display: block;
+}
+
+svg #languages g:hover path,
+svg #languages g.highlight path {
+	stroke:#A38665;
+	stroke-opacity:1;
+	stroke-width:3;
+}
+
+svg #languages path.hover,
+svg #languages g:hover path.hover,
+svg #languages g.top10 path.hover,
+svg #languages g.top10:hover path.hover {
+	stroke-opacity:0;
+	stroke-width:6;
+}
+
+svg #languages .marker circle {
+	fill:#333;
+	fill-opacity:1;
+}
+svg #languages .marker circle.hover {
+	fill-opacity:0.2;
+}
+svg #languages .marker.ordinal circle {
+	fill-opacity:0;
+}
+svg #languages .marker text {
+	text-anchor:middle;
+	font-size:10px;
+	fill:#333;
+}
+svg #languages .marker line {
+	stroke-width:2;
+	stroke:#333;
+	stroke-opacity:0;
+}
+svg #languages .marker.ordinal line {
+	stroke-opacity:1;
+}
+g.axis {
+	display: none;
+}
+g.axis line {
+	shape-rendering: crispEdges;
+	stroke:#333;
+	stroke-width:1;
+}
+g.axis path {
+	shape-rendering: crispEdges;
+	stroke:#333;
+	stroke-width:1;
+	fill:none;
+}
+g.axis text {
+	font-size: 10px;
+	fill:#999;
+}
+.column text.title {
+	text-anchor:middle;
+	text-transform: uppercase;
+	font-size: 10px;
+}
