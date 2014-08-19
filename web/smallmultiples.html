@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>small multiples</title>
+	<link rel="stylesheet" href="css/sm.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js" charset="utf-8"></script>
+</head>
+<body>
+	<div id="smallMultiples"></div>
+	<script src="js/smallmultiples.js"></script>
+	<script>
+
+		d3.csv("../server/exports/created_quarters.csv",function(d){
+
+			d.active_repos_by_name=+d.active_repos_by_name;
+			d.active_repos_by_url=+d.active_repos_by_url;
+			d.date=new Date(d.year,((+d.quarter)*3-3),1)
+
+			return d;
+		},function(data){
+
+			
+			console.log(data)
+
+			
+
+			var extents={
+				date:[
+					new Date("2012-04-01T00:00:00.000Z"),
+					new Date("2014-04-01T00:00:00.000Z")
+				]
+			};
+
+			/*var extents={
+				date:d3.extent(data,function(d){
+					return d.date;
+				})
+			}*/
+			var nested_data=d3.nest()
+								.key(function(d){
+									return d.repository_language
+								})
+								.key(function(d){
+									return new Date(d.year,((+d.quarter)*3-3),1)
+								})
+								.rollup(function(leaves){
+									return {
+										repositories:{
+											active_repos_by_url:d3.sum(leaves,function(d){
+												return d.active_repos_by_url
+											}),
+											active_repos_by_name:d3.sum(leaves,function(d){
+												return d.active_repos_by_name
+											})	
+										}	
+										
+									}
+								})
+								.entries(data.filter(function(d){
+									return d.active_repos_by_url>100 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
+								}).sort(function(a,b){
+									return b.active_repos_by_url - a.active_repos_by_url
+								}));
+
+			console.log(nested_data);
+			
+			new SmallMultiples(nested_data,{
+				extents:extents,
+				container:"#smallMultiples",
+				indicator:"repositories",
+				metric:"active_repos_by_url",
+				title:"Active repositories"
+			});
+		});
+
+	</script>
+</body>
+</html>

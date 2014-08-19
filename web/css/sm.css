@@ -1,0 +1,111 @@
+body {
+	font-family: sans-serif;
+	color:#333;
+}
+h2 {
+    margin: 10px;
+    font-size: 18px;
+    color: #333;
+}
+div.small-multiples {
+	clear: both;
+	margin-bottom: 40px;
+	overflow: hidden;
+}
+div.chart {
+	margin:10px;
+	float: left;
+}
+div.chart h4 {
+	font-size: 10px;
+	color:#333;
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+svg {
+	
+}
+
+svg .linechart circle {
+	fill:#000;
+	stroke:none;
+	display: none;
+}
+svg .linechart circle.ix {
+	fill:#000;
+	fill-opacity:0;
+	stroke:none;
+	display: block;
+}
+
+svg .linechart g text {
+	fill:#333;
+	text-anchor:middle;
+	font-size:8px;
+	display: none;
+}
+
+svg .linechart g:hover circle {
+	display: block;
+}
+svg .linechart g:hover text {
+	display: block;
+}
+
+svg .linechart path {
+	fill:none;
+	stroke:#333;
+	stroke-width:1;
+}
+.region svg .linechart path {
+	stroke:#000;
+	stroke-width:2;
+}
+
+svg .linechart path.default {
+	stroke:#ff3300;
+	stroke-width:1;
+	stroke-opacity:0.5;
+}
+
+svg .threshold line {
+	fill:none;
+	stroke:#a0091d;
+	stroke-width:1;
+	stroke-opacity:0.5;
+	/*stroke-dasharray: 1,1;*/
+}
+
+#axes path,
+#axes line {
+	shape-rendering: crispEdges;
+}
+
+#axes .axis path {
+	stroke:#aaa;
+	stroke-width:1;
+	fill:none;
+}
+#axes .axis .tick line {
+	stroke:#aaa;
+	stroke-width:1;
+	fill:none;	
+}
+#axes .axis .tick text{
+	font-size: 10px;
+	fill:#aaa;
+}
+#axes .x .tick text{
+	text-anchor:middle !important;
+}
+#axes line.ygrid {
+	fill:none;
+	stroke:#ccc;
+	stroke-width:1;
+	stroke-dasharray: 1,1;
+}
+#axes .y .tick line,
+#axes .y path {
+	display: none;
+}
