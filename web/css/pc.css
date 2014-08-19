@@ -35,8 +35,8 @@ svg #languages text {
 	text-anchor: end;
 	
 }
-svg #languages g.top10 .lang-label text {
-	fill-opacity:1;	
+svg #languages g.new .lang-label text {
+	fill:#339933;
 }
 svg #languages g:hover .lang-label text,
 svg #languages g.highlight .lang-label text {
@@ -106,7 +106,7 @@ svg #languages .marker text {
 	fill:#333;
 }
 svg #languages .marker line {
-	stroke-width:2;
+	stroke-width:4;
 	stroke:#333;
 	stroke-opacity:0;
 }

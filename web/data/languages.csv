@@ -185,6 +185,7 @@ J. J. Horning et al. at Stanford University,PL/I
 1984,OPL,PSION,BASIC
 1985,PARADOX,Borland,dBase
 1985,QuickBASIC,Microsoft,BASIC
+1985,Emacs Lisp,Richard Stallman,MacLisp
 1986,CorVision,Cortex,INFORM
 1986,Eiffel,Bertrand Meyer,Simula 67 Ada
 1986,GFA BASIC,Frank Ostrowski,BASIC
@@ -338,7 +339,6 @@ J. J. Horning et al. at Stanford University,PL/I
 2012,Elixir,José Valim,Erlang Ruby Clojure
 2012,TypeScript,Anders Hejlsberg Microsoft,JavaScript CoffeeScript
 2012,Julia,Jeff Bezanson Stefan Karpinski Viral Shah Alan Edelman,MATLAB
-2013,Emacs Lisp
 2014,Hack,Facebook,PHP
 2014,Swift,Apple Inc.,C Objective-C
 2014,Perl6,Larry Wall,Haskell JavaScript Perl 5 Ruby Smalltalk

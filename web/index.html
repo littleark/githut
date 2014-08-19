@@ -671,6 +671,7 @@
 							.data(nested_data,function(d){
 								return d.key;
 							})
+							.classed("new",false)
 					
 					languages
 						.exit()
@@ -680,6 +681,7 @@
 						.enter()
 						.append("g")
 							.attr("class","lang")
+							.classed("new",true)
 							.attr("rel",function(d){
 								return d.key;
 							})
@@ -742,7 +744,7 @@
 						}
 
 						if(options.dimensions.indexOf(d.column)>-1) {
-							return d3.format(",.0f")(d.value)
+							return d3.format(d.value>100?",.0f":",.2f")(d.value)
 						}
 						var y=d.value/d.ref;
 						//return d3.format(",.0f")(d.value);
