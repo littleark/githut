@@ -49,6 +49,19 @@
 				}
 			})
 			console.log(sums)
+
+			var sums_quarter={};
+			data.forEach(function(d){
+				if(!sums_quarter[d.year+"-"+d.quarter]) {
+					sums_quarter[d.year+"-"+d.quarter]=d3.sum(data.filter(function(l){
+						return d.year+"-"+d.quarter==l.year+"-"+l.quarter
+					}),function(d){
+						return d.active_repos_by_url
+					})
+				}	
+			})
+			console.log(sums_quarter)
+
 			var nested_data=d3.nest()
 								.key(function(d){
 									return d.repository_language
@@ -60,7 +73,7 @@
 									return {
 										repositories:{
 											active_repos_by_url:d3.sum(leaves,function(d){
-												return d.active_repos_by_url
+												return d.active_repos_by_url/sums_quarter[d.year+"-"+d.quarter]
 											}),
 											active_repos_by_name:d3.sum(leaves,function(d){
 												return d.active_repos_by_name
@@ -70,7 +83,7 @@
 									}
 								})
 								.entries(data.filter(function(d){
-									return sums[d.repository_language]>10000 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
+									return sums[d.repository_language]>5000 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
 								}).sort(function(a,b){
 									return sums[b.repository_language] - sums[a.repository_language];
 								}));

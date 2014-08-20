@@ -62,9 +62,28 @@ function SmallMultiples(nested_data,options) {
 	}
 
 	var avg=createAverage();
-	console.log(avg)
+	console.log(avg);
 
-	var WIDTH=150,
+	nested_data=([(function(){
+			var a={
+				key:"Average",
+				values:{}
+			};
+			a["values"]=avg.map(function(d){
+				var values={};
+				values[INDICATOR]={};
+				values[INDICATOR][METRIC]=d.values.mean;
+				return {
+					key:d.key,
+					values:values
+				}
+			})
+			return a;
+		}())]).concat(nested_data)
+
+	console.log("++++",nested_data)
+
+	var WIDTH=160,
 		HEIGHT=WIDTH*9/16;
 
 	var margins={
@@ -96,13 +115,13 @@ function SmallMultiples(nested_data,options) {
 				return "p"+d.key;
 			})
 			.attr("class","chart")
-			.classed("region",function(d){
-				return d.key===0;
+			.classed("first",function(d,i){
+				return !i;
 			})
 
 	charts.append("h4")
-			.text(function(d){
-				return d.key;
+			.html(function(d,i){
+				return (i?i+". ":"")+"<b>"+d.key+"</b>";
 			})
 
 	var svgs=charts.append("svg")
@@ -117,11 +136,12 @@ function SmallMultiples(nested_data,options) {
 			.attr("class","linechart")
 			.attr("transform","translate("+margins.left+","+margins.top+")");
 
-	console.log("!!!!!!!!!!!!!!!!!!!",options.extents)
+	
 
 	var xscale=d3.time.scale().domain(options.extents.date).range([0,WIDTH-(margins.left+margins.right+padding.left+padding.right)]);
-	var yscale=d3.scale.linear()
-					.domain([options.extents[INDICATOR][METRIC][0]*0.1,options.extents[INDICATOR][METRIC][1]*1])
+	var yscale=d3.scale.sqrt()
+					//.domain([options.extents[INDICATOR][METRIC][0]*0.1,options.extents[INDICATOR][METRIC][1]*1])
+					.domain([0,options.extents[INDICATOR][METRIC][1]])
 					.range([HEIGHT-(margins.bottom+margins.top),0]);//.nice();
 
 
@@ -183,33 +203,31 @@ function SmallMultiples(nested_data,options) {
 							y=yscale(d.values[INDICATOR][METRIC]);
 						return "translate("+x+","+y+")";
 					})
+	
+	var w=(xscale.range()[1])/(circles.data().length-1)
+	circles.append("rect")
+				.attr("class","ix")
+				.attr("x",-w/2)
+				.attr("y",function(d){
+					return -yscale(d.values[INDICATOR][METRIC])
+				})
+				.attr("width",w)
+				.attr("height",yscale.range()[0])
 
-	circles.append("circle")
-					.attr("class","ix")
-					.attr("cx",0)
-					.attr("cy",0)
-					.attr("r",5);
 
 	circles.append("circle")
 					.attr("cx",0)
 					.attr("cy",0)
 					.attr("r",2);
 
-	circles.append("text")
-				.attr("x",0)
-				.attr("y",-5)
-				.text(function(d){
-					return d.values[INDICATOR][METRIC]
-				})
-
-	var xAxis = d3.svg.axis().scale(xscale).tickSize(3).tickValues(options.extents.date);
-	var yAxis = d3.svg.axis().scale(yscale).orient("left").tickValues([10000,100000]);
-
 	var xtickFormat=function(value){
 		var q= Math.ceil(+d3.time.format("%m")(value)/3);
 		return d3.time.format("Q"+q+"/%y")(value)
 	}
 	var ytickFormat=function(value){
+
+		return d3.format("p")(value)
+
 		var values=[1000,10000,100000,150000];
 		
 		if(values.indexOf(value)>-1) {
@@ -220,6 +238,54 @@ function SmallMultiples(nested_data,options) {
 		}
 		return "";
 	} 
+	//label_position=d3.scale.ordinal().domain([0,circles.length/2,circles.length-1]).rangeBands(["start","middle","end"]);
+	circles.append("text")
+				.attr("x",0)
+				.attr("y",-5)
+				.style("text-anchor",function(d,i){
+					var position="middle";
+					if(i<circles.data().length/3)
+						position="start";
+					if(i>circles.data().length*2/3)
+						position="end";
+					return position;
+				})
+				.text(function(d){
+					return d3.format(",.3p")(d.values[INDICATOR][METRIC])
+					//return d3.format(",.3f")(d.values[INDICATOR][METRIC])
+				});
+
+	circles.append("line")
+				.attr("class","dropline")
+				.attr("x1",0)
+				.attr("x2",0)
+				.attr("y1",0)
+				.attr("y2",function(d){
+					return yscale.range()[0] - yscale(d.values[INDICATOR][METRIC]);
+				})
+
+	circles.append("rect")
+				.attr("class","bg")
+				.attr("x",-20)
+				.attr("y",function(d){
+					return yscale.range()[0] - yscale(d.values[INDICATOR][METRIC])
+				})
+				.attr("width",40)
+				.attr("height",20)
+
+	circles.append("text")
+				.attr("x",0)
+				.attr("y",function(d){
+					return yscale.range()[0] - yscale(d.values[INDICATOR][METRIC]) + 13
+				})
+				.text(function(d){
+					return xtickFormat(new Date(d.key))
+				});
+
+	var xAxis = d3.svg.axis().scale(xscale).tickSize(3).tickValues(options.extents.date);
+	var yAxis = d3.svg.axis().scale(yscale).orient("left").tickValues([0.01,0.1,0.2]);
+
+	
 	xAxis.tickFormat(xtickFormat);
 	yAxis.tickFormat(ytickFormat)
 
@@ -235,7 +301,7 @@ function SmallMultiples(nested_data,options) {
       .call(yAxis);
 
     //console.log(yscale.ticks(3))
-
+    
     axes.selectAll("line.ygrid")
     		/*.data(yscale.ticks(2).filter(function(d){
     			if(options.threshold) {
@@ -243,7 +309,8 @@ function SmallMultiples(nested_data,options) {
     			}
     			return 1;
     		}))*/
-			.data([10000,100000])
+			//.data([1000,10000,100000])
+			.data([0.01,0.1,0.2])
     		.enter()
     		.append("line")
     			.attr("class","ygrid")
