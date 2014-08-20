@@ -1,7 +1,11 @@
-
+body {
+	font-family: "Raleway",sans-serif;
+	font-weight: 300;
+	background-color:#E2F6FF;
+}
 svg {
-	font-family: sans-serif;
-	border:1px solid #ddd;
+	font-family: "Raleway",sans-serif;
+	font-weight: 300;
 }
 svg #columns line {
 	shape-rendering: crispEdges;
@@ -14,21 +18,14 @@ svg #languages circle {
 	fill:#333;
 }
 svg #languages path {
-	stroke:#666;
-	stroke-opacity:0.2;
-	stroke-width:1;
-	fill:none;
-}
-svg #languages .connections line {
-	stroke:#666;
+	stroke:#A06535;
 	stroke-opacity:0.2;
 	stroke-width:1;
 	fill:none;
 }
 
-svg #languages g.top10 path {
-	stroke-opacity:0.5;
-}
+
+
 svg #languages text {
 	fill:#333;
 	font-size: 10px;
@@ -39,23 +36,26 @@ svg #languages g.new .lang-label text {
 	fill:#339933;
 }
 svg #languages g:hover .lang-label text,
-svg #languages g.highlight .lang-label text {
+svg #languages g.highlight .lang-label text,
+svg #languages g.year .lang-label text {
 	fill-opacity:1;
-	font-weight: bold;
-	fill:#000;
+	
+	fill:#fff;
 }
 svg #languages .lang-label rect {
-	fill:#dfdfdf;
+	fill:#A06535;
 	fill-opacity:0;
 }
 svg #languages g:hover .lang-label rect,
-svg #languages g.highlight .lang-label rect {
+svg #languages g.highlight .lang-label rect,
+svg #languages g.year .lang-label rect {
 	fill-opacity:0.8;
 }
 svg #languages g:hover .lang-label rect.hover {
 	fill-opacity:0;
 }
 svg #languages .label text {
+	font-family: sans-serif;
 	fill-opacity:0;
 	text-anchor:start;
 	font-weight: bold;
@@ -67,27 +67,28 @@ svg #languages .label rect {
 	fill-opacity:0.8;
 }
 svg #languages g:hover .label text,
-svg #languages g.highlight .label text {
+svg #languages g.highlight .label text,
+svg #languages g.year .label text {
 	fill-opacity:1;
 }
 svg #languages g:hover .label rect,
-svg #languages g.highlight .label rect {
+svg #languages g.highlight .label rect,
+svg #languages g.year .label rect {
 	display: block;
 }
 
 svg #languages g:hover path,
-svg #languages g.highlight path {
-	stroke:#A38665;
-	stroke-opacity:1;
+svg #languages g.highlight path,
+svg #languages g.year path {
+	stroke:#A06535;
+	stroke-opacity:0.8;
 	stroke-width:3;
 }
 
 svg #languages path.hover,
-svg #languages g:hover path.hover,
-svg #languages g.top10 path.hover,
-svg #languages g.top10:hover path.hover {
+svg #languages g:hover path.hover {
 	stroke-opacity:0;
-	stroke-width:6;
+	stroke-width:10;
 }
 
 svg #languages .marker circle {
@@ -95,6 +96,7 @@ svg #languages .marker circle {
 	fill-opacity:1;
 }
 svg #languages .marker circle.hover {
+	fill:#A06535;
 	fill-opacity:0.2;
 }
 svg #languages .marker.ordinal circle {

@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>parallel coordinates</title>
+	<!--<link href='http://fonts.googleapis.com/css?family=PT+Sans:400' rel='stylesheet' type='text/css'>-->
+	<link href="http://fonts.googleapis.com/css?family=Raleway:300,700" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="css/pc.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js" charset="utf-8"></script>
 	<script>window.d3||document.write('<script src="js/vendors/d3/d3.min.js"><\/script>');</script>
@@ -32,7 +34,7 @@
 
 			//console.log(programming_languages)
 			var unknonw=[];
-			d3.csv("../server/exports/results-20140819-123455.csv",function(d){
+			d3.csv("../server/exports/q2-2014.csv",function(d){
 				//d.date=new Date(d.month+"-01");
 				//d.timestamp=d.date.getTime();
 				d.active_repos_by_url=+d.active_repos_by_url;
@@ -96,10 +98,10 @@
 						"lang_usage":"Events",
 						"year":"Year",
 						"events_per_repo":"Events/Repo",
-						"sum_rep_size":"Average Size",
-						"sum_rep_forks":"Average Forks",
-						"sum_rep_openissues":"Average Open Issues",
-						"sum_rep_watchers":"Average Watchers"
+						"sum_rep_size":"Repo Size",
+						"sum_rep_forks":"Forks/Repo",
+						"sum_rep_openissues":"Open Issues/Repo",
+						"sum_rep_watchers":"Watchers/Repo"
 					},
 					duration:1000
 				});
@@ -165,11 +167,13 @@
 					})
 					.entries(data)
 					.filter(function(d){
+						true;
 						return d.values["active_repos_by_url"]>1000;
 					})
-					//.sort(function(a,b){
-					//	return d3.descending(a.values["lang_usage"],b.values["lang_usage"]);
-					//})
+					.sort(function(a,b){
+						return d3.descending(a.values["lang_usage"],b.values["lang_usage"]);
+					})
+					.slice(0,30)
 			}
 
 			var nested_data=nestData(data);
@@ -438,11 +442,6 @@
 			addAxes();
 
 			
-			
-			var moveToFront = function() { 
-			    this.parentNode.appendChild(this); 
-			}
-			
 
 			var languages_group=svg.append("g")
 							.attr("id","languages")
@@ -455,20 +454,21 @@
 							.enter()
 							.append("g")
 								.attr("class","lang")
-								.classed("top10",function(d,i){
-									return false;
-									return i<10;
+								.on("click",function(d){
+									var $this=d3.select(this);
+									$this.classed("highlight",!($this.classed("highlight")))
+									this.parentNode.appendChild(this);
 								})
-								.attr("rel",function(d){
-									return d.key;
-								})
+								/*
 								.on("mouseover",function(d){
 									this.parentNode.appendChild(this);
 									d3.select(this).classed("highlight",true)
 								})
 								.on("mouseout",function(d){
-									d3.select(this).classed("highlight",false)	
+									alert("!")
+									languages_group.selectAll("g.lang").classed("highlight",false)	
 								})
+								*/
 
 			var line = d3.svg.line()
 				    .x(function(d,i) { return d.x; })
@@ -637,13 +637,13 @@
 					.select("circle.hover")
 						//.attr("r",20)
 						.on("mouseover",function(d){
-							language.classed("highlight",function(l){
+							language.classed("year",function(l){
 										return l.values.year==d.value;
 							});
 							
 						})
 						.on("mouseout",function(d){
-							language.classed("highlight",false)
+							language.classed("year",false)
 						})
 
 			}
@@ -781,16 +781,18 @@
 						.append("g")
 							.attr("class","lang")
 							.classed("new",true)
-							.attr("rel",function(d){
-								return d.key;
+							.on("click",function(d){
+								var $this=d3.select(this);
+								$this.classed("highlight",!($this.classed("highlight")))
+								this.parentNode.appendChild(this);
 							})
-							.on("mouseover",function(d){
+							/*.on("mouseover",function(d){
 								this.parentNode.appendChild(this);
 								d3.select(this).classed("highlight",true)
 							})
 							.on("mouseout",function(d){
-								d3.select(this).classed("highlight",false)	
-							})
+								languages_group.selectAll("g.lang").classed("highlight",false)	
+							})*/
 							.call(createLanguages)
 					
 					
@@ -858,6 +860,10 @@
 					})
 
 				labels
+					.select("rect")
+						.attr("width",0)
+
+				labels
 					.each(function(d) {
 						d.width = this.getBBox().width;
 					});
@@ -898,13 +904,13 @@
 						return d.column=="year"
 					})
 						.on("mouseover",function(d){
-							language.classed("highlight",function(l){
+							language.classed("year",function(l){
 										return l.values.year==d.value;
 							});
 							
 						})
 						.on("mouseout",function(d){
-							language.classed("highlight",false)
+							language.classed("year",false)
 						})
 
 			}

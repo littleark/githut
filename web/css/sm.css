@@ -1,6 +1,7 @@
 body {
-	font-family: sans-serif;
-	color:#333;
+	font-family: "Raleway",sans-serif;
+	font-weight: 300;
+	background-color:#E2F6FF;
 }
 h2 {
     margin: 10px;
@@ -22,13 +23,15 @@ div.chart h4 {
 	margin: 0;
 	padding: 0;
 	font-weight: normal;
+	text-align: center;
 }
 svg {
-	
+	font-family: sans-serif;
+	font-weight: 300;
 }
 
 svg .linechart circle {
-	fill:#000;
+	fill:#A06535;
 	stroke:none;
 	fill-opacity:0;
 
@@ -76,7 +79,7 @@ svg .linechart rect.ix {
 
 svg .linechart path {
 	fill:none;
-	stroke:#333;
+	stroke:#A06535;
 	stroke-width:2;
 }
 

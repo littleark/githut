@@ -133,26 +133,38 @@ function SmallMultiples(nested_data,options) {
 	var svgs=charts.append("svg")
 			.attr("width",WIDTH)
 			.attr("height",HEIGHT);
-	svgs.append("defs")
+	var defs=svgs.append("defs")
 			.append("pattern")
 				.attr({
 					id:"diagonalHatch",
-					width:4,
-					height:4,
+					width:3,
+					height:3,
 					patternTransform:"rotate(-45 0 0)",
 					patternUnits:"userSpaceOnUse"
-				})
-					.append("line")
+				});
+	defs.append("rect")
 					.attr({
-						x0:0,
-						y1:0,
-						x2:0,
-						y2:4
+						x:0,
+						y:0,
+						width:4,
+						height:4
 					})
 					.style({
-						stroke:"#A06535",
-						"stroke-width":1
+						stroke:"none",
+						fill:"#fff"
 					})
+	defs
+		.append("line")
+		.attr({
+			x0:0,
+			y1:0,
+			x2:0,
+			y2:4
+		})
+		.style({
+			stroke:"#A06535",
+			"stroke-width":1
+		})
 	/*<defs>
 		<pattern id="diagonalHatch" width="4" height="4" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
   <line x1="0" y1="0" x2="0" y2="4" style="stroke:black; stroke-width:1" />
