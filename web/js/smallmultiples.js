@@ -4,8 +4,8 @@ function flattenArray(array) {
 
 function SmallMultiples(nested_data,options) {
 
-	var INDICATOR=options.indicator || "cellule",
-		METRIC=options.metric || "median";
+	var INDICATOR=options.indicator,
+		METRIC=options.metrics[options.metric];
 
 	console.log(options)
 
@@ -16,6 +16,7 @@ function SmallMultiples(nested_data,options) {
 	})
 
 	function getNestedValues(indicator,metric) {
+		console.log("getNestedValues",indicator,metric)
 		return flattenArray(nested_data.map(function(d){
 			return d.values.map(function(dd){
 				return dd.values[indicator][metric];
@@ -27,15 +28,16 @@ function SmallMultiples(nested_data,options) {
 
 		d3.entries(data[0].values[0].values).forEach(function(d){
 			options.extents[d.key]={};
-			options.extents[d.key][METRIC]=d3.extent(getNestedValues(d.key,METRIC))
+			options.extents[d.key][options.metrics.num]=d3.extent(getNestedValues(d.key,options.metrics.num))
+			options.extents[d.key][options.metrics.perc]=[0,d3.extent(getNestedValues(d.key,options.metrics.perc))[1]]
 		});
 
-		console.log(options.extents)
+		console.log("EXT",options.extents)
 	}
 
 	updateExtents(nested_data);
 
-
+	
 	function createAverage() {
 		return d3.nest()
 					.key(function(d){
@@ -44,8 +46,11 @@ function SmallMultiples(nested_data,options) {
 					.rollup(function(leaves){
 						
 						return {
-							mean:d3.mean(leaves,function(l){
-								return l.values[INDICATOR][METRIC]
+							mean_num:d3.mean(leaves,function(l){
+								return l.values[INDICATOR][options.metrics.num]
+							}),
+							mean_perc:d3.mean(leaves,function(l){
+								return l.values[INDICATOR][options.metrics.perc]
 							}),
 							median:d3.median(leaves.sort(function(a,b){
 								return a.values[INDICATOR][METRIC] - b.values[INDICATOR][METRIC];
@@ -72,7 +77,8 @@ function SmallMultiples(nested_data,options) {
 			a["values"]=avg.map(function(d){
 				var values={};
 				values[INDICATOR]={};
-				values[INDICATOR][METRIC]=d.values.mean;
+				values[INDICATOR][options.metrics.num]=d.values.mean_num;
+				values[INDICATOR][options.metrics.perc]=d.values.mean_perc;
 				return {
 					key:d.key,
 					values:values
@@ -122,7 +128,7 @@ function SmallMultiples(nested_data,options) {
 	charts.append("h4")
 			.html(function(d,i){
 				return (i?i+". ":"")+"<b>"+d.key+"</b>";
-			})
+			});
 
 	var svgs=charts.append("svg")
 			.attr("width",WIDTH)
@@ -136,13 +142,11 @@ function SmallMultiples(nested_data,options) {
 			.attr("class","linechart")
 			.attr("transform","translate("+margins.left+","+margins.top+")");
 
-	
-
 	var xscale=d3.time.scale().domain(options.extents.date).range([0,WIDTH-(margins.left+margins.right+padding.left+padding.right)]);
 	var yscale=d3.scale.sqrt()
 					//.domain([options.extents[INDICATOR][METRIC][0]*0.1,options.extents[INDICATOR][METRIC][1]*1])
-					.domain([0,options.extents[INDICATOR][METRIC][1]])
-					.range([HEIGHT-(margins.bottom+margins.top),0]);//.nice();
+					.domain(options.extents[INDICATOR][METRIC])
+					.range([HEIGHT-(margins.bottom+margins.top),0]).nice();
 
 
 	if(options.threshold) {
@@ -168,7 +172,7 @@ function SmallMultiples(nested_data,options) {
 
 	var default_line=d3.svg.line()
 					    .x(function(d) { return xscale(new Date(d.key)); })
-					    .y(function(d) { return yscale(d.values.mean); })
+					    .y(function(d) { return yscale(d.values["mean_"+options.metric]); })
 
 	
 
@@ -188,6 +192,7 @@ function SmallMultiples(nested_data,options) {
 
 	linechart
 			.append("path")
+			.attr("class","line")
 			.attr("d",function(d){
 				return line(d.values);
 			})
@@ -203,7 +208,8 @@ function SmallMultiples(nested_data,options) {
 							y=yscale(d.values[INDICATOR][METRIC]);
 						return "translate("+x+","+y+")";
 					})
-	
+
+
 	var w=(xscale.range()[1])/(circles.data().length-1)
 	circles.append("rect")
 				.attr("class","ix")
@@ -224,22 +230,35 @@ function SmallMultiples(nested_data,options) {
 		var q= Math.ceil(+d3.time.format("%m")(value)/3);
 		return d3.time.format("Q"+q+"/%y")(value)
 	}
-	var ytickFormat=function(value){
 
-		return d3.format("p")(value)
+	var axis_values={
+		num:[1000,10000,100000,150000],
+		perc:[-1,0.01,0.1,0.2]
+	}
 
-		var values=[1000,10000,100000,150000];
-		
-		if(values.indexOf(value)>-1) {
-			var precision=0;
-			return d3.format("s")(value)
-		} else {
+	var formats={
+		num: d3.format(",.f"),
+		perc:d3.format(",.2p"),
+		axis:{
+			num: function(value) {
+				var values=axis_values.num;
+			
+				if(values.indexOf(value)>-1) {
+					var precision=0;
+					return d3.format("s")(value)
+				} else {
 
+				}
+				return "";
+			},
+			perc:d3.format("p"),
 		}
-		return "";
-	} 
-	//label_position=d3.scale.ordinal().domain([0,circles.length/2,circles.length-1]).rangeBands(["start","middle","end"]);
+	}
+
+	var ytickFormat=formats.axis[options.metric];
+
 	circles.append("text")
+				.attr("class","label")
 				.attr("x",0)
 				.attr("y",-5)
 				.style("text-anchor",function(d,i){
@@ -251,8 +270,7 @@ function SmallMultiples(nested_data,options) {
 					return position;
 				})
 				.text(function(d){
-					return d3.format(",.3p")(d.values[INDICATOR][METRIC])
-					//return d3.format(",.3f")(d.values[INDICATOR][METRIC])
+					return formats[options.metric](d.values[INDICATOR][METRIC])
 				});
 
 	circles.append("line")
@@ -274,6 +292,7 @@ function SmallMultiples(nested_data,options) {
 				.attr("height",20)
 
 	circles.append("text")
+				.attr("class","xlabel")
 				.attr("x",0)
 				.attr("y",function(d){
 					return yscale.range()[0] - yscale(d.values[INDICATOR][METRIC]) + 13
@@ -283,11 +302,11 @@ function SmallMultiples(nested_data,options) {
 				});
 
 	var xAxis = d3.svg.axis().scale(xscale).tickSize(3).tickValues(options.extents.date);
-	var yAxis = d3.svg.axis().scale(yscale).orient("left").tickValues([0.01,0.1,0.2]);
+	var yAxis = d3.svg.axis().scale(yscale).orient("left").tickValues(axis_values[options.metric]);
 
 	
 	xAxis.tickFormat(xtickFormat);
-	yAxis.tickFormat(ytickFormat)
+	yAxis.tickFormat(ytickFormat);
 
 	axes.append("g")
       .attr("class", "x axis")
@@ -303,14 +322,7 @@ function SmallMultiples(nested_data,options) {
     //console.log(yscale.ticks(3))
     
     axes.selectAll("line.ygrid")
-    		/*.data(yscale.ticks(2).filter(function(d){
-    			if(options.threshold) {
-    				return d!=options.threshold;
-    			}
-    			return 1;
-    		}))*/
-			//.data([1000,10000,100000])
-			.data([0.01,0.1,0.2])
+			.data(axis_values[options.metric])
     		.enter()
     		.append("line")
     			.attr("class","ygrid")
@@ -322,5 +334,98 @@ function SmallMultiples(nested_data,options) {
     			.attr("y2",function(d){
     				return  - ((HEIGHT - (margins.top+margins.bottom)) - yscale(d));
     			})
+    			
+
+    this.switchScale=function(metric) {
+    	options.metric=metric;
+    	METRIC=options.metrics[options.metric];
+
+    	console.log("switch to",METRIC)
+
+    	yscale.domain(options.extents[INDICATOR][METRIC]);
+
+    	ytickFormat=formats.axis[options.metric];
+
+    	yAxis.tickValues(axis_values[options.metric]).tickFormat(ytickFormat)
+    	
+    	axes.selectAll(".y.axis")
+    		.transition()
+    			.duration(500)
+    		.call(yAxis);
+
+    	axes.selectAll("line.ygrid")
+    		.data(axis_values[options.metric])
+    			.transition()
+    			.duration(500)
+			    	.attr("y1",function(d){
+						return  - ((HEIGHT - (margins.top+margins.bottom)) - yscale(d));
+					})
+					.attr("y2",function(d){
+						return  - ((HEIGHT - (margins.top+margins.bottom)) - yscale(d));
+					})
+
+    	linechart
+    		.select("path.area")
+	    		.transition()
+	    		.duration(500)
+	    		.attr("d",function(d){
+					return area(d.values);
+				})
+
+    	linechart
+    		.select("path.line")
+    		.transition()
+    		.duration(500)
+    		.attr("d",function(d){
+				return line(d.values);
+			})
+
+		linechart
+			.select("path.default")
+			.transition()
+    		.duration(500)
+			.attr("d",function(d){
+				return default_line(avg);
+			});
+
+		circles
+			.transition()
+    		.duration(500)
+			.attr("transform",function(d){
+				var x=xscale(new Date(d.key)),
+					y=yscale(d.values[INDICATOR][METRIC]);
+				return "translate("+x+","+y+")";
+			});
+
+		circles
+			.selectAll("rect.ix")
+				.attr("y",function(d){
+					return -yscale(d.values[INDICATOR][METRIC])
+				})
+				.attr("height",yscale.range()[0])
+
+		circles
+			.selectAll("text.label")
+			.text(function(d){
+				return formats[options.metric](d.values[INDICATOR][METRIC])
+			});
+
+		circles
+			.selectAll("text.xlabel")
+			.attr("y",function(d){
+				return yscale.range()[0] - yscale(d.values[INDICATOR][METRIC]) + 13
+			})
+		circles
+			.selectAll("rect.bg")
+				.attr("y",function(d){
+					return yscale.range()[0] - yscale(d.values[INDICATOR][METRIC])
+				})
+		circles
+			.selectAll("line.dropline")
+			.attr("y2",function(d){
+				return yscale.range()[0] - yscale(d.values[INDICATOR][METRIC]);
+			})
+
+    }
 
 }

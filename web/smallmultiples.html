@@ -8,6 +8,11 @@
 	<script>window.d3||document.write('<script src="js/vendors/d3/d3.min.js"><\/script>');</script>
 </head>
 <body>
+	<div id="">
+		<a href="#" id="num">#</a>
+		&nbsp;&nbsp;
+		<a href="#" id="perc">%</a>
+	</div>
 	<div id="smallMultiples"></div>
 	<script src="js/smallmultiples.js"></script>
 	<script>
@@ -73,6 +78,9 @@
 									return {
 										repositories:{
 											active_repos_by_url:d3.sum(leaves,function(d){
+												return d.active_repos_by_url
+											}),
+											active_repos_by_url_perc:d3.sum(leaves,function(d){
 												return d.active_repos_by_url/sums_quarter[d.year+"-"+d.quarter]
 											}),
 											active_repos_by_name:d3.sum(leaves,function(d){
@@ -90,13 +98,30 @@
 
 			console.log(nested_data);
 			
-			new SmallMultiples(nested_data,{
+			sm=new SmallMultiples(nested_data,{
 				extents:extents,
 				container:"#smallMultiples",
 				indicator:"repositories",
-				metric:"active_repos_by_url",
+				metric:"num",
+				metrics:{
+					"num":"active_repos_by_url",
+					"perc":"active_repos_by_url_perc"
+				},
 				title:"New repositories"
 			});
+
+			d3.select("#num")
+				.on("click",function(d){
+					d3.event.preventDefault();
+					sm.switchScale("num")
+				})
+
+			d3.select("#perc")
+				.on("click",function(d){
+					d3.event.preventDefault();
+					sm.switchScale("perc")
+				})
+
 		});
 
 	</script>
