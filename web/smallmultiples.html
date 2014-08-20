@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<title>small multiples</title>
 	<link rel="stylesheet" href="css/sm.css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js" charset="utf-8"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js" charset="utf-8"></script>
+	<script>window.d3||document.write('<script src="js/vendors/d3/d3.min.js"><\/script>');</script>
 </head>
 <body>
 	<div id="smallMultiples"></div>
@@ -27,8 +28,8 @@
 
 			var extents={
 				date:[
-					new Date("2012-04-01T00:00:00.000Z"),
-					new Date("2014-04-01T00:00:00.000Z")
+					new Date(2012,3,1),
+					new Date(2014,3,1)
 				]
 			};
 
@@ -37,6 +38,17 @@
 					return d.date;
 				})
 			}*/
+			var sums={};
+			data.forEach(function(d){
+				if(!sums[d.repository_language]) {
+					sums[d.repository_language]=d3.sum(data.filter(function(l){
+						return l.repository_language==d.repository_language
+					}),function(d){
+						return d.active_repos_by_url
+					})
+				}
+			})
+			console.log(sums)
 			var nested_data=d3.nest()
 								.key(function(d){
 									return d.repository_language
@@ -58,9 +70,9 @@
 									}
 								})
 								.entries(data.filter(function(d){
-									return d.active_repos_by_url>100 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
+									return sums[d.repository_language]>10000 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
 								}).sort(function(a,b){
-									return b.active_repos_by_url - a.active_repos_by_url
+									return sums[b.repository_language] - sums[a.repository_language];
 								}));
 
 			console.log(nested_data);
@@ -70,7 +82,7 @@
 				container:"#smallMultiples",
 				indicator:"repositories",
 				metric:"active_repos_by_url",
-				title:"Active repositories"
+				title:"New repositories"
 			});
 		});
 

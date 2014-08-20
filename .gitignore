@@ -1,2 +1,3 @@
-_project/
+_project
 server/node_modules
+web/js/vendors

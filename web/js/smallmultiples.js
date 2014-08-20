@@ -117,7 +117,7 @@ function SmallMultiples(nested_data,options) {
 			.attr("class","linechart")
 			.attr("transform","translate("+margins.left+","+margins.top+")");
 
-
+	console.log("!!!!!!!!!!!!!!!!!!!",options.extents)
 
 	var xscale=d3.time.scale().domain(options.extents.date).range([0,WIDTH-(margins.left+margins.right+padding.left+padding.right)]);
 	var yscale=d3.scale.linear()
@@ -141,10 +141,23 @@ function SmallMultiples(nested_data,options) {
 	var line = d3.svg.line()
 				    .x(function(d) { return xscale(new Date(d.key)); })
 				    .y(function(d) { return yscale(d.values[INDICATOR][METRIC]); })
+	var area = d3.svg.area()
+					.x(function(d) { return xscale(new Date(d.key)); })
+					.y0(HEIGHT-(margins.bottom+margins.top))
+				    .y1(function(d) { return yscale(d.values[INDICATOR][METRIC]); })
 
 	var default_line=d3.svg.line()
 					    .x(function(d) { return xscale(new Date(d.key)); })
-					    .y(function(d) { return yscale(d.values.median); })
+					    .y(function(d) { return yscale(d.values.mean); })
+
+	
+
+	linechart
+			.append("path")
+			.attr("class","area")
+			.attr("d",function(d){
+				return area(d.values);
+			})
 
 	linechart
 			.append("path")
@@ -189,17 +202,22 @@ function SmallMultiples(nested_data,options) {
 					return d.values[INDICATOR][METRIC]
 				})
 
-	var xAxis = d3.svg.axis().scale(xscale).tickSize(3).tickValues(3);
-	var yAxis = d3.svg.axis().scale(yscale).orient("left");
+	var xAxis = d3.svg.axis().scale(xscale).tickSize(3).tickValues(options.extents.date);
+	var yAxis = d3.svg.axis().scale(yscale).orient("left").tickValues([10000,100000]);
 
 	var xtickFormat=function(value){
-		return d3.time.format("%Y")(value)
+		var q= Math.ceil(+d3.time.format("%m")(value)/3);
+		return d3.time.format("Q"+q+"/%y")(value)
 	}
 	var ytickFormat=function(value){
-		var values=[0.1,1,10,100,1000,10000,100000,120000];
+		var values=[1000,10000,100000,150000];
 		
-		if(values.indexOf(value)>-1)
-			return d3.format(",.2s")(value)
+		if(values.indexOf(value)>-1) {
+			var precision=0;
+			return d3.format("s")(value)
+		} else {
+
+		}
 		return "";
 	} 
 	xAxis.tickFormat(xtickFormat);
@@ -225,7 +243,7 @@ function SmallMultiples(nested_data,options) {
     			}
     			return 1;
     		}))*/
-			.data([1000,10000,50000,100000])
+			.data([10000,100000])
     		.enter()
     		.append("line")
     			.attr("class","ygrid")

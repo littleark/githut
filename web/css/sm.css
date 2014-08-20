@@ -62,9 +62,13 @@ svg .linechart path {
 	stroke:#000;
 	stroke-width:2;
 }
-
+svg .linechart path.area {
+	stroke:none;
+	fill:#000;
+	fill-opacity:0.1;
+}
 svg .linechart path.default {
-	stroke:#ff3300;
+	stroke:#FF006A;
 	stroke-width:1;
 	stroke-opacity:0.5;
 }
@@ -105,7 +109,7 @@ svg .threshold line {
 	stroke-width:1;
 	stroke-dasharray: 1,1;
 }
-#axes .y .tick line,
-#axes .y path {
+#axes .tick line,
+#axes  path {
 	display: none;
 }
