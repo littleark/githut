@@ -110,8 +110,19 @@ svg #languages .marker line {
 	stroke:#333;
 	stroke-opacity:0;
 }
+svg #languages .marker rect {
+	shape-rendering: crispEdges;
+	stroke-width:1;
+	stroke:#A06535;
+	stroke-opacity:0;
+	fill-opacity:0;
+}
 svg #languages .marker.ordinal line {
 	stroke-opacity:1;
+}
+svg #languages .marker.ordinal rect {
+	stroke-opacity:0.5;
+	fill-opacity:1;
 }
 g.axis {
 	display: none;

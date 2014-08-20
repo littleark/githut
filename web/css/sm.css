@@ -83,7 +83,7 @@ svg .linechart path {
 svg .linechart path.area {
 	stroke:none;
 	fill:#A06535;
-	fill-opacity:0.3;
+	fill-opacity:0.5;
 }
 svg .linechart path.default {
 	stroke:#006AAD;
