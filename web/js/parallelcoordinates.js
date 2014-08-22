@@ -630,10 +630,10 @@ function ParallelCoordinates(data,options) {
 					})
 					.on("mouseover",function(d){
 						this.parentNode.appendChild(this);
-						d3.select(this).classed("highlight",true)
+						d3.select(this).classed("hover",true)
 					})
 					.on("mouseout",function(d){
-						languages_group.selectAll("g.lang").classed("highlight",false)	
+						languages_group.selectAll("g.lang").classed("hover",false)	
 					})
 					.call(createLanguages)
 			

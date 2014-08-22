@@ -75,6 +75,7 @@ svg #languages .label text {
 svg #languages .label rect.ix {
 	fill:#000;
 	fill-opacity:0;
+	cursor: pointer;
 }
 svg #languages g.label path.label {
 	fill:#fff;
@@ -152,9 +153,12 @@ svg #languages .marker.ordinal rect {
 	fill-opacity:1;
 }
 svg #languages g.hover .marker rect,
-svg #languages g.highlight .marker rect,
 svg #languages g.year .marker rect {
 	stroke-width:1;
+	stroke-opacity:1;
+}
+svg #languages g.highlight .marker rect {
+	stroke:#333;
 	stroke-opacity:1;
 }
 g.axis {
