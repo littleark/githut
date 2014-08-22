@@ -8,15 +8,11 @@ function ParallelCoordinates(data,options) {
 
 	function nestData(data) {
 		return d3.nest()
-			/*.key(function(d){
-				return d.timestamp;
-			})*/
 			.key(function(d){
 				return d.repository_language;
 			})
 			.rollup(function(leaves) {
 				var r={};
-				//console.log(leaves)
 				options.columns.forEach(function(col){
 					r[col]=d3.sum(leaves,function(o){
 						return o[col]
@@ -51,18 +47,18 @@ function ParallelCoordinates(data,options) {
 		left:20,
 		right:30,
 		top:30,
-		bottom:20
+		bottom:30
 	};
 
 	var padding={
 		left:100,
 		right:50,
 		top:10,
-		bottom:0
+		bottom:5
 	};
 
 	var marker_width=[
-		2,
+		4,
 		(WIDTH-d3.sum([margins.left,margins.right,padding.left,padding.right]))/options.columns.length
 	];
 
@@ -185,7 +181,7 @@ function ParallelCoordinates(data,options) {
 					scales[d]=d3.scale[options.scale_map[d]?options.scale_map[d]:scale_type]().domain(extents[d]).range([HEIGHT-(margins.top+margins.bottom+padding.top+padding.bottom),0]);//.nice()	
 				}
 
-				wscales[d]=d3.scale.linear().domain(extents[d]).range(marker_width).nice()
+				wscales[d]=d3.scale.linear().domain([0,extents[d][1]]).range(marker_width).nice()
 				
 			})
 			yscales = scales;
@@ -194,10 +190,7 @@ function ParallelCoordinates(data,options) {
 			
 	}
 
-	
-
 	var yAxes={}
-
 	function createAxes() {
 		var axes={};
 		options.columns.forEach(function(col){
@@ -261,8 +254,8 @@ function ParallelCoordinates(data,options) {
 
 
 	updateScales();
-	createAxes();
-	updateAxes();
+	//createXAxes();
+	//updateAxes();
 
 
 
@@ -274,6 +267,104 @@ function ParallelCoordinates(data,options) {
 					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")")
 
 	function addAxes() {
+
+		var column=columns.selectAll("g.column")
+					.data(options.columns)
+					.enter()
+					.append("g")
+						.attr("class","column")
+						.attr("transform",function(d){
+							var x=xscale(d);
+							return "translate("+x+","+0+")";
+						});
+
+		column.append("text")
+				.attr("class","title")
+				.attr("x",0)
+				.attr("y",-10-padding.top)
+				.text(function(d){
+					return options.column_map[d]
+				})
+
+		var axis=column
+				.filter(function(col){
+					return options.scale_map[col]=="ordinal" && col!=options.title_column;
+				})
+				.append("g")
+					.attr("class","axis")
+					.attr("transform",function(d){
+						var x=0,
+							y=HEIGHT-(margins.bottom+margins.top);
+						return "translate("+x+","+y+")";
+					})
+
+		axis.append("line")
+			.attr("x1",function(d){
+				return -width_scales[d].range()[1]/2;
+			})
+			.attr("y1",0)
+			.attr("x2",function(d){
+				return width_scales[d].range()[1]/2;
+			})
+			.attr("y2",0)
+		
+
+
+		var ticks=axis
+			.selectAll("g.tick")
+				.data(function(d){
+
+					console.log(width_scales[d].ticks(2))
+
+
+					var ticks=[
+								0,
+								//width_scales[d].domain()[1]/2,
+								width_scales[d].domain()[1]
+							].map(function(v,i){
+						return {
+							value:i===0?0:v,
+							x:(i===0?0:width_scales[d](v)/2),
+							domain:width_scales[d].domain(),
+							range:width_scales[d].range()
+						}
+					});
+					console.log(ticks)
+					return ticks.concat(ticks.map(function(d){
+						return {
+							value:d.value,
+							x:-d.x
+						};
+					}));
+				})
+				.enter()
+				.append("g")
+					.attr("class","tick")
+					.classed("start",function(d){
+						return d.x<0;
+					})
+					.classed("end",function(d){
+						return d.x>0;
+					})
+					.attr("transform",function(d){
+						return "translate("+d.x+",0)";
+					})
+
+		ticks.append("line")
+			.attr("x1",0)
+			.attr("y1",-3)
+			.attr("x2",0)
+			.attr("y2",3)
+
+		ticks.append("text")
+			.attr("x",0)
+			.attr("y",12)
+			.text(function(d){
+				return d3.format("s")(d.value);
+			})
+	}
+	addAxes();
+	function addAxes1() {
 
 		var column=columns.selectAll("g.column")
 					.data(options.columns)
@@ -301,7 +392,7 @@ function ParallelCoordinates(data,options) {
 					})
 		//});
 	}
-	addAxes();
+	//addAxes();
 
 	var languages_group=svg.append("g")
 					.attr("id","languages")
@@ -690,21 +781,8 @@ function ParallelCoordinates(data,options) {
 				return d.column!="year";
 			})
 			.append("text")
-			.attr("x",0)
-			.attr("y",3)
-			.text(function(d){
-
-				if(options.formats[d.column]) {
-					return d3.format(options.formats[d.column])(d.value)
-				}
-
-				if(options.dimensions.indexOf(d.column)>-1) {
-					return d3.format(d.value>100?",.0f":",.2f")(d.value)
-				}
-				var y=d.value/d.ref;
-				
-				return d3.format(y>100?",.0f":",.2f")(y) 
-			})
+				.attr("x",0)
+				.attr("y",3)
 
 		new_label
 			.filter(function(d){
@@ -733,10 +811,29 @@ function ParallelCoordinates(data,options) {
 				.attr("x,0")
 
 		labels
+			.select("text")
+				.text(function(d){
+
+					if(options.formats[d.column]) {
+						return d3.format(options.formats[d.column])(d.value)
+					}
+
+					if(options.dimensions.indexOf(d.column)>-1) {
+						return d3.format(d.value>100?",.0f":",.2f")(d.value)
+					}
+					var y=d.value/d.ref;
+					
+					return d3.format(y>100?",.0f":",.2f")(y) 
+				})
+
+		labels
 			.each(function(d) {
 				d.marker_width = width_scales[d.column](d.value/((options.dimensions.indexOf(d.column)>-1)?1:d.ref));
 				d.text_width = this.getBBox().width;
 			});
+
+
+
 		labels
 			.select("path")
 			.attr("class","label")
@@ -745,11 +842,7 @@ function ParallelCoordinates(data,options) {
 					w=d.text_width+dw;
 				return "M"+(w/2+dw/2)+",0l-"+dw/2+",-10l-"+w+",0l0,20l"+w+",0z";
 			})
-		labels
-			.select("text")
-				.attr("x",function(d){
-					return 0;
-				})
+		
 		labels
 			.select("rect.ix")
 				.attr("x",function(d){

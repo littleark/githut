@@ -1,5 +1,5 @@
 body {
-	font-family: "Raleway",sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 	background: #E2F6FF; /* Old browsers */
 }
@@ -16,7 +16,7 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2f6ff',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
 }
 svg {
-	font-family: "Raleway",sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 }
 svg #columns line {
@@ -31,7 +31,7 @@ svg #languages circle {
 }
 svg #languages path {
 	stroke:#A06535;
-	stroke-opacity:0.2;
+	stroke-opacity:0.1;
 	stroke-width:1;
 	fill:none;
 }
@@ -39,9 +39,12 @@ svg #languages path {
 
 
 svg #languages text {
-	fill:#333;
-	font-size: 10px;
+	fill:#000;
+	font-size: 12px;
 	text-anchor: end;
+	
+}
+svg #languages g .lang-label text {
 	
 }
 svg #languages g.new .lang-label text {
@@ -66,7 +69,7 @@ svg #languages g.hover .lang-label rect.hover {
 	fill-opacity:0;
 }
 svg #languages .label text {
-	font-family: sans-serif;
+	
 	fill-opacity:0;
 	text-anchor:middle;
 	font-weight: normal;
@@ -161,26 +164,28 @@ svg #languages g.highlight .marker rect {
 	stroke:#333;
 	stroke-opacity:1;
 }
-g.axis {
-	display: none;
-}
-g.axis line {
-	shape-rendering: crispEdges;
-	stroke:#333;
-	stroke-width:1;
-}
-g.axis path {
-	shape-rendering: crispEdges;
-	stroke:#333;
-	stroke-width:1;
-	fill:none;
-}
-g.axis text {
-	font-size: 10px;
-	fill:#999;
-}
 .column text.title {
+	
 	text-anchor:middle;
 	text-transform: uppercase;
+	font-size: 12px;
+}
+#columns g.axis {
+	
+}
+#columns g.axis line {
+	shape-rendering: crispEdges;
+	stroke:#777;
+	stroke-width:1;
+}
+#columns g.axis g.tick text {
 	font-size: 10px;
+	fill:#777;
+	text-anchor:middle;
+}
+#columns g.axis g.tick.start text {
+	text-anchor:start;
+}
+#columns g.axis g.tick.end text {
+	text-anchor:end;
 }
