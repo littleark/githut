@@ -314,7 +314,7 @@ function ParallelCoordinates(data,options) {
 			.selectAll("g.tick")
 				.data(function(d){
 
-					console.log(width_scales[d].ticks(2))
+					
 
 
 					var ticks=[
@@ -329,11 +329,12 @@ function ParallelCoordinates(data,options) {
 							range:width_scales[d].range()
 						}
 					});
-					console.log(ticks)
-					return ticks.concat(ticks.map(function(d){
+					
+					return ticks.concat(ticks.map(function(t){
 						return {
-							value:d.value,
-							x:-d.x
+							scale:d,
+							value:t.value,
+							x:-t.x
 						};
 					}));
 				})
@@ -362,6 +363,39 @@ function ParallelCoordinates(data,options) {
 			.text(function(d){
 				return d3.format("s")(d.value);
 			})
+	}
+	function updateAxes() {
+
+		columns
+			.selectAll("g.axis")
+			.selectAll("g.tick")
+					.data(function(d){
+
+						var ticks=[
+									0,
+									//width_scales[d].domain()[1]/2,
+									width_scales[d].domain()[1]
+								].map(function(v,i){
+							return {
+								value:i===0?0:v,
+								x:(i===0?0:width_scales[d](v)/2),
+								domain:width_scales[d].domain(),
+								range:width_scales[d].range()
+							}
+						});
+
+						return ticks.concat(ticks.map(function(d){
+							return {
+								value:d.value,
+								x:-d.x
+							};
+						}));
+					})
+					.select("text")
+						.text(function(d){
+							console.log("!!!!!!!",d)
+							return d3.format("s")(d.value);
+						})
 	}
 	addAxes();
 	function addAxes1() {
@@ -743,6 +777,7 @@ function ParallelCoordinates(data,options) {
 			updateMarkers();
 			updateLabels();
 			updateLangLabels();
+			updateAxes();
 	}
 
 	function updateLabels(duration) {

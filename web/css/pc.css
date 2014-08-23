@@ -61,9 +61,12 @@ svg #languages .lang-label rect {
 	fill-opacity:0;
 }
 svg #languages g.hover .lang-label rect,
-svg #languages g.highlight .lang-label rect,
 svg #languages g.year .lang-label rect {
 	fill-opacity:1;
+}
+svg #languages g.highlight .lang-label rect {
+	fill-opacity:1;	
+	fill:#333;
 }
 svg #languages g.hover .lang-label rect.hover {
 	fill-opacity:0;
