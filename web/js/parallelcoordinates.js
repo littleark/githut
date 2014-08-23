@@ -36,12 +36,8 @@ function ParallelCoordinates(data,options) {
 
 	var nested_data=nestData(data);
 	
-	
-
-
-	
-	var WIDTH=1100,
-		HEIGHT=550;
+	var WIDTH=Math.max(Math.round(window.innerWidth*0.9),960);
+		HEIGHT=Math.max(Math.round(window.innerHeight-85),500);
 
 	var margins={
 		left:20,
@@ -51,8 +47,8 @@ function ParallelCoordinates(data,options) {
 	};
 
 	var padding={
-		left:100,
-		right:50,
+		left:70,
+		right:30,
 		top:10,
 		bottom:5
 	};
@@ -705,12 +701,12 @@ function ParallelCoordinates(data,options) {
 
 	}
 	
-	this.loadData=function(file) {
+	this.loadData=function(quarter) {
 		//console.log("loading data")
 
 		var unknonw=[];
 
-		d3.csv(file,function(d){
+		d3.csv(options.path+quarter+"."+options.extension,function(d){
 			//d.date=new Date(d.month+"-01");
 			//d.timestamp=d.date.getTime();
 			d.active_repos_by_url=+d.active_repos_by_url;
@@ -722,6 +718,18 @@ function ParallelCoordinates(data,options) {
 			d.sum_rep_watchers=(+d.sum_rep_watchers);
 			//d.repository_fork=(d.repository_fork=="true")
 			d.year=options.programming_languages[d.repository_language.toLowerCase()] || 1970;
+
+			d.created=options.nested_by_quarter.filter(function(q){
+				return q.key==quarter;
+			})[0].values["languages"].filter(function(l){
+				return l.repository_language==d.repository_language;
+			})[0];
+
+			if(d.created) {
+				d.created=d.created["active_repos_by_url"];
+			} else {
+				d.created=0;
+			}
 
 			return d;
 		},function(data){
@@ -1071,8 +1079,8 @@ function ParallelCoordinates(data,options) {
 						.attr("height",18)
 
 		var rect=lang_label.append("rect")
-						.attr("x",-(padding.left))
-						.attr("width",padding.left)
+						.attr("x",-(padding.left+margins.left))
+						.attr("width",padding.left+margins.left)
 						.attr("y",-13+3)
 						.attr("height",18)
 

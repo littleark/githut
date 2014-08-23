@@ -1,12 +1,17 @@
-body {
+html {
+	overflow-y: scroll;
+}
+html,body {
+	margin:0;
+	padding:0;
+
+	height: 100%;
+
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 	background: #E2F6FF; /* Old browsers */
-}
-#pc {
-	background: #E2F6FF; /* Old browsers */
-	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZTJmNmZmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	/* IE9 #pc svg, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/#pc svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZTJmNmZmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
 	background: -moz-radial-gradient(center, ellipse cover,  #ffffff 0%, #e2f6ff 100%); /* FF3.6+ */
 	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffffff), color-stop(100%,#e2f6ff)); /* Chrome,Safari4+ */
 	background: -webkit-radial-gradient(center, ellipse cover,  #ffffff 0%,#e2f6ff 100%); /* Chrome10+,Safari5.1+ */
@@ -15,21 +20,54 @@ body {
 	background: radial-gradient(ellipse at center,  #ffffff 0%,#e2f6ff 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2f6ff',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
 }
-svg {
+#header {
+	width: 960px;
+	margin:0 auto 10px;
+}
+#header h1 {
+	font-size: 23px;
+	color:#A06535;
+	font-weight: 300;
+	margin:0;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 0;
+}
+#header h2 {
+	font-size: 15px;
+	color:#666;
+	font-weight: 300;
+	margin:0;
+	text-align: center;
+	padding: 0;
+}
+#load {
+	margin:0 auto;
+	min-width: 960px;
+	text-align: center;
+	text-transform: uppercase;
+}
+#pc {
+	margin:0 auto;
+	min-width: 960px;
+}
+#pc svg {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
+	margin:0 auto;
+	display: block;
 }
-svg #columns line {
+#pc svg #columns line {
 	shape-rendering: crispEdges;
 	stroke:#666;
 	stroke-width:1;
 	fill:none;
 }
-svg #languages circle {
+#pc svg #languages circle {
 	stroke:none;
 	fill:#333;
 }
-svg #languages path {
+#pc svg #languages path {
 	stroke:#A06535;
 	stroke-opacity:0.1;
 	stroke-width:1;
@@ -38,52 +76,52 @@ svg #languages path {
 
 
 
-svg #languages text {
+#pc svg #languages text {
 	fill:#000;
 	font-size: 12px;
 	text-anchor: end;
 	
 }
-svg #languages g .lang-label text {
+#pc svg #languages g .lang-label text {
 	
 }
-svg #languages g.new .lang-label text {
+#pc svg #languages g.new .lang-label text {
 	fill:#339933;
 }
-svg #languages g.hover .lang-label text,
-svg #languages g.highlight .lang-label text,
-svg #languages g.year .lang-label text {
+#pc svg #languages g.hover .lang-label text,
+#pc svg #languages g.highlight .lang-label text,
+#pc svg #languages g.year .lang-label text {
 	fill-opacity:1;
 	fill:#fff;
 }
-svg #languages .lang-label rect {
+#pc svg #languages .lang-label rect {
 	fill:#A06535;
 	fill-opacity:0;
 }
-svg #languages g.hover .lang-label rect,
-svg #languages g.year .lang-label rect {
+#pc svg #languages g.hover .lang-label rect,
+#pc svg #languages g.year .lang-label rect {
 	fill-opacity:1;
 }
-svg #languages g.highlight .lang-label rect {
+#pc svg #languages g.highlight .lang-label rect {
 	fill-opacity:1;	
 	fill:#333;
 }
-svg #languages g.hover .lang-label rect.hover {
+#pc svg #languages g.hover .lang-label rect.hover {
 	fill-opacity:0;
 }
-svg #languages .label text {
+#pc svg #languages .label text {
 	
 	fill-opacity:0;
 	text-anchor:middle;
 	font-weight: normal;
 	fill:#333;
 }
-svg #languages .label rect.ix {
+#pc svg #languages .label rect.ix {
 	fill:#000;
 	fill-opacity:0;
 	cursor: pointer;
 }
-svg #languages g.label path.label {
+#pc svg #languages g.label path.label {
 	fill:#fff;
 	stroke:#A06535;
 	fill-opacity:0.8;
@@ -91,104 +129,104 @@ svg #languages g.label path.label {
 	display: none;
 }
 
-svg #languages g.hover .label path.label,
-svg #languages g.hover .label text {
+#pc svg #languages g.hover .label path.label,
+#pc svg #languages g.hover .label text {
 	display: block;
 	fill-opacity:1;
 }
-svg #languages g.hover.year .label path.label,
-svg #languages g.hover.year .label text {
+#pc svg #languages g.hover.year .label path.label,
+#pc svg #languages g.hover.year .label text {
 	display: none;
 	fill-opacity:0;
 }
 
-svg #languages g.hover.year .label.year text {
+#pc svg #languages g.hover.year .label.year text {
 	display: block;
 	fill-opacity:1;
 }
-svg #languages g.highlight g.connection path,
-svg #languages g.highlight g.connection.year path,
-svg #languages g.hover g.connection path,
-svg #languages g.year g.connection path {
+#pc svg #languages g.highlight g.connection path,
+#pc svg #languages g.highlight g.connection.year path,
+#pc svg #languages g.hover g.connection path,
+#pc svg #languages g.year g.connection path {
 	stroke:#A06535;
 	stroke-opacity:0.8;
 	stroke-width:3;
 }
-svg #languages g.highlight g.connection path,
-svg #languages g.highlight g.connection.year path {
+#pc svg #languages g.highlight g.connection path,
+#pc svg #languages g.highlight g.connection.year path {
 	stroke:#333;
 }
-svg #languages .connection path.hover {
+#pc svg #languages .connection path.hover {
 	stroke-opacity:0;
 	stroke-width:10;
 }
 
-svg #languages .marker circle {
+#pc svg #languages .marker circle {
 	fill:#333;
 	fill-opacity:1;
 }
-svg #languages .marker circle.hover {
+#pc svg #languages .marker circle.hover {
 	fill:#A06535;
 	fill-opacity:0.2;
 }
-svg #languages .marker.ordinal circle {
+#pc svg #languages .marker.ordinal circle {
 	fill-opacity:0;
 }
-svg #languages .marker text {
+#pc svg #languages .marker text {
 	text-anchor:middle;
 	font-size:10px;
 	fill:#333;
 }
-svg #languages .marker line {
+#pc svg #languages .marker line {
 	stroke-width:4;
 	stroke:#333;
 	stroke-opacity:0;
 }
-svg #languages .marker rect {
+#pc svg #languages .marker rect {
 	shape-rendering: crispEdges;
 	stroke-width:1;
 	stroke:#A06535;
 	stroke-opacity:0;
 	fill-opacity:0;
 }
-svg #languages .marker.ordinal line {
+#pc svg #languages .marker.ordinal line {
 	stroke-opacity:1;
 }
-svg #languages .marker.ordinal rect {
+#pc svg #languages .marker.ordinal rect {
 	stroke-opacity:0.5;
 	fill-opacity:1;
 }
-svg #languages g.hover .marker rect,
-svg #languages g.year .marker rect {
+#pc svg #languages g.hover .marker rect,
+#pc svg #languages g.year .marker rect {
 	stroke-width:1;
 	stroke-opacity:1;
 }
-svg #languages g.highlight .marker rect {
+#pc svg #languages g.highlight .marker rect {
 	stroke:#333;
 	stroke-opacity:1;
 }
-.column text.title {
+#pc svg .column text.title {
 	
 	text-anchor:middle;
 	text-transform: uppercase;
 	font-size: 12px;
 }
-#columns g.axis {
+#pc svg #columns g.axis {
 	
 }
-#columns g.axis line {
+#pc svg #columns g.axis line {
 	shape-rendering: crispEdges;
 	stroke:#777;
 	stroke-width:1;
 }
-#columns g.axis g.tick text {
+#pc svg #columns g.axis g.tick text {
 	font-size: 10px;
 	fill:#777;
 	text-anchor:middle;
 }
-#columns g.axis g.tick.start text {
+#pc svg #columns g.axis g.tick.start text {
 	text-anchor:start;
 }
-#columns g.axis g.tick.end text {
+#pc svg #columns g.axis g.tick.end text {
 	text-anchor:end;
 }

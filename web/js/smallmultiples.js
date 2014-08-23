@@ -108,9 +108,9 @@ function SmallMultiples(nested_data,options) {
 
 	var container=options.container;
 
-	d3.select(container)
+	/*d3.select(container)
 		.append("h2")
-			.text(options.title)
+			.text(options.title)*/
 
 	var charts=d3.select(container)
 		.selectAll("div")

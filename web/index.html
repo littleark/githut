@@ -7,17 +7,33 @@
 	<!--<link href="http://fonts.googleapis.com/css?family=Raleway:300,700" rel="stylesheet" type="text/css">-->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/pc.css">
+	<link rel="stylesheet" href="css/sm.css">
 	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js" charset="utf-8"></script>
 	<script>window.d3||document.write('<script src="js/vendors/d3/d3.min.js"><\/script>');</script>
 </head>
 <body>
-	<div id="load"></div>
-	<div id="pc"></div>
+	<div id="wrapper">
+		<div id="header">
+			<h1>Languages &amp; Github</h1>
+			<h2>The life of programming languages in Github</h2>
+		</div>
+		<div id="load"></div>
+		<div id="pc"></div>
+
+		<div id="sm_header">
+			<h2>Which languages is trending more?</h2>
+			<h3>The programming language of newly created repositories</h3>
+			<a href="#" id="num">#</a>
+			&nbsp;&nbsp;
+			<a href="#" id="perc">%</a>
+		</div>
+		<div id="sm"></div>
+		<div id="footer"></div>
+	</div>
 	<script src="js/parallelcoordinates.js"></script>
+	<script src="js/smallmultiples.js"></script>
 	<script>
-		//results-20140817-164038
-		//results-20140819-123419
-		//results-20140818-215136
+
 		d3.csv("data/languages.csv",function(d){
 			
 			d["Year"]=+d["Year"];
@@ -34,111 +50,266 @@
 				programming_languages[lang["name_lc"]]=lang["Year"];
 			})
 
-			//console.log(programming_languages)
-			var unknonw=[];
-			d3.csv("../server/exports/q2-2014.csv",function(d){
-				//d.date=new Date(d.month+"-01");
-				//d.timestamp=d.date.getTime();
-				d.active_repos_by_url=+d.active_repos_by_url;
+			
+			d3.csv("../server/exports/created_quarters.csv",function(d){
+
 				d.active_repos_by_name=+d.active_repos_by_name;
-				d.lang_usage=+d.lang_usage;
-				d.events_per_repo=d.lang_usage / d.active_repos_by_url;
-				d.sum_rep_size=(+d.sum_rep_size);
-				d.sum_rep_forks=(+d.sum_rep_forks);
-				d.sum_rep_openissues=(+d.sum_rep_openissues);
-				d.sum_rep_watchers=(+d.sum_rep_watchers);
-				//d.repository_fork=(d.repository_fork=="true")
+				d.active_repos_by_url=+d.active_repos_by_url;
+				d.date=new Date(d.year,((+d.quarter)*3-3),1)
 
-				if(!programming_languages[d.repository_language.toLowerCase()]) {
-					if(unknonw.indexOf(d.repository_language.toLowerCase())==-1) {
-						unknonw.push(d.repository_language.toLowerCase())
-					}
-				}
-
-				d.year=programming_languages[d.repository_language.toLowerCase()] || 1970;
+				d.q="q"+d.quarter+"-"+d.year;
 
 				return d;
-			},function(data){
-				//console.log(data);
-				//console.log(unknonw)
-				pc=new ParallelCoordinates(data.filter(function(d){
-						return true;
-						return d["type"]=="PushEvent" && d.lang_usage>0 && !d.repository_fork;
 
-					}),{ //.slice(0,100)
-					programming_languages:programming_languages,
-					container:"#pc",
-					scale:"linear",
-					columns:["name","active_repos_by_url","lang_usage","events_per_repo","sum_rep_size","sum_rep_forks","sum_rep_openissues","sum_rep_watchers","year"],
-					ref:"lang_usage",
-					title_column:"name",
-					scale_map:{
-						"year":"linear",
-						"name":"ordinal",
-						"name2":"ordinal",
-						"active_repos_by_url":"ordinal",
-						"events_per_repo":"ordinal",
-						"lang_usage":"ordinal",
-						"sum_rep_size":"ordinal",
-						"sum_rep_forks":"ordinal",
-						"sum_rep_openissues":"ordinal",
-						"sum_rep_watchers":"ordinal"
-					},
-					use:{
-						"name":"active_repos_by_url"
-					},
-					sorting:{
-						"name":d3.descending
-					},
-					formats:{
-						"year":"d"
-					},
-					dimensions:["active_repos_by_url","lang_usage","events_per_repo","year","name"],
-					column_map:{
-						"name":"Language",
-						"active_repos_by_url":"Active Repositories",
-						"lang_usage":"Events",
-						"year":"Year",
-						"events_per_repo":"Events/Repo",
-						"sum_rep_size":"Repo Size",
-						"sum_rep_forks":"Forks/Repo",
-						"sum_rep_openissues":"Open Issues/Repo",
-						"sum_rep_watchers":"Watchers/Repo"
-					},
-					duration:1000
+			},function(created_by_quarter){
+
+				var last_quarter="q2-2014";
+
+				var nested_by_quarter=d3.nest()
+										.key(function(d){
+											return d.q;
+										})
+										.rollup(function(leaves){
+											return {
+												total:d3.sum(leaves,function(d){
+													return d.active_repos_by_url;
+												}),
+												languages:leaves
+											}
+										})
+										.entries(created_by_quarter)
+				console.log(nested_by_quarter)
+
+				var unknonw=[];
+				d3.csv("../server/exports/"+last_quarter+".csv",function(d){
+					//d.date=new Date(d.month+"-01");
+					//d.timestamp=d.date.getTime();
+					d.active_repos_by_url=+d.active_repos_by_url;
+					d.active_repos_by_name=+d.active_repos_by_name;
+					d.lang_usage=+d.lang_usage;
+					d.events_per_repo=d.lang_usage / d.active_repos_by_url;
+					d.sum_rep_size=(+d.sum_rep_size);
+					d.sum_rep_forks=(+d.sum_rep_forks);
+					d.sum_rep_openissues=(+d.sum_rep_openissues);
+					d.sum_rep_watchers=(+d.sum_rep_watchers);
+
+					d.created=nested_by_quarter.filter(function(q){
+						return q.key==last_quarter;
+					})[0].values["languages"].filter(function(l){
+						return l.repository_language==d.repository_language;
+					})[0];
+
+					if(d.created) {
+						d.created=d.created["active_repos_by_url"];
+					} else {
+						d.created=0;
+					}
+					//console.log("!!!!!!!!!!!!!!!!",d.repository_language,d.created)
+
+					//d.repository_fork=(d.repository_fork=="true")
+
+					if(!programming_languages[d.repository_language.toLowerCase()]) {
+						if(unknonw.indexOf(d.repository_language.toLowerCase())==-1) {
+							unknonw.push(d.repository_language.toLowerCase())
+						}
+					}
+
+					d.year=programming_languages[d.repository_language.toLowerCase()] || 1970;
+
+					return d;
+				},function(data){
+					//console.log(data);
+					//console.log(unknonw)
+					pc=new ParallelCoordinates(data.filter(function(d){
+							return true;
+						}),{
+						nested_by_quarter:nested_by_quarter,
+						programming_languages:programming_languages,
+						container:"#pc",
+						scale:"linear",
+						columns:["name","created","active_repos_by_url","lang_usage","events_per_repo","sum_rep_size","sum_rep_forks","sum_rep_openissues","sum_rep_watchers","year"],
+						ref:"lang_usage",
+						title_column:"name",
+						scale_map:{
+							"year":"linear",
+							"name":"ordinal",
+							"name2":"ordinal",
+							"created":"ordinal",
+							"active_repos_by_url":"ordinal",
+							"events_per_repo":"ordinal",
+							"lang_usage":"ordinal",
+							"sum_rep_size":"ordinal",
+							"sum_rep_forks":"ordinal",
+							"sum_rep_openissues":"ordinal",
+							"sum_rep_watchers":"ordinal"
+						},
+						use:{
+							"name":"created"
+						},
+						sorting:{
+							"name":d3.descending
+						},
+						formats:{
+							"year":"d"
+						},
+						dimensions:["created","active_repos_by_url","lang_usage","events_per_repo","year","name"],
+						column_map:{
+							"name":"Language",
+							"active_repos_by_url":"Active",
+							"created":"Created",
+							"lang_usage":"Events",
+							"year":"Year",
+							"events_per_repo":"Events/Repo",
+							"sum_rep_size":"Repo Size",
+							"sum_rep_forks":"Forks/Repo",
+							"sum_rep_openissues":"Open Issues/Repo",
+							"sum_rep_watchers":"Watchers/Repo"
+						},
+						duration:1000,
+						path:"../server/exports/",
+						extension:"csv"
+					});
+
+					d3.select("#load")
+						.selectAll("a.load")
+						.data([
+							"q2-2012",
+							"q3-2012",
+							"q4-2012",
+							"q1-2013",
+							"q2-2013",
+							"q3-2013",
+							"q4-2013",
+							"q1-2014",
+							"q2-2014"
+						])
+						.enter()
+						.append("a")
+						.text(function(d){
+							return d;
+						})
+						.attr("href","#")
+						.style({
+							margin:"0px 5px"
+						})
+						.on("click",function(d){
+							d3.event.preventDefault();
+							pc.loadData(d);
+						})
+
+		
 				});
 
-				d3.select("#load")
-					.selectAll("a.load")
-					.data([
-						"q2-2012",
-						"q3-2012",
-						"q4-2012",
-						"q1-2013",
-						"q2-2013",
-						"q3-2013",
-						"q4-2013",
-						"q1-2014",
-						"q2-2014"
-					])
-					.enter()
-					.append("a")
-					.text(function(d){
-						return d;
-					})
-					.attr("href","#")
-					.style({
-						margin:"0px 5px"
-					})
-					.on("click",function(d){
-						d3.event.preventDefault();
-						pc.loadData("../server/exports/"+d+".csv")
-					})
-
-	
 			});
+
+			
 		});
 		
+
+	</script>
+	<script>
+
+		d3.csv("../server/exports/created_quarters.csv",function(d){
+
+			d.active_repos_by_name=+d.active_repos_by_name;
+			d.active_repos_by_url=+d.active_repos_by_url;
+			d.date=new Date(d.year,((+d.quarter)*3-3),1)
+
+			return d;
+		},function(data){
+
+			
+			console.log(data)
+
+			
+
+			var extents={
+				date:[
+					new Date(2012,3,1),
+					new Date(2014,3,1)
+				]
+			};
+
+			var sums={};
+			data.forEach(function(d){
+				if(!sums[d.repository_language]) {
+					sums[d.repository_language]=d3.sum(data.filter(function(l){
+						return l.repository_language==d.repository_language
+					}),function(d){
+						return d.active_repos_by_url
+					})
+				}
+			})
+			console.log(sums)
+
+			var sums_quarter={};
+			data.forEach(function(d){
+				if(!sums_quarter[d.year+"-"+d.quarter]) {
+					sums_quarter[d.year+"-"+d.quarter]=d3.sum(data.filter(function(l){
+						return d.year+"-"+d.quarter==l.year+"-"+l.quarter
+					}),function(d){
+						return d.active_repos_by_url
+					})
+				}	
+			})
+			console.log(sums_quarter)
+
+			var nested_data=d3.nest()
+								.key(function(d){
+									return d.repository_language
+								})
+								.key(function(d){
+									return new Date(d.year,((+d.quarter)*3-3),1)
+								})
+								.rollup(function(leaves){
+									return {
+										repositories:{
+											active_repos_by_url:d3.sum(leaves,function(d){
+												return d.active_repos_by_url
+											}),
+											active_repos_by_url_perc:d3.sum(leaves,function(d){
+												return d.active_repos_by_url/sums_quarter[d.year+"-"+d.quarter]
+											}),
+											active_repos_by_name:d3.sum(leaves,function(d){
+												return d.active_repos_by_name
+											})	
+										}	
+										
+									}
+								})
+								.entries(data.filter(function(d){
+									return sums[d.repository_language]>5000 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
+								}).sort(function(a,b){
+									return sums[b.repository_language] - sums[a.repository_language];
+								}));
+
+			console.log(nested_data);
+			
+			sm=new SmallMultiples(nested_data,{
+				extents:extents,
+				container:"#sm",
+				indicator:"repositories",
+				metric:"num",
+				metrics:{
+					"num":"active_repos_by_url",
+					"perc":"active_repos_by_url_perc"
+				},
+				title:"New repositories"
+			});
+
+			d3.select("#num")
+				.on("click",function(d){
+					d3.event.preventDefault();
+					sm.switchScale("num")
+				})
+
+			d3.select("#perc")
+				.on("click",function(d){
+					d3.event.preventDefault();
+					sm.switchScale("perc")
+				})
+
+		});
 
 	</script>
 </body>

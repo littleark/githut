@@ -1,23 +1,44 @@
-body {
-	font-family: "Raleway",sans-serif;
-	font-weight: 300;
-	background-color:#E2F6FF;
+#sm_header {
+	width:960px;
+	margin:40px auto 0;
+	text-align: center;
 }
-h2 {
+#sm_header h2 {
+	font-size: 16px;
+	color:#666;
+	font-weight: 300;
+	margin:0;
+	text-align: center;
+	padding: 0;
+	text-transform: uppercase;
+}
+#sm_header h3 {
+	font-size: 15px;
+	color:#666;
+	font-weight: 300;
+	margin:0;
+	text-align: center;
+	padding: 0;
+}
+#sm {
+	width:960px;
+	margin:0 auto;
+}
+#sm h2 {
     margin: 10px;
     font-size: 18px;
     color: #333;
 }
-div.small-multiples {
+#sm div.small-multiples {
 	clear: both;
 	margin-bottom: 40px;
 	overflow: hidden;
 }
-div.chart {
+#sm div.chart {
 	margin:10px;
 	float: left;
 }
-div.chart h4 {
+#sm div.chart h4 {
 	font-size: 10px;
 	color:#333;
 	margin: 0;
@@ -25,77 +46,81 @@ div.chart h4 {
 	font-weight: normal;
 	text-align: center;
 }
-svg {
-	font-family: sans-serif;
+#sm div.chart h4 b {
+	color:#000;
+	font-weight: normal;
+}
+#sm svg {
+	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 }
 
-svg .linechart circle {
+#sm svg .linechart circle {
 	fill:#A06535;
 	stroke:none;
 	fill-opacity:0;
 
 }
-svg .linechart g:hover circle {
+#sm svg .linechart g:hover circle {
 	fill-opacity:1;
 }
-svg .linechart g:last-child circle {
+#sm svg .linechart g:last-child circle {
 	fill-opacity:1;
 }
-svg .linechart g text {
+#sm svg .linechart g text {
 	fill:#333;
 	text-anchor:middle;
 	font-size:10px;
 	fill-opacity:0;
 }
-svg .linechart g:hover text {
+#sm svg .linechart g:hover text {
 	fill-opacity:1;
 }
-svg .linechart g line.dropline {
+#sm svg .linechart g line.dropline {
 	fill:none;
 	stroke:#666;
 	stroke-opacity:0.1;
 	/*stroke-dasharray:2,2;*/
 	shape-rendering: crispEdges;
 }
-svg .linechart g:hover line.dropline {
+#sm svg .linechart g:hover line.dropline {
 	stroke-opacity:0.8;
 	stroke-dasharray:2,2
 }
 
-svg .linechart g rect.bg {
+#sm svg .linechart g rect.bg {
 	fill:#fff;
 	stroke:none;
 	fill-opacity:0;
 }
-svg .linechart g:hover rect.bg {
+#sm svg .linechart g:hover rect.bg {
 	fill-opacity:0.6;
 }
-svg .linechart rect.ix {
+#sm svg .linechart rect.ix {
 	fill:#000;
 	fill-opacity:0;
 	stroke:none;
 }
 
-svg .linechart path {
+#sm svg .linechart path {
 	fill:none;
 	stroke:#A06535;
 	stroke-width:2;
 }
 
-svg .linechart path.area {
+#sm svg .linechart path.area {
 	stroke:none;
 	fill:#A06535;
 	fill-opacity:0.5;
 }
-svg .linechart path.default {
+#sm svg .linechart path.default {
 	stroke:#006AAD;
 	stroke-width:1;
 	stroke-opacity:0.6;
 }
 
 
-svg .threshold line {
+#sm svg .threshold line {
 	fill:none;
 	stroke:#a0091d;
 	stroke-width:1;
