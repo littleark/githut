@@ -226,7 +226,9 @@
 			};
 
 			var sums={};
-			data.forEach(function(d){
+			data.filter(function(d){
+				return d.repository_language!="null"
+			}).forEach(function(d){
 				if(!sums[d.repository_language]) {
 					sums[d.repository_language]=d3.sum(data.filter(function(l){
 						return l.repository_language==d.repository_language && ((l.date>=extents.date[0]) && (l.date<=extents.date[1]))
@@ -295,7 +297,7 @@
 									}
 								})
 								.entries(data.filter(function(d){
-									return sums[d.repository_language]>0 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
+									return d.repository_language!="null" && sums[d.repository_language]>0 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
 								}).sort(function(a,b){
 									return d3.descending(sums[a.repository_language],sums[b.repository_language]);
 								}));
@@ -312,7 +314,7 @@
 					"perc":"active_repos_by_url_perc"
 				},
 				scales:{
-					"num":"log",
+					"num":"sqrt",
 					"perc":"sqrt"
 				},
 				title:"New repositories"

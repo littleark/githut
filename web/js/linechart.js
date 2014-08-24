@@ -214,7 +214,8 @@ function LineChart(data,options) {
       .attr("class", "x axis")
       .attr("transform", "translate("+padding.left+",0)")
       .call(xAxis);
-
+    
+    selectTick(xscale.ticks()[xscale.ticks().length-1].getTime());
 
     axes.append("g")
       .attr("class", "y axis")

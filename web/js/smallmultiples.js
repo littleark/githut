@@ -178,7 +178,7 @@ function SmallMultiples(nested_data,options) {
 			.attr("transform","translate("+margins.left+","+margins.top+")");
 
 	var xscale=d3.time.scale().domain(options.extents.date).range([0,WIDTH-(margins.left+margins.right+padding.left+padding.right)]);
-	var yscale=d3.scale.log()
+	var yscale=d3.scale.sqrt()
 					//.domain([options.extents[INDICATOR][METRIC][0]*0.1,options.extents[INDICATOR][METRIC][1]*1])
 					.domain(options.extents[INDICATOR][METRIC])
 					.range([HEIGHT-(margins.bottom+margins.top),0]).nice();
