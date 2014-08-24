@@ -15,11 +15,11 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<h1>Languages &amp; Github</h1>
+			<!--<h1>Languages &amp; Github</h1>-->
 			<h2>The life of programming languages in Github</h2>
 		</div>
 		<div id="qc"></div>
-		<div id="load"></div>
+		<!--<div id="load"></div>-->
 		<div id="pc"></div>
 
 		<div id="sm_header">
@@ -36,7 +36,7 @@
 	<script src="js/smallmultiples.js"></script>
 	<script src="js/linechart.js"></script>
 	<script>
-	/*
+	
 		d3.csv("data/languages.csv",function(d){
 			
 			d["Year"]=+d["Year"];
@@ -197,7 +197,7 @@
 			
 		});
 		
-	*/
+	
 	</script>
 	
 	<script>
@@ -257,10 +257,13 @@
 				return d3.ascending(a.date,b.date)
 			}),{
 				container:"#qc",
-				extents:extents
+				extents:extents,
+				callback:function(d){
+					pc.loadData(d);
+				}
 			});
 
-			return;
+			
 
 			var nested_data=d3.nest()
 								.key(function(d){
@@ -294,9 +297,9 @@
 									return d3.descending(sums[a.repository_language],sums[b.repository_language]);
 								}));
 
-			console.log("!!!!!!!!!!!!!!!!!",nested_data);
+			//console.log("!!!!!!!!!!!!!!!!!",nested_data);
 			
-			sm=new SmallMultiples(nested_data,{
+			sm=new SmallMultiples(nested_data.slice(0,29),{
 				extents:extents,
 				container:"#sm",
 				indicator:"repositories",

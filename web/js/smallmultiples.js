@@ -124,6 +124,9 @@ function SmallMultiples(nested_data,options) {
 			.classed("first",function(d,i){
 				return !i;
 			})
+			.classed("one",function(d){
+				return d.values.length===1;
+			})
 
 	charts.append("h4")
 			.html(function(d,i){

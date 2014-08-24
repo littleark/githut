@@ -1,13 +1,13 @@
 function LineChart(data,options) {
 
 	var WIDTH=500,
-		HEIGHT=WIDTH/5;
+		HEIGHT=80;
 
 	var margins={
-		top:15,
+		top:5,
 		bottom:15,
 		left:35,
-		right:10
+		right:15
 	}
 
 	var padding={
@@ -113,13 +113,43 @@ function LineChart(data,options) {
 				.data(data)
 				.enter()
 				.append("g")
+					.classed("selected",function(d,i){
+						return d.date==extents.date[1]
+					})
 					.attr("transform",function(d){
 						var x=xscale(d.date),
 							y=yscale(d.value);
 						return "translate("+x+","+y+")";
 					})
 					.on("mouseover",function(d){
-
+						d3.select(".x.axis")
+							.selectAll(".tick")
+								.filter(function(t){
+									//console.log(d.date,t)
+									return d.date.getTime()==t.getTime();
+								})
+								.classed("highlight",true)
+					})
+					.on("mouseout",function(d){
+						d3.select(".x.axis")
+							.selectAll(".tick")
+								.classed("highlight",false)
+					})
+					.on("click",function(d){
+						linechart
+							.selectAll("g")
+							.classed("selected",false);
+						d3.select(this)
+							.classed("selected",true);
+						d3.select(".x.axis")
+							.selectAll(".tick")
+								.classed("selected",false)
+								.filter(function(t){
+									//console.log(d.date,t)
+									return d.date.getTime()==t.getTime();
+								})
+								.classed("selected",true)
+						options.callback(d);
 					})
 
 
@@ -137,15 +167,15 @@ function LineChart(data,options) {
 	circles.append("circle")
 					.attr("cx",0)
 					.attr("cy",0)
-					.attr("r",2);
+					.attr("r",4);
 
 	circles.append("text")
 				.attr("class","label")
 				.attr("x",0)
-				.attr("y",-8)
+				.attr("y",14)
 				.style("text-anchor",function(d,i){
 					var position="middle";
-					if(i==0)
+					//if(i==0)
 						position="start";
 					if(i==circles.data().length-1)
 						position="end";
@@ -188,5 +218,18 @@ function LineChart(data,options) {
       .attr("transform", "translate(0,"+(-(HEIGHT-(margins.bottom+margins.top)))+")")
       .call(yAxis);
 
+    axes.selectAll("line.ygrid")
+			.data(yscale.ticks(3).filter(function(d){return d>0;}))
+    		.enter()
+    		.append("line")
+    			.attr("class","ygrid")
+    			.attr("x1",0)
+    			.attr("x2",WIDTH-(margins.left+margins.right))
+    			.attr("y1",function(d){
+    				return  - ((HEIGHT - (margins.top+margins.bottom)) - yscale(d));
+    			})
+    			.attr("y2",function(d){
+    				return  - ((HEIGHT - (margins.top+margins.bottom)) - yscale(d));
+    			})
 
 }

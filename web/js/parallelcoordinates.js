@@ -40,7 +40,7 @@ function ParallelCoordinates(data,options) {
 	var nested_data=nestData(data);
 	
 	var WIDTH=Math.max(Math.round(window.innerWidth*0.9),960);
-		HEIGHT=Math.max(Math.round(window.innerHeight-85),500);
+		HEIGHT=Math.max(Math.round(window.innerHeight-125),440);
 
 	var margins={
 		left:20,
@@ -395,7 +395,7 @@ function ParallelCoordinates(data,options) {
 					})
 					.select("text")
 						.text(function(d){
-							console.log("!!!!!!!",d)
+							//console.log("!!!!!!!",d)
 							return d3.format("s")(d.value);
 						})
 	}
@@ -716,6 +716,10 @@ function ParallelCoordinates(data,options) {
 	
 	this.loadData=function(quarter) {
 		//console.log("loading data")
+		console.log(quarter.date)
+		if(!!quarter.date.getTime) {
+			quarter="q"+(Math.floor((quarter.date.getMonth()+1)/3)+1)+"-"+quarter.date.getFullYear();
+		}
 
 		var unknonw=[];
 
@@ -725,7 +729,7 @@ function ParallelCoordinates(data,options) {
 			q.events=+q.events;
 			
 			q.year=options.programming_languages[q.repository_language.toLowerCase()] || 1970;
-			console.log(q.repository_language,q)
+			//console.log(q.repository_language,q)
 			return q;
 
 		},function(data){
