@@ -1,0 +1,102 @@
+#qc svg {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	border: 1px solid #000;
+}
+#qc svg .linechart circle {
+	fill:#A06535;
+	stroke:none;
+	fill-opacity:0;
+
+}
+#qc svg .linechart g:hover circle {
+	fill-opacity:1;
+}
+#qc svg .linechart g:last-child circle {
+	fill-opacity:1;
+}
+#qc svg .linechart g text {
+	fill:#333;
+	text-anchor:middle;
+	font-size:10px;
+	fill-opacity:0;
+}
+#qc svg .linechart g:hover text {
+	fill-opacity:1;
+}
+#qc svg .linechart g line.dropline {
+	fill:none;
+	stroke:#666;
+	stroke-opacity:0.1;
+	/*stroke-dasharray:2,2;*/
+	shape-rendering: crispEdges;
+}
+#qc svg .linechart g:hover line.dropline {
+	stroke-opacity:0.8;
+	stroke-dasharray:2,2
+}
+#qc svg .linechart g rect.bg {
+	fill:#fff;
+	stroke:none;
+	fill-opacity:0;
+}
+#qc svg .linechart g:hover rect.bg {
+	fill-opacity:0.6;
+}
+#qc svg .linechart rect.ix {
+	fill:#000;
+	fill-opacity:0;
+	stroke:none;
+}
+#qc svg .linechart path {
+	fill:none;
+	stroke:#A06535;
+	stroke-width:2;
+}
+
+#qc svg .linechart path.area {
+	stroke:none;
+	fill:#A06535;
+	fill-opacity:0.5;
+}
+
+#qc #axes path,
+#qc #axes line {
+	shape-rendering: crispEdges;
+}
+
+#qc #axes .axis path {
+	stroke:#aaa;
+	stroke-width:1;
+	fill:none;
+}
+#qc #axes .axis .tick line {
+	stroke:#aaa;
+	stroke-width:1;
+	fill:none;	
+}
+#qc #axes .axis .tick text{
+	font-size: 10px;
+	fill:#aaa;
+}
+#qc #axes .x .tick text{
+	text-anchor:middle !important;
+}
+
+#qc #axes line.ygrid {
+	fill:none;
+	stroke:#ccc;
+	stroke-width:1;
+	stroke-dasharray: 2,2;
+}
+.chart.first #qc #axes line.ygrid,
+.chart:hover #qc #axes line.ygrid {
+	display: block;
+}
+#qc #axes line.ygrid {
+	display: none;
+}
+#qc #axes .tick line,
+#qc #axes  path {
+	display: none;
+}

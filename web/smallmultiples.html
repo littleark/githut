@@ -19,9 +19,8 @@
 	<script src="js/smallmultiples.js"></script>
 	<script>
 
-		d3.csv("../server/exports/created_quarters.csv",function(d){
+		d3.csv("../server/exports/created_quarters2.csv",function(d){
 
-			d.active_repos_by_name=+d.active_repos_by_name;
 			d.active_repos_by_url=+d.active_repos_by_url;
 			d.date=new Date(d.year,((+d.quarter)*3-3),1)
 
@@ -78,6 +77,9 @@
 												return d.active_repos_by_url
 											}),
 											active_repos_by_url_perc:d3.sum(leaves,function(d){
+												if(sums_quarter[d.year+"-"+d.quarter]==0) {
+													return 0;
+												}
 												return d.active_repos_by_url/sums_quarter[d.year+"-"+d.quarter]
 											}),
 											active_repos_by_name:d3.sum(leaves,function(d){
@@ -88,12 +90,12 @@
 									}
 								})
 								.entries(data.filter(function(d){
-									return sums[d.repository_language]>5000 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
+									return sums[d.repository_language]>0 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
 								}).sort(function(a,b){
 									return sums[b.repository_language] - sums[a.repository_language];
 								}));
 
-			console.log(nested_data);
+			console.log("!!!!!!!!!!!!!!!!!",nested_data);
 			
 			sm=new SmallMultiples(nested_data,{
 				extents:extents,
@@ -103,6 +105,10 @@
 				metrics:{
 					"num":"active_repos_by_url",
 					"perc":"active_repos_by_url_perc"
+				},
+				scales:{
+					"num":"log",
+					"perc":"sqrt"
 				},
 				title:"New repositories"
 			});

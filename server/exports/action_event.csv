@@ -1,0 +1,8 @@
+payload_action,type
+null,PushEvent
+null,ForkEvent
+started,WatchEvent
+null,CreateEvent
+closed,IssuesEvent
+opened,IssuesEvent
+reopened,IssuesEvent

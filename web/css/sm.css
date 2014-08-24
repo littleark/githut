@@ -128,51 +128,51 @@
 	/*stroke-dasharray: 1,1;*/
 }
 
-.chart.first #axes .axis.y,
-.chart:hover #axes .axis.y{
+#sm .chart.first #axes .axis.y,
+#sm .chart:hover #axes .axis.y{
 	display: block;
 }
-#axes .axis.y {
+#sm #axes .axis.y {
 	display: none;
 }
 
-#axes path,
-#axes line {
+#sm #axes path,
+#sm #axes line {
 	shape-rendering: crispEdges;
 }
 
-#axes .axis path {
+#sm #axes .axis path {
 	stroke:#aaa;
 	stroke-width:1;
 	fill:none;
 }
-#axes .axis .tick line {
+#sm #axes .axis .tick line {
 	stroke:#aaa;
 	stroke-width:1;
 	fill:none;	
 }
-#axes .axis .tick text{
+#sm #axes .axis .tick text{
 	font-size: 10px;
 	fill:#aaa;
 }
-#axes .x .tick text{
+#sm #axes .x .tick text{
 	text-anchor:middle !important;
 }
 
-#axes line.ygrid {
+#sm #axes line.ygrid {
 	fill:none;
 	stroke:#ccc;
 	stroke-width:1;
 	stroke-dasharray: 2,2;
 }
-.chart.first #axes line.ygrid,
-.chart:hover #axes line.ygrid {
+#sm .chart.first #axes line.ygrid,
+#sm .chart:hover #axes line.ygrid {
 	display: block;
 }
-#axes line.ygrid {
+#sm #axes line.ygrid {
 	display: none;
 }
-#axes .tick line,
-#axes  path {
+#sm #axes .tick line,
+#sm #axes  path {
 	display: none;
 }

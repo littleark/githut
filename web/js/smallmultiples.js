@@ -77,7 +77,7 @@ function SmallMultiples(nested_data,options) {
 			a["values"]=avg.map(function(d){
 				var values={};
 				values[INDICATOR]={};
-				values[INDICATOR][options.metrics.num]=d.values.mean_num;
+				values[INDICATOR][options.metrics.num]=d3.round(d.values.mean_num,2);
 				values[INDICATOR][options.metrics.perc]=d.values.mean_perc;
 				return {
 					key:d.key,
@@ -165,11 +165,6 @@ function SmallMultiples(nested_data,options) {
 			stroke:"#A06535",
 			"stroke-width":1
 		})
-	/*<defs>
-		<pattern id="diagonalHatch" width="4" height="4" patternTransform="rotate(-45 0 0)" patternUnits="userSpaceOnUse">
-  <line x1="0" y1="0" x2="0" y2="4" style="stroke:black; stroke-width:1" />
-</pattern>
-	</defs>*/
 
 	var axes=svgs.append("g")
 				.attr("id","axes")
@@ -180,7 +175,7 @@ function SmallMultiples(nested_data,options) {
 			.attr("transform","translate("+margins.left+","+margins.top+")");
 
 	var xscale=d3.time.scale().domain(options.extents.date).range([0,WIDTH-(margins.left+margins.right+padding.left+padding.right)]);
-	var yscale=d3.scale.sqrt()
+	var yscale=d3.scale.log()
 					//.domain([options.extents[INDICATOR][METRIC][0]*0.1,options.extents[INDICATOR][METRIC][1]*1])
 					.domain(options.extents[INDICATOR][METRIC])
 					.range([HEIGHT-(margins.bottom+margins.top),0]).nice();
@@ -272,8 +267,9 @@ function SmallMultiples(nested_data,options) {
 	}
 
 	var axis_values={
-		num:[1000,10000,100000,150000],
-		perc:[-1,0.01,0.1,0.2]
+		num:[10,100,1000],
+		perc:[0.02,0.1,0.3]
+		//perc:[-1,0.01,0.1,0.2]
 	}
 
 	var formats={
@@ -281,6 +277,7 @@ function SmallMultiples(nested_data,options) {
 		perc:d3.format(",.2p"),
 		axis:{
 			num: function(value) {
+				//return d3.format("s")(value)
 				var values=axis_values.num;
 			
 				if(values.indexOf(value)>-1) {
@@ -380,18 +377,23 @@ function SmallMultiples(nested_data,options) {
     	options.metric=metric;
     	METRIC=options.metrics[options.metric];
 
-    	console.log("switch to",METRIC)
+    	console.log("switch to",INDICATOR,METRIC,options.extents[INDICATOR][METRIC])
 
-    	yscale.domain(options.extents[INDICATOR][METRIC]);
+    	yscale=d3.scale[options.scales[options.metric]]()
+					.domain(options.extents[INDICATOR][METRIC])
+					.range([HEIGHT-(margins.bottom+margins.top),0]).nice();
 
-    	ytickFormat=formats.axis[options.metric];
+    	//yscale.domain(options.extents[INDICATOR][METRIC]);
+		ytickFormat=formats.axis[options.metric];
+		
 
-    	yAxis.tickValues(axis_values[options.metric]).tickFormat(ytickFormat)
-    	
-    	axes.selectAll(".y.axis")
-    		.transition()
-    			.duration(500)
-    		.call(yAxis);
+		yAxis = d3.svg.axis().scale(yscale).orient("left").tickValues(axis_values[options.metric]);
+		yAxis.tickValues(axis_values[options.metric]).tickFormat(ytickFormat)
+		
+		axes.selectAll(".y.axis")
+			.transition()
+			.duration(500)
+			.call(yAxis);
 
     	axes.selectAll("line.ygrid")
     		.data(axis_values[options.metric])

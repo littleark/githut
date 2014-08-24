@@ -9,9 +9,11 @@ function ParallelCoordinates(data,options) {
 	function nestData(data) {
 		return d3.nest()
 			.key(function(d){
+				//console.log("---------",d)
 				return d.repository_language;
 			})
 			.rollup(function(leaves) {
+				//console.log(leaves)
 				var r={};
 				options.columns.forEach(function(col){
 					r[col]=d3.sum(leaves,function(o){
@@ -25,13 +27,14 @@ function ParallelCoordinates(data,options) {
 			})
 			.entries(data)
 			.filter(function(d){
-				true;
-				return d.values["active_repos_by_url"]>1000;
+				return true;
+				return d.values["CreateEvent"]>=5;
+				//return d.values["active_repos_by_url"]>1000;
 			})
 			.sort(function(a,b){
-				return d3.descending(a.values["lang_usage"],b.values["lang_usage"]);
+				return d3.descending(a.values["CreateEvent"],b.values["CreateEvent"]);
 			})
-			.slice(0,30)
+			.slice(0,25)
 	}
 
 	var nested_data=nestData(data);
@@ -54,7 +57,7 @@ function ParallelCoordinates(data,options) {
 	};
 
 	var marker_width=[
-		4,
+		2,
 		(WIDTH-d3.sum([margins.left,margins.right,padding.left,padding.right]))/options.columns.length
 	];
 
@@ -137,13 +140,17 @@ function ParallelCoordinates(data,options) {
 					scales[d]=d3.scale.ordinal()
 							.domain(nested_data.filter(function(){return true;}).sort(function(a, b){
 								
+								
 								var sorting=options.sorting[use] || d3.ascending;
+									
 
 								if(a.values[use]==b.values[use]) {
 									if(d3.ascending(a.key,b.key)>1) {
-										a.values[use]*=1.00001;	
+										a.values[use]*=1.000001;
+										//console.log(">>>>>>>>>>",a.key,a.values[use])
 									} else {
-										b.values[use]*=1.00001;	
+										b.values[use]*=1.000001;
+										//console.log(">>>>>>>>>>",b.key,b.values[use])
 									}
 								}
 
@@ -155,7 +162,6 @@ function ParallelCoordinates(data,options) {
 									__b=(b.values[use]/((options.dimensions.indexOf(use)>-1)?1:b.values[options.ref]))	
 								}
 								
-
 								return sorting(__a, __b);
 
 							}).map(function(o){
@@ -167,7 +173,7 @@ function ParallelCoordinates(data,options) {
 							}))
 							.rangePoints([HEIGHT-(margins.top+margins.bottom+padding.top+padding.bottom),0]);
 
-					
+					//console.log(d,scales[d].domain())
 							
 				} else {
 					if(extents[d][0]===0) {
@@ -453,9 +459,9 @@ function ParallelCoordinates(data,options) {
 		    .x(function(d,i) { return d.x; })
 		    .y(function(d,i) { 
 		    	if(d.y===0) {
-					return yscales[d.col].range()[0]
+					return yscales[options.use[d.col]||d.col].range()[0]
 				}
-		    	return yscales[d.col](d.y)
+		    	return yscales[options.use[d.col]||d.col](d.y)
 		    })
 		    //.interpolate("cardinal")
 		    //.tension(0.9)
@@ -635,6 +641,8 @@ function ParallelCoordinates(data,options) {
 							if(options.dimensions.indexOf(col)>-1) {
 
 								var y=d.values[use];
+
+
 								if(typeof y == "number") {
 									val.x-=(i==0?0:(width_scales[use](y))/2+delta)
 									val2.x+=((i==options.columns.length-1)?0:(width_scales[use](y))/2+delta)
@@ -644,6 +652,11 @@ function ParallelCoordinates(data,options) {
 								}
 								val.y=d.values[use];
 								val2.y=d.values[use];
+
+								//if(col=="name") {
+								//	console.log(d.key,val.y,val2.y,yscales["CreateEvent"](val.y),yscales["CreateEvent"](val2.y))
+								//}
+
 								return [val,val2];
 							}
 
@@ -663,8 +676,8 @@ function ParallelCoordinates(data,options) {
 							return a.concat(b);
 						});
 						return [{
-								lang:d.key,
-								path:flattened
+									lang:d.key,
+									path:flattened
 								}]
 					},function(d){
 						return d.lang;
@@ -706,37 +719,49 @@ function ParallelCoordinates(data,options) {
 
 		var unknonw=[];
 
-		d3.csv(options.path+quarter+"."+options.extension,function(d){
-			//d.date=new Date(d.month+"-01");
-			//d.timestamp=d.date.getTime();
-			d.active_repos_by_url=+d.active_repos_by_url;
-			d.lang_usage=+d.lang_usage;
-			d.events_per_repo=d.lang_usage / d.active_repos_by_url;
-			d.sum_rep_size=(+d.sum_rep_size);
-			d.sum_rep_forks=(+d.sum_rep_forks);
-			d.sum_rep_openissues=(+d.sum_rep_openissues);
-			d.sum_rep_watchers=(+d.sum_rep_watchers);
-			//d.repository_fork=(d.repository_fork=="true")
-			d.year=options.programming_languages[d.repository_language.toLowerCase()] || 1970;
+		d3.csv(options.path+quarter+"."+options.extension+"?"+(new Date()).getTime(),function(q){
+			
+			q.active_repos_by_url=+q.active_repos_by_url;
+			q.events=+q.events;
+			
+			q.year=options.programming_languages[q.repository_language.toLowerCase()] || 1970;
+			console.log(q.repository_language,q)
+			return q;
 
-			d.created=options.nested_by_quarter.filter(function(q){
-				return q.key==quarter;
-			})[0].values["languages"].filter(function(l){
-				return l.repository_language==d.repository_language;
-			})[0];
-
-			if(d.created) {
-				d.created=d.created["active_repos_by_url"];
-			} else {
-				d.created=0;
-			}
-
-			return d;
 		},function(data){
 
 			//console.log(data)
 
-			nested_data=nestData(data);
+			var events={};
+			data.forEach(function(d){
+
+				if(!events[d["repository_language"]]) {
+					events[d["repository_language"]]={
+						repository_language:d["repository_language"]
+					};
+				}
+				switch(d["type"]) {
+					case "CreateEvent":
+						events[d["repository_language"]][d["type"]]=d["active_repos_by_url"];
+					break;
+					case "ForkEvent":
+						events[d["repository_language"]][d["type"]]=d["events"]/d["active_repos_by_url"];
+					break;
+					case "PushEvent":
+						events[d["repository_language"]][d["type"]+"All"]=d["events"];
+						events[d["repository_language"]][d["type"]]=d["events"]/d["active_repos_by_url"];
+					break;
+					default:
+						events[d["repository_language"]][d["type"]]=d["events"]/d["active_repos_by_url"];
+					break;
+				}
+				
+				events[d["repository_language"]].year=d.year;
+				//events["active_repos_by_url"]=d["active_repos_by_url"];
+			})
+			console.log(d3.values(events));
+
+			nested_data=nestData(d3.values(events));
 
 			//console.log(nested_data)
 
@@ -1066,7 +1091,7 @@ function ParallelCoordinates(data,options) {
 					
 					var x=xscale(options.title_column),
 						y=yscales[options.title_column].range()[0];
-
+					
 					return "translate("+x+","+y+")";
 
 				});
@@ -1104,7 +1129,7 @@ function ParallelCoordinates(data,options) {
 					var use=options.use[options.title_column] || options.title_column;
 					var x=xscale(options.title_column),
 						y=yscales[options.title_column](d.values[use]);
-
+					y=yscales[use](d.values[use]);
 					return "translate("+x+","+y+")";
 
 				});
