@@ -211,6 +211,9 @@ html,body {
 	text-transform: uppercase;
 	font-size: 12px;
 }
+#pc svg .column text.title.first {
+	text-anchor:end;
+}
 #pc svg #columns g.axis {
 	
 }

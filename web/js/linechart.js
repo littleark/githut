@@ -141,16 +141,19 @@ function LineChart(data,options) {
 							.classed("selected",false);
 						d3.select(this)
 							.classed("selected",true);
-						d3.select(".x.axis")
-							.selectAll(".tick")
-								.classed("selected",false)
-								.filter(function(t){
-									//console.log(d.date,t)
-									return d.date.getTime()==t.getTime();
-								})
-								.classed("selected",true)
+						selectTick(d.date.getTime());
 						options.callback(d);
 					})
+
+	function selectTick(time) {
+		svg.select(".x.axis")
+			.selectAll(".tick")
+				.classed("selected",false)
+				.filter(function(t){
+					return time==t.getTime();
+				})
+				.classed("selected",true)
+	}
 
 
 	var w=(xscale.range()[1])/(circles.data().length-1)
@@ -161,7 +164,7 @@ function LineChart(data,options) {
 					return -yscale(d.value)
 				})
 				.attr("width",w)
-				.attr("height",yscale.range()[0])
+				.attr("height",yscale.range()[0]+margins.bottom)
 
 
 	circles.append("circle")

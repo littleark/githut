@@ -136,7 +136,7 @@ function ParallelCoordinates(data,options) {
 				var use=options.use[d] || d; 
 				
 				if(options.scale_map[d]=="ordinal") {
-					
+					var inc=0.000001;
 					scales[d]=d3.scale.ordinal()
 							.domain(nested_data.filter(function(){return true;}).sort(function(a, b){
 								
@@ -146,14 +146,15 @@ function ParallelCoordinates(data,options) {
 
 								if(a.values[use]==b.values[use]) {
 									if(d3.ascending(a.key,b.key)>1) {
-										a.values[use]*=1.000001;
-										//console.log(">>>>>>>>>>",a.key,a.values[use])
+										a.values[use]+=inc;
+										console.log(">>>>>>>>>>",a.key,a.values[use])
 									} else {
-										b.values[use]*=1.000001;
-										//console.log(">>>>>>>>>>",b.key,b.values[use])
+										b.values[use]+=inc;
+										console.log(">>>>>>>>>>",b.key,b.values[use])
 									}
+									inc+=inc;
 								}
-
+								
 								var __a=(a.values[use]),
 									__b=(b.values[use]);
 
@@ -173,7 +174,7 @@ function ParallelCoordinates(data,options) {
 							}))
 							.rangePoints([HEIGHT-(margins.top+margins.bottom+padding.top+padding.bottom),0]);
 
-					//console.log(d,scales[d].domain())
+					console.log(d,scales[d].domain())
 							
 				} else {
 					if(extents[d][0]===0) {
@@ -284,6 +285,9 @@ function ParallelCoordinates(data,options) {
 				.attr("class","title")
 				.attr("x",0)
 				.attr("y",-10-padding.top)
+				.classed("first",function(d){
+					return d==options.title_column
+				})
 				.text(function(d){
 					return options.column_map[d]
 				})
