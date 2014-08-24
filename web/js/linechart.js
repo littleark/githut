@@ -185,7 +185,7 @@ function LineChart(data,options) {
 					return position;
 				})
 				.text(function(d){
-					return d.value;
+					return d3.format(",.2s")(d.value);
 				});
 
 	circles.append("line")
@@ -205,7 +205,7 @@ function LineChart(data,options) {
 		var q= Math.ceil(+d3.time.format("%m")(value)/3);
 		return d3.time.format("Q"+q+"/%y")(value)
 	}
-	var ytickFormat=d3.format(",.f");
+	var ytickFormat=d3.format("s");
 	
 	xAxis.tickFormat(xtickFormat);
 	yAxis.tickFormat(ytickFormat);

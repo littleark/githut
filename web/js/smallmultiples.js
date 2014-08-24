@@ -270,7 +270,7 @@ function SmallMultiples(nested_data,options) {
 	}
 
 	var axis_values={
-		num:[10,100,1000],
+		num:[1000,1000,100000],
 		perc:[0.02,0.1,0.3]
 		//perc:[-1,0.01,0.1,0.2]
 	}

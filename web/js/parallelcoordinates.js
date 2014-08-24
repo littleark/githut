@@ -28,18 +28,19 @@ function ParallelCoordinates(data,options) {
 			.entries(data)
 			.filter(function(d){
 				return true;
-				return d.values["CreateEvent"]>=5;
+				console.log("£££££££££££££££",d)
+				return d.values["PushEventRepo"]>=1000;
 				//return d.values["active_repos_by_url"]>1000;
 			})
 			.sort(function(a,b){
-				return d3.descending(a.values["CreateEvent"],b.values["CreateEvent"]);
+				return d3.descending(a.values["PushEventRepo"],b.values["PushEventRepo"]);
 			})
 			.slice(0,25)
 	}
 
 	var nested_data=nestData(data);
 	
-	var WIDTH=Math.max(Math.round(window.innerWidth*0.9),960);
+	var WIDTH=Math.max(Math.round(window.innerWidth*0.8),960);
 		HEIGHT=Math.max(Math.round(window.innerHeight-125),440);
 
 	var margins={
@@ -757,6 +758,7 @@ function ParallelCoordinates(data,options) {
 					break;
 					case "PushEvent":
 						events[d["repository_language"]][d["type"]+"All"]=d["events"];
+						events[d["repository_language"]][d["type"]+"Repo"]=d["active_repos_by_url"];
 						events[d["repository_language"]][d["type"]]=d["events"]/d["active_repos_by_url"];
 					break;
 					default:
@@ -767,11 +769,11 @@ function ParallelCoordinates(data,options) {
 				events[d["repository_language"]].year=d.year;
 				//events["active_repos_by_url"]=d["active_repos_by_url"];
 			})
-			console.log(d3.values(events));
+			console.log(events);
 
 			nested_data=nestData(d3.values(events));
 
-			//console.log(nested_data)
+			console.log("++++++++++++++++++++++++",nested_data)
 
 			var languages=languages_group.selectAll("g.lang")
 					.data(nested_data,function(d){

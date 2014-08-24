@@ -94,6 +94,7 @@
 								events[d["repository_language"]][d["type"]]=d["events"]/d["active_repos_by_url"];
 							break;
 							case "PushEvent":
+								events[d["repository_language"]][d["type"]+"Repo"]=d["active_repos_by_url"];
 								events[d["repository_language"]][d["type"]+"All"]=d["events"];
 								events[d["repository_language"]][d["type"]]=d["events"]/d["active_repos_by_url"];
 							break;
@@ -113,7 +114,7 @@
 						container:"#pc",
 						scale:"linear",
 						//columns:["name","created","active_repos_by_url","lang_usage","events_per_repo","sum_rep_size","sum_rep_forks","sum_rep_openissues","sum_rep_watchers","year"],
-						columns:["name","CreateEvent","PushEventAll","PushEvent","ForkEvent","IssuesEvent","WatchEvent","year"],
+						columns:["name","PushEventRepo","PushEventAll","PushEvent","ForkEvent","IssuesEvent","WatchEvent","year"],//"CreateEvent"
 						ref:"lang_usage",
 						title_column:"name",
 						scale_map:{
@@ -124,6 +125,7 @@
 							"CreateEvent":"ordinal",
 							"PushEvent":"ordinal",
 							"PushEventAll":"ordinal",
+							"PushEventRepo":"ordinal",
 							"active_repos_by_url":"ordinal",
 							"events_per_repo":"ordinal",
 							"lang_usage":"ordinal",
@@ -133,7 +135,7 @@
 							"WatchEvent":"ordinal"
 						},
 						use:{
-							"name":"CreateEvent"
+							"name":"PushEventRepo"
 						},
 						sorting:{
 							"name":d3.descending
@@ -141,7 +143,7 @@
 						formats:{
 							"year":"d"
 						},
-						dimensions:["created","CreateEvent","PushEventAll","PushEvent","ForkEvent","IssuesEvent","WatchEvent","active_repos_by_url","lang_usage","events_per_repo","year","name"],
+						dimensions:["created","CreateEvent","PushEventRepo","PushEventAll","PushEvent","ForkEvent","IssuesEvent","WatchEvent","active_repos_by_url","lang_usage","events_per_repo","year","name"],
 						column_map:{
 							"name":"Language",
 							"active_repos_by_url":"Active",
@@ -149,12 +151,13 @@
 							"CreateEvent":"New Repositories",
 							"PushEvent":"Pushes/Repo",
 							"PushEventAll":"Total Pushes",
+							"PushEventRepo":"Active Repository",
 							"lang_usage":"Events",
 							"year":"Year",
 							"events_per_repo":"Events/Repo",
 							"sum_rep_size":"Repo Size",
-							"ForkEvent":"Forks/Repo",
-							"IssuesEvent":"Opened Issues/Repo",
+							"ForkEvent":"New Forks/Repo",
+							"IssuesEvent":"New Issues/Repo",
 							"WatchEvent":"New Watchers/Repo"
 						},
 						duration:1000,
@@ -202,7 +205,7 @@
 	
 	<script>
 
-		d3.csv("../server/exports/created_quarters2.csv",function(d){
+		d3.csv("../server/exports/active_quarters.csv",function(d){
 
 			d.active_repos_by_url=+d.active_repos_by_url;
 			d.date=new Date(d.year,((+d.quarter)*3-3),1)
@@ -263,7 +266,7 @@
 				}
 			});
 
-			
+						
 
 			var nested_data=d3.nest()
 								.key(function(d){
