@@ -27,8 +27,9 @@ function ParallelCoordinates(data,options) {
 			})
 			.entries(data)
 			.filter(function(d){
+				return d.key!="null";
 				return true;
-				console.log("£££££££££££££££",d)
+				
 				return d.values["PushEventRepo"]>=1000;
 				//return d.values["active_repos_by_url"]>1000;
 			})
