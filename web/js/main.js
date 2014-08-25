@@ -125,35 +125,6 @@ d3.csv("web/data/languages.csv",function(d){
 			path:"server/exports/",
 			extension:"csv"
 		});
-
-		d3.select("#load")
-			.selectAll("a.load")
-			.data([
-				"q2-2012",
-				"q3-2012",
-				"q4-2012",
-				"q1-2013",
-				"q2-2013",
-				"q3-2013",
-				"q4-2013",
-				"q1-2014",
-				"q2-2014"
-			])
-			.enter()
-			.append("a")
-			.text(function(d){
-				return d;
-			})
-			.attr("href","#")
-			.style({
-				margin:"0px 5px"
-			})
-			.on("click",function(d){
-				d3.event.preventDefault();
-				pc.loadData(d);
-			})
-
-
 	});
 
 		
@@ -190,7 +161,7 @@ d3.csv("web/data/languages.csv",function(d){
 				})
 			}
 		})
-		console.log("SUMS",sums)
+		
 		
 		var sums_quarter={};
 		data.forEach(function(d){
@@ -276,12 +247,16 @@ d3.csv("web/data/languages.csv",function(d){
 		d3.select("#num")
 			.on("click",function(d){
 				d3.event.preventDefault();
+				d3.select("#num").classed("selected",true)
+				d3.select("#perc").classed("selected",false)
 				sm.switchScale("num")
 			})
 
 		d3.select("#perc")
 			.on("click",function(d){
 				d3.event.preventDefault();
+				d3.select("#num").classed("selected",false)
+				d3.select("#perc").classed("selected",true)
 				sm.switchScale("perc")
 			})
 

@@ -1,6 +1,37 @@
+#sm_select {
+	width:50px;
+	height:25px;
+	line-height: 25px;
+	position: relative;
+	border:1px solid #999;
+	margin: 0 auto;
+	font-size:11px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+#sm_select a {
+	display: block;
+	float: left;
+	width: 50%;
+	text-align: center;
+	position: relative;
+	text-decoration: none;
+	color:#aaa;
+	background-color: #D1EFFF;
+}
+#sm_select a.selected {
+	color:#000;
+	background-color: #fff;
+	font-weight: 700;
+	cursor: default;
+}
+#sm_select a:hover {
+	color:#006AAD;
+}
 #sm_header {
 	width:960px;
-	margin:40px auto 0;
+	margin:40px auto 10px;
 	text-align: center;
 }
 #sm_header h2 {

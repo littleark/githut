@@ -1,5 +1,6 @@
 #qc {
 	width:960px;
+	min-height: 70px;
 	margin:10px auto;
 	text-align: center;
 }
