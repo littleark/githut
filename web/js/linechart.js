@@ -1,7 +1,7 @@
 function LineChart(data,options) {
 
 	var WIDTH=500,
-		HEIGHT=80;
+		HEIGHT=70;
 
 	var margins={
 		top:5,

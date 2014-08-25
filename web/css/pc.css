@@ -30,8 +30,10 @@ html,body {
 	font-weight: 300;
 	margin:0;
 	text-align: center;
-	text-transform: uppercase;
 	padding: 0;
+}
+#header h1 b{
+	font-weight: 400;
 }
 #header h2 {
 	font-size: 15px;
