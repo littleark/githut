@@ -459,7 +459,9 @@ function ParallelCoordinates(data,options) {
 								.classed("hover",true)	
 						})
 						.on("mouseout",function(d){
-							svg.selectAll("g.hover").classed("hover",false);
+							svg.selectAll("g.hover,g.year")
+								.classed("hover",false)
+								.classed("year",false);
 						})
 
 	var language=languages_group.selectAll("g.lang")
@@ -623,22 +625,6 @@ function ParallelCoordinates(data,options) {
 				.attr("width",function(d){
 					return width_scales[d.column](d.value/((options.dimensions.indexOf(d.column)>-1)?1:d.ref));
 				})
-
-		marker
-			.filter(function(d){
-				return d.column=="year"
-			})
-			.select("circle.hover")
-				.on("mouseover",function(d){
-					language.classed("year",function(l){
-								return l.values.year==d.value;
-					});
-					
-				})
-				.on("mouseout",function(d){
-					language.classed("year",false)
-				})
-
 	}
 
 	function updateConnections(duration) {
@@ -849,7 +835,9 @@ function ParallelCoordinates(data,options) {
 							.classed("hover",true)	
 					})
 					.on("mouseout",function(d){
-						svg.selectAll("g.hover").classed("hover",false);
+						svg.selectAll("g.hover,g.year")
+								.classed("hover",false)
+								.classed("year",false);
 					})
 			
 			
@@ -1014,15 +1002,15 @@ function ParallelCoordinates(data,options) {
 				return d.column=="year"
 			})
 				.on("mouseover",function(d){
+					labels_group
+						.selectAll(".labels").classed("year",function(l){
+								return l.values.year==d.value;
+					});
 					languages_group
 						.selectAll(".lang").classed("year",function(l){
 								return l.values.year==d.value;
 					});
 					
-				})
-				.on("mouseout",function(d){
-					languages_group
-						.selectAll(".lang").classed("year",false)
 				})
 
 	}
