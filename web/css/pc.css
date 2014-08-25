@@ -141,6 +141,10 @@ html,body {
 	fill-opacity:0;
 }
 
+#pc svg #labels g.hover.year .label:last-child text {
+	display: block;
+	fill-opacity:1;
+}
 #pc svg #labels g.hover.year .label.year text {
 	display: block;
 	fill-opacity:1;
