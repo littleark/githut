@@ -76,16 +76,14 @@ html,body {
 	fill:none;
 }
 
-
-
 #pc svg #languages text {
 	fill:#000;
 	font-size: 12px;
 	text-anchor: end;
 	
 }
-#pc svg #languages g .lang-label text {
-	
+#pc svg #languages g .lang-label {
+	cursor: pointer;
 }
 #pc svg #languages g.new .lang-label text {
 	fill:#339933;
@@ -111,19 +109,19 @@ html,body {
 #pc svg #languages g.hover .lang-label rect.hover {
 	fill-opacity:0;
 }
-#pc svg #languages .label text {
+#pc svg #labels .label text {
 	
 	fill-opacity:0;
 	text-anchor:middle;
 	font-weight: normal;
 	fill:#333;
 }
-#pc svg #languages .label rect.ix {
+#pc svg #labels .label rect.ix {
 	fill:#000;
 	fill-opacity:0;
 	cursor: pointer;
 }
-#pc svg #languages g.label path.label {
+#pc svg #labels g.label path.label {
 	fill:#fff;
 	stroke:#A06535;
 	fill-opacity:0.8;
@@ -131,18 +129,19 @@ html,body {
 	display: none;
 }
 
-#pc svg #languages g.hover .label path.label,
-#pc svg #languages g.hover .label text {
+#pc svg #labels g.hover .label path.label,
+#pc svg #labels g.hover .label text {
+	font-size:12px;
 	display: block;
 	fill-opacity:1;
 }
-#pc svg #languages g.hover.year .label path.label,
-#pc svg #languages g.hover.year .label text {
+#pc svg #labels g.hover.year .label path.label,
+#pc svg #labels g.hover.year .label text {
 	display: none;
 	fill-opacity:0;
 }
 
-#pc svg #languages g.hover.year .label.year text {
+#pc svg #labels g.hover.year .label.year text {
 	display: block;
 	fill-opacity:1;
 }
@@ -155,7 +154,8 @@ html,body {
 	stroke-width:3;
 }
 #pc svg #languages g.highlight g.connection path,
-#pc svg #languages g.highlight g.connection.year path {
+#pc svg #languages g.highlight g.connection.year path,
+#pc svg #labels g.highlight g.label path.label {
 	stroke:#333;
 }
 #pc svg #languages .connection path.hover {

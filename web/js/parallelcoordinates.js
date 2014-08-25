@@ -41,7 +41,7 @@ function ParallelCoordinates(data,options) {
 	var nested_data=nestData(data);
 	
 	var WIDTH=Math.max(Math.round(window.innerWidth*0.8),960);
-		HEIGHT=Math.max(Math.round(window.innerHeight-140),400);
+		HEIGHT=Math.max(Math.round(window.innerHeight-140),450);
 
 	var margins={
 		left:20,
@@ -148,10 +148,10 @@ function ParallelCoordinates(data,options) {
 								if(a.values[use]==b.values[use]) {
 									if(d3.ascending(a.key,b.key)>1) {
 										a.values[use]+=inc;
-										console.log(">>>>>>>>>>",a.key,a.values[use])
+										//console.log(">>>>>>>>>>",a.key,a.values[use])
 									} else {
 										b.values[use]+=inc;
-										console.log(">>>>>>>>>>",b.key,b.values[use])
+										//console.log(">>>>>>>>>>",b.key,b.values[use])
 									}
 									inc+=inc;
 								}
@@ -175,7 +175,7 @@ function ParallelCoordinates(data,options) {
 							}))
 							.rangePoints([HEIGHT-(margins.top+margins.bottom+padding.top+padding.bottom),0]);
 
-					console.log(d,scales[d].domain())
+					//console.log(d,scales[d].domain())
 							
 				} else {
 					if(extents[d][0]===0) {
@@ -425,39 +425,41 @@ function ParallelCoordinates(data,options) {
 						})
 	}
 	addAxes();
-	function addAxes1() {
 
-		var column=columns.selectAll("g.column")
-					.data(options.columns)
-					.enter()
-					.append("g")
-						.attr("class","column")
-						.attr("transform",function(d){
-							var x=xscale(d);
-							return "translate("+x+","+0+")";
-						});
-
-			column.append("g")
-			      .attr("class", "y axis")
-			      .attr("transform", "translate(0,0)")
-			      .each(function(d){
-			      	d3.select(this).call(yAxes[d])
-			      });
-
-			column.append("text")
-					.attr("class","title")
-					.attr("x",0)
-					.attr("y",-10-padding.top)
-					.text(function(d){
-						return options.column_map[d]
-					})
-		//});
-	}
-	//addAxes();
 
 	var languages_group=svg.append("g")
 					.attr("id","languages")
 					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")");
+
+	var labels_group=svg.append("g")
+					.attr("id","labels")
+					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")");
+	var labels=labels_group.selectAll("g.labels")
+					.data(nested_data,function(d){
+						return d.key;
+					})
+					.enter()
+					.append("g")
+						.attr("class","labels")
+						.attr("rel",function(d){
+							return d.key;
+						})
+						.on("click",function(d){
+							var $this=d3.select(this);
+							$this.classed("highlight",!($this.classed("highlight")))
+							languages_group
+								.selectAll("g.lang[rel='"+d.key+"']")
+								.classed("highlight",$this.classed("highlight"))
+						})
+						.on("mouseover",function(d){
+							d3.select(this).classed("hover",true)
+							languages_group
+								.selectAll("g.lang[rel='"+d.key+"']")
+								.classed("hover",true)	
+						})
+						.on("mouseout",function(d){
+							svg.selectAll("g.hover").classed("hover",false);
+						})
 
 	var language=languages_group.selectAll("g.lang")
 					.data(nested_data,function(d){
@@ -466,18 +468,14 @@ function ParallelCoordinates(data,options) {
 					.enter()
 					.append("g")
 						.attr("class","lang")
-						.on("click",function(d){
-							var $this=d3.select(this);
-							$this.classed("highlight",!($this.classed("highlight")))
-							//this.parentNode.appendChild(this);
+						.attr("rel",function(d){
+							return d.key;
 						})
-						.on("mouseover",function(d){
-							d3.select(this).classed("hover",true)
-							this.parentNode.appendChild(this);
-						})
-						.on("mouseout",function(d){
-							languages_group.selectAll("g.lang").classed("hover",false)	
-						})
+						
+	/*languages_group
+		.on("click",function(d){
+			d3.select(self.$this).classed("highlight",!(d3.select(self.$this).classed("highlight")))
+		})*/
 						
 
 	var line = d3.svg.line()
@@ -501,8 +499,8 @@ function ParallelCoordinates(data,options) {
 		
 
 		
-		languages.append("g")
-				.attr("class","labels")
+		//labels.append("g")
+		//		.attr("class","labels")
 		
 
 		languages.append("g")
@@ -800,8 +798,8 @@ function ParallelCoordinates(data,options) {
 						return d.key;
 					})
 					.classed("new",false)
+					
 
-			
 			languages
 				.exit()
 				.remove();
@@ -811,19 +809,47 @@ function ParallelCoordinates(data,options) {
 				.append("g")
 					.attr("class","lang")
 					.classed("new",true)
+					.attr("rel",function(d){
+						return d.key;
+					})
+					.call(createLanguages)
+
+			var labels=labels_group.selectAll("g.labels")
+					.data(nested_data,function(d){
+						return d.key;
+					})
+					.attr("rel",function(d){
+						return d.key;
+					})
+
+			labels
+				.exit()
+				.remove();
+
+			labels
+				.enter()
+				.append("g")
+					.attr("class","labels")
+					.classed("new",true)
+					.attr("rel",function(d){
+						return d.key;
+					})
 					.on("click",function(d){
 						var $this=d3.select(this);
 						$this.classed("highlight",!($this.classed("highlight")))
-						this.parentNode.appendChild(this);
+						languages_group
+							.selectAll("g.lang[rel='"+d.key+"']")
+							.classed("highlight",$this.classed("highlight"))
 					})
 					.on("mouseover",function(d){
-						this.parentNode.appendChild(this);
 						d3.select(this).classed("hover",true)
+						languages_group
+							.selectAll("g.lang[rel='"+d.key+"']")
+							.classed("hover",true)	
 					})
 					.on("mouseout",function(d){
-						languages_group.selectAll("g.lang").classed("hover",false)	
+						svg.selectAll("g.hover").classed("hover",false);
 					})
-					.call(createLanguages)
 			
 			
 			self.update();
@@ -844,19 +870,25 @@ function ParallelCoordinates(data,options) {
 	}
 
 	function updateLabels(duration) {
-		var labels=languages_group
-					.selectAll(".lang")
-						.select(".labels")
+		var labels=labels_group
+					//.selectAll(".lang")
+					.selectAll(".labels")
 						.selectAll("g.label")
 							.data(function(d){
-								return options.columns.filter(function(col){
+								return options.columns
+									/*.filter(function(col){
 										return col!=options.title_column
-									}).map(function(col){
+									})*/
+									.map(function(col){
+										var use=options.use[col] || col;
+										//console.log(col,use)
 										return {
 											lang:d.key,
 											column:col,
-											value:d.values[col],
-											ref:d.values[options.ref]
+											value:d.values[use],
+											ref:d.values[options.ref],
+											text_width:0,
+											marker_width:0
 										}
 									})
 							});
@@ -867,16 +899,17 @@ function ParallelCoordinates(data,options) {
 							return d.column=="year";
 						})
 
+
 		
 		new_label
 			.filter(function(d){
-				return d.column!="year";
+				return d.column!="year" && d.column!=options.title_column;
 			})
 			.append("path")
 
 		new_label
 			.filter(function(d){
-				return d.column!="year";
+				return d.column!="year" && d.column!=options.title_column;
 			})
 			.append("text")
 				.attr("x",0)
@@ -890,8 +923,6 @@ function ParallelCoordinates(data,options) {
 			.attr("x",0)
 			.attr("y",3)
 			.text(function(d){
-
-				
 				return d.value;
 			})
 
@@ -900,13 +931,14 @@ function ParallelCoordinates(data,options) {
 					.attr("y",-10)
 					.attr("height",20)
 
+
 		labels
 			.selectAll("path.label")
 				.attr("d","M0,0L0,0");
 		labels
 			.selectAll("rect.ix")
 				.attr("width",0)
-				.attr("x,0")
+				.attr("x",0)
 
 		labels
 			.select("text")
@@ -923,12 +955,10 @@ function ParallelCoordinates(data,options) {
 					
 					return d3.format(y>100?",.0f":",.2f")(y) 
 				})
-
-		labels
-			.each(function(d) {
-				d.marker_width = width_scales[d.column](d.value/((options.dimensions.indexOf(d.column)>-1)?1:d.ref));
-				d.text_width = this.getBBox().width;
-			});
+				.each(function(d) {
+					d.marker_width = width_scales[d.column](d.value/((options.dimensions.indexOf(d.column)>-1)?1:d.ref));
+					d.text_width = this.getBBox().width;
+				});
 
 
 
@@ -940,23 +970,26 @@ function ParallelCoordinates(data,options) {
 					w=d.text_width+dw;
 				return "M"+(w/2+dw/2)+",0l-"+dw/2+",-10l-"+w+",0l0,20l"+w+",0z";
 			})
-		
 		labels
 			.select("rect.ix")
 				.attr("x",function(d){
-					
+					if(d.column==options.title_column) {
+						return -(padding.left+margins.left);
+					}
+					if(d.column=="year") {
+						return -40;
+					}
 					return d.text_width/2;
 				})
 				.attr("width",function(d){
+					if(d.column==options.title_column) {
+						return (padding.left+margins.left);
+					}
 					return d.marker_width+20;
 				})
 
 		labels
-			.transition()
-			.duration(duration || options.duration)
 			.attr("transform",function(d){
-
-
 
 				var x=xscale(d.column);//-d.width/2,
 					y=yscales[d.column](d.value);
@@ -992,126 +1025,7 @@ function ParallelCoordinates(data,options) {
 				})
 
 	}
-	function updateLabels2(duration) {
-
-		var labels=languages_group
-					.selectAll(".lang")
-						//.select(".labels")
-						.selectAll("g.label")
-							.data(function(d){
-								return options.columns.filter(function(col){
-										return col!=options.title_column
-									}).map(function(col){
-										return {
-											lang:d.key,
-											column:col,
-											value:d.values[col],
-											ref:d.values[options.ref]
-										}
-									})
-							});
-
-		var new_label=labels.enter()
-					.append("g")
-						.attr("class","label");
-
-		new_label.append("rect")
-				.attr("x",0)
-				.attr("y",5)
-				.attr("width",0)
-				.attr("height",18);
-
-		/*new_label.append("path")
-				.attr("class","arrow")
-				.attr("d","M-5,-13L5,-13L0,-8Z")*/
-
-		new_label.append("text")
-			.attr("x",0)
-			.attr("y",0);
-
-		labels
-			.select("text")
-			.text(function(d){
-
-				if(options.formats[d.column]) {
-					return d3.format(options.formats[d.column])(d.value)
-				}
-
-				if(options.dimensions.indexOf(d.column)>-1) {
-					return d3.format(d.value>100?",.0f":",.2f")(d.value)
-				}
-				var y=d.value/d.ref;
-				//return d3.format(",.0f")(d.value);
-				return d3.format(y>100?",.0f":",.2f")(y) 
-			})
-
-		labels
-			.select("rect")
-				.attr("width",0)
-
-		labels
-			.each(function(d) {
-				d.width = this.getBBox().width;
-			});
-
-		//language.selectAll("g.label")
-		labels
-			.select("rect")
-				.attr("x",function(d){
-					var w=width_scales[d.column](d.value/((options.dimensions.indexOf(d.column)>-1)?1:d.ref));
-					return -w/2-(d.width+10);
-				})
-				.attr("width",function(d){
-					//console.log(d)
-					return d.width+10;
-				})
-		labels
-			.select("text")
-				.attr("x",function(d){
-					var w=width_scales[d.column](d.value/((options.dimensions.indexOf(d.column)>-1)?1:d.ref));
-					return -w/2-(d.width+10)/2;
-				})
-
-				
-
-		//language.selectAll("g.label")
-		labels
-			.transition()
-			.duration(duration || options.duration)
-			.attr("transform",function(d){
-
-				//console.log(d)
-
-				var x=xscale(d.column);//-d.width/2,
-					y=yscales[d.column](d.value);
-
-				if(d[d.column]===0) {
-					y=yscales[d.column].range()[0]
-				}
-				if(options.dimensions.indexOf(d.column)==-1) {
-					//console.log(d.column,d.value,d.ref,d.value/d.ref)
-					y=yscales[d.column](d.value/d.ref)
-					//if(d.lang=="Java")
-					//	//console.log(yscales[d.column].domain())
-				}
-				return "translate("+x+","+y+")";
-			})
-
-		/*labels
-			.filter(function(d){
-				return d.column=="year"
-			})
-				.on("mouseover",function(d){
-					language.classed("year",function(l){
-								return l.values.year==d.value;
-					});
-					
-				})
-				.on("mouseout",function(d){
-					language.classed("year",false)
-				})*/
-
-	}
+	
 
 	function createLangLabel(lang_label) {
 
@@ -1145,9 +1059,9 @@ function ParallelCoordinates(data,options) {
 				.text(function(d){
 					return d.values[options.title_column];
 				})
-				.each(function(d) {
-					d.width = this.getBBox().width;
-				});
+				//.each(function(d) {
+				//	d.width = this.getBBox().width;
+				//});
 	}
 	function updateLangLabels(duration) {
 		languages_group.selectAll(".lang")
