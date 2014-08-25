@@ -237,6 +237,10 @@ d3.csv("web/data/languages.csv",function(d){
 				"num":"active_repos_by_url",
 				"perc":"active_repos_by_url_perc"
 			},
+			metric_titles:{
+				"num":"Pushes",
+				"perc":"% Pushes"	
+			},
 			scales:{
 				"num":"sqrt",
 				"perc":"linear"

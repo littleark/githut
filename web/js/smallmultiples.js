@@ -374,7 +374,19 @@ function SmallMultiples(nested_data,options) {
     			.attr("y2",function(d){
     				return  - ((HEIGHT - (margins.top+margins.bottom)) - yscale(d));
     			})
-    			
+
+    axes
+    	.select(".y")
+    	.append("text")
+    		.attr("class","metric")
+    		.attr("x",-margins.left)
+    		.attr("y",-10)
+    		.style({
+    			"font-size":"10px",
+    			"text-transform":"uppercase",
+    			"text-anchor":"start"
+    		})
+    		.text(options.metric_titles[options.metric])
 
     this.switchScale=function(metric) {
     	options.metric=metric;
@@ -408,6 +420,10 @@ function SmallMultiples(nested_data,options) {
 					.attr("y2",function(d){
 						return  - ((HEIGHT - (margins.top+margins.bottom)) - yscale(d));
 					})
+
+		 axes
+    		.select("text.metric")
+    		.text(options.metric_titles[options.metric])
 
     	linechart
     		.select("path.area")
