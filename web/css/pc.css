@@ -135,6 +135,9 @@ html,body {
 	display: block;
 	fill-opacity:1;
 }
+#pc svg #labels g.hover .label path.label {
+	fill-opacity:0.8;	
+}
 #pc svg #labels g.hover.year .label path.label,
 #pc svg #labels g.hover.year .label text {
 	display: none;

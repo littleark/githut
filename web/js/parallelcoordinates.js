@@ -902,7 +902,7 @@ function ParallelCoordinates(data,options) {
 			})
 			.append("text")
 				.attr("x",0)
-				.attr("y",3)
+				.attr("y",4)
 
 		new_label
 			.filter(function(d){
