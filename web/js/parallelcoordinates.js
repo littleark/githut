@@ -41,7 +41,7 @@ function ParallelCoordinates(data,options) {
 	var nested_data=nestData(data);
 	
 	var WIDTH=Math.max(Math.round(window.innerWidth*0.8),960);
-		HEIGHT=Math.max(Math.round(window.innerHeight-125),440);
+		HEIGHT=Math.max(Math.round(window.innerHeight-140),400);
 
 	var margins={
 		left:20,
@@ -53,7 +53,7 @@ function ParallelCoordinates(data,options) {
 	var padding={
 		left:70,
 		right:30,
-		top:10,
+		top:20,
 		bottom:5
 	};
 
@@ -282,16 +282,36 @@ function ParallelCoordinates(data,options) {
 							return "translate("+x+","+0+")";
 						});
 
-		column.append("text")
+		var title=column.append("text")
 				.attr("class","title")
 				.attr("x",0)
-				.attr("y",-10-padding.top)
-				.classed("first",function(d){
-					return d==options.title_column
+				.attr("y",0)
+		title
+				.filter(function(d){
+					return d==options.title_column	
+				})
+				.classed("first",true)
+				.attr("transform","translate(-10,0)")
+
+		title
+			.selectAll("tspan")
+			.data(function(d){
+				var txt=options.column_map[d];
+				if(typeof txt == "string") {
+					return [txt];
+				}
+				return txt;
+			})
+			.enter()
+			.append("tspan")
+				.attr("x",0)
+				.attr("y",function(d,i){
+					return i*15+(-10-padding.top);
 				})
 				.text(function(d){
-					return options.column_map[d]
+					return d;
 				})
+
 
 		var axis=column
 				.filter(function(col){
@@ -301,7 +321,7 @@ function ParallelCoordinates(data,options) {
 					.attr("class","axis")
 					.attr("transform",function(d){
 						var x=0,
-							y=HEIGHT-(margins.bottom+margins.top);
+							y=HEIGHT-(margins.bottom+margins.top+padding.bottom);
 						return "translate("+x+","+y+")";
 					})
 
@@ -469,7 +489,7 @@ function ParallelCoordinates(data,options) {
 		    	return yscales[options.use[d.col]||d.col](d.y)
 		    })
 		    //.interpolate("cardinal")
-		    //.tension(0.9)
+		   // .tension(1)
 
 	function createLanguages(languages) {
 		languages.append("g")

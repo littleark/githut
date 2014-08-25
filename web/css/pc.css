@@ -206,10 +206,10 @@ html,body {
 	stroke-opacity:1;
 }
 #pc svg .column text.title {
-	
 	text-anchor:middle;
 	text-transform: uppercase;
 	font-size: 12px;
+	font-weight: 400;
 }
 #pc svg .column text.title.first {
 	text-anchor:end;
