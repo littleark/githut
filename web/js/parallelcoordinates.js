@@ -929,8 +929,8 @@ function ParallelCoordinates(data,options) {
 
 		new_label.append("rect")
 					.attr("class","ix")
-					.attr("y",-10)
-					.attr("height",20)
+					.attr("y",-14)
+					.attr("height",26)
 
 
 		labels
