@@ -28,13 +28,13 @@ html,body {
 #header h1 {
 	font-size: 23px;
 	color:#A06535;
-	font-weight: 300;
+	font-weight: 400;
 	margin:0;
 	text-align: center;
 	padding: 0;
 }
 #header h1 b{
-	font-weight: 400;
+	font-weight: 700;
 }
 #header h2 {
 	font-size: 13px;
