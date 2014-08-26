@@ -69,7 +69,7 @@ function SmallMultiples(nested_data,options) {
 	var avg=createAverage();
 	console.log(avg);
 
-	nested_data=([{},(function(){
+	nested_data=([(function(){
 			var a={
 				key:"Average",
 				values:{}
@@ -109,7 +109,7 @@ function SmallMultiples(nested_data,options) {
 	var container=options.container;
 
 	var charts=d3.select(container)
-		.selectAll("div")
+		.selectAll("div.chart")
 		.data(nested_data)
 		.enter()
 		.append("div")
@@ -119,15 +119,16 @@ function SmallMultiples(nested_data,options) {
 			})
 			.attr("class","chart")
 			.classed("first",function(d,i){
-				return i===1;
+				return i===0;
 			})
 			.classed("one",function(d){
+				console.log("!!!!!!!!!",d)
 				return d.values.length===1;
 			})
 
 	charts.append("h4")
 			.html(function(d,i){
-				return (i>1?(i-1)+". ":"")+"<b>"+d.key+"</b>";
+				return (i>0?(i)+". ":"")+"<b>"+d.key+"</b>";
 			});
 	
 	var svgs=charts.append("svg")

@@ -121,6 +121,16 @@ d3.csv("web/data/languages.csv",function(d){
 				"IssuesEvent":["Opened Issues","per Repository"],
 				"WatchEvent":["New Watchers","per Repository"]
 			},
+			help:{
+				"name":"<h4>Repository Language</h4>Programmin language of the Repositories.<br/>Ordered by activity rank.",
+				"PushEventAll":"<h4>Total Pushes</h4>Total number of Push events in repositories with a defined language in the selected period of time.",
+				"PushEventRepo":"<h4>Active Repositories</h4>Number of active repositories with a defined language in the selected period.<br/>A repository is considered active if it has received at least one push during the selected period of time.",
+				"PushEvent":"<h4>Pushes per Repository</h4>Average number of push events per repository in the selected period of time for repositories with a defined language.",
+				"year":"<h4>Appeared in Year</h4>Year in which the programming language is reported to be appeared.",
+				"ForkEvent":"<h4>New Forks per Repository</h4>Average number of forks per repository in the selected period of time for repositories with a defined language.",
+				"IssuesEvent":"<h4>Opened Issues per Repository</h4>Average number of opened issues per repository in the selected period of time for repositories with a defined language.",
+				"WatchEvent":"<h4>New Watchers per Repository</h4>Average number of new watchers per repository in the selected period of time for repositories with a defined language."
+			},
 			duration:1000,
 			path:"server/exports/",
 			extension:"csv"
@@ -148,6 +158,21 @@ d3.csv("web/data/languages.csv",function(d){
 				new Date(2014,3,1)
 			]
 		};
+
+		var lasts={}
+		data.filter(function(d){
+			return d.repository_language!="null" && d.date==extents.date[1]
+		}).forEach(function(d){
+			if(!lasts[d.repository_language]) {
+				/*lasts[d.repository_language]=d3.sum(data.filter(function(l){
+					return l.repository_language==d.repository_language && ((l.date>=extents.date[0]) && (l.date<=extents.date[1]))
+				}),function(d){
+					return d.active_repos_by_url
+				})
+				*/
+				lasts[d.repository_language]=d.active_repos_by_url;
+			}
+		});
 
 		var sums={};
 		data.filter(function(d){
@@ -223,6 +248,8 @@ d3.csv("web/data/languages.csv",function(d){
 							.entries(data.filter(function(d){
 								return d.repository_language!="null" && sums[d.repository_language]>0 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
 							}).sort(function(a,b){
+								
+								//return d3.descending(lasts[a.repository_language],lasts[b.repository_language]);
 								return d3.descending(sums[a.repository_language],sums[b.repository_language]);
 							}));
 
@@ -238,8 +265,8 @@ d3.csv("web/data/languages.csv",function(d){
 				"perc":"active_repos_by_url_perc"
 			},
 			metric_titles:{
-				"num":"Pushes",
-				"perc":"% Pushes"	
+				"num":"Repos",
+				"perc":"% Repos on total"	
 			},
 			scales:{
 				"num":"sqrt",
@@ -248,14 +275,25 @@ d3.csv("web/data/languages.csv",function(d){
 			title:"New repositories"
 		});
 
-		d3.select("#num")
+		d3.select("#sm_select")
+			.selectAll("a")
+			.data(["num","perc"])
 			.on("click",function(d){
 				d3.event.preventDefault();
-				d3.select("#num").classed("selected",true)
-				d3.select("#perc").classed("selected",false)
-				sm.switchScale("num")
+				d3.selectAll("#sm_select a")
+					.classed("selected",false);
+				d3.select(this).classed("selected",true)
+				
+				sm.switchScale(d)
 			})
-
+			.on("mouseover",function(d){
+				d3.selectAll("#sm_select span.visible")
+					.classed("visible",false)
+				d3.select("#sm_select")
+					.selectAll("span[rel="+d+"]")
+					.classed("visible",true)
+			})
+		/*
 		d3.select("#perc")
 			.on("click",function(d){
 				d3.event.preventDefault();
@@ -263,7 +301,7 @@ d3.csv("web/data/languages.csv",function(d){
 				d3.select("#perc").classed("selected",true)
 				sm.switchScale("perc")
 			})
-
+		*/
 	});
 
 		

@@ -21,8 +21,9 @@ html,body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2f6ff',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
 }
 #header {
-	width: 960px;
+	width: 600px;
 	margin:0 auto 10px;
+	padding-bottom:5px;
 }
 #header h1 {
 	font-size: 23px;
@@ -36,12 +37,13 @@ html,body {
 	font-weight: 400;
 }
 #header h2 {
-	font-size: 15px;
+	font-size: 13px;
 	color:#666;
 	font-weight: 300;
 	margin:0;
 	text-align: center;
 	padding: 0;
+	text-transform: uppercase;
 }
 #load {
 	margin:0 auto;
@@ -53,6 +55,34 @@ html,body {
 	margin:0 auto;
 	min-width: 960px;
 	min-height:400px;
+	position: relative;
+}
+#pc div#tooltip {
+	position: absolute;
+	font-size:11px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	top:0;
+	bottom:0;
+	z-index:9;
+	font-size: 11px;
+	color:#333;
+	display: none;
+}
+#pc div#tooltip div {
+	width: 180px;
+	background: rgba(0,0,0,0.8);
+	border:1px solid #999;
+	padding:5px;
+	color:#fff;
+}
+#pc div#tooltip.visible {
+	display: block;
+}
+#pc div#tooltip h4 {
+	margin: 2px;
+	font-weight: 400;
+	text-transform: uppercase;
 }
 #pc svg {
 	font-family: 'Open Sans', sans-serif;

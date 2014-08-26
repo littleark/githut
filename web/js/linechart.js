@@ -172,21 +172,39 @@ function LineChart(data,options) {
 					.attr("cy",0)
 					.attr("r",4);
 
-	circles.append("text")
+	var text=circles.append("text")
 				.attr("class","label")
-				.attr("x",0)
+				.attr("x",5)
 				.attr("y",14)
 				.style("text-anchor",function(d,i){
 					var position="middle";
-					//if(i==0)
+					if(i==0)
 						position="start";
 					if(i==circles.data().length-1)
 						position="end";
 					return position;
 				})
-				.text(function(d){
-					return d3.format(",.2s")(d.value);
-				});
+				
+	text.append("tspan")
+			.attr("class","click")
+			.style("text-anchor",function(d,i){
+				var position="middle";
+				//if(i==0)
+					position="start";
+				if(i==circles.data().length-1)
+					position="end";
+				return position;
+			})
+			.text(function(d){
+				return "click to select"
+			});
+			
+	text.append("tspan")
+			.attr("x",5)
+			.attr("y",-8)
+			.text(function(d){
+				return d3.format(",.2s")(d.value);
+			});
 
 	circles.append("line")
 				.attr("class","dropline")
@@ -205,7 +223,13 @@ function LineChart(data,options) {
 		var q= Math.ceil(+d3.time.format("%m")(value)/3);
 		return d3.time.format("Q"+q+"/%y")(value)
 	}
-	var ytickFormat=d3.format("s");
+	var ytickFormat=function(d,i){
+		var title="";
+		if(i==yAxis.tickValues().length-1) {
+			title=" ACTIVE REPOSITORIES";
+		}
+		return d3.format("s")(d)+title;
+	}
 	
 	xAxis.tickFormat(xtickFormat);
 	yAxis.tickFormat(ytickFormat);
@@ -223,7 +247,7 @@ function LineChart(data,options) {
       .attr("transform", "translate(0,"+(-(HEIGHT-(margins.bottom+margins.top)))+")")
       .call(yAxis)
       	.selectAll("text")
-      		.attr("dx",23)
+      		.attr("dx",margins.left-22)
       		.attr("dy",-3)
 
     axes.selectAll("line.ygrid")

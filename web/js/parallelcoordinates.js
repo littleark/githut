@@ -42,7 +42,7 @@ function ParallelCoordinates(data,options) {
 	var nested_data=nestData(data);
 	
 	var WIDTH=Math.max(Math.round(window.innerWidth*0.8),960);
-		HEIGHT=Math.max(Math.round(window.innerHeight-140),450);
+		HEIGHT=Math.max(Math.round(window.innerHeight-150),420);
 
 	var margins={
 		left:20,
@@ -63,7 +63,11 @@ function ParallelCoordinates(data,options) {
 		(WIDTH-d3.sum([margins.left,margins.right,padding.left,padding.right]))/options.columns.length
 	];
 
+	var tooltip=d3.select(options.container)
+					.select("#tooltip");
+
 	var svg=d3.select(options.container)
+				.style("width",WIDTH+"px")	
 				.append("svg")
 				.attr("width",WIDTH)
 				.attr("height",HEIGHT);
@@ -97,7 +101,7 @@ function ParallelCoordinates(data,options) {
 			})
 			.style({
 				stroke:"#A06535",
-				"stroke-opacity":0.5,
+				"stroke-opacity":1,
 				"stroke-width":1
 			})
 
@@ -259,17 +263,18 @@ function ParallelCoordinates(data,options) {
 
 
 	updateScales();
-	//createXAxes();
-	//updateAxes();
+	
+	var languages_group=svg.append("g")
+					.attr("id","languages")
+					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")");
 
-
-
-	//console.log(yAxes);
-
+	var labels_group=svg.append("g")
+					.attr("id","labels")
+					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")");
 
 	var columns=svg.append("g")
 					.attr("id","columns")
-					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")")
+					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")");
 
 	function addAxes() {
 
@@ -312,7 +317,29 @@ function ParallelCoordinates(data,options) {
 				.text(function(d){
 					return d;
 				})
-
+		
+		title
+			.on("mouseover",function(d,i){
+				tooltip
+					.style("left",function(){
+						var x=xscale(d)+margins.left+padding.left;
+						console.log(d)
+						if(d!=options.title_column) {
+							x+=marker_width[1]/2;
+						}
+						if(i>options.columns.length-2) {
+							x-=(marker_width[1]+180-20);
+						}
+						return x+"px"
+					})
+					.classed("visible",true)
+						.select("div")
+							.html(options.help[d])
+			})
+			.on("mouseout",function(){
+				tooltip
+					.classed("visible",false)
+			})
 
 		var axis=column
 				.filter(function(col){
@@ -428,13 +455,7 @@ function ParallelCoordinates(data,options) {
 	addAxes();
 
 
-	var languages_group=svg.append("g")
-					.attr("id","languages")
-					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")");
-
-	var labels_group=svg.append("g")
-					.attr("id","labels")
-					.attr("transform","translate("+(margins.left+padding.left)+","+(margins.top+padding.top)+")");
+	
 	var labels=labels_group.selectAll("g.labels")
 					.data(nested_data,function(d){
 						return d.key;

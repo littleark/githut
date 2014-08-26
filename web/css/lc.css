@@ -1,7 +1,7 @@
 #qc {
 	width:960px;
 	min-height: 70px;
-	margin:10px auto;
+	margin:25px auto 10px;
 	text-align: center;
 }
 #qc svg {
@@ -37,6 +37,13 @@
 #qc svg .linechart g:hover text {
 	fill-opacity:1;
 	font-weight: bold;
+}
+#qc svg .linechart g text tspan.click {
+	font-weight: 300;
+	fill:#666;
+}
+#qc svg .linechart g.selected text tspan.click {
+	fill-opacity:0;
 }
 #qc svg .linechart g line.dropline {
 	fill:none;
@@ -117,7 +124,9 @@
 #qc .chart:hover #qc #axes line.ygrid {
 	display: block;
 }
-
+#qc #axes .y .tick text {
+	text-anchor:start !important;
+}
 #qc #axes .y .tick line,
 #qc #axes .y path {
 	display: none;

@@ -1,14 +1,37 @@
 #sm_select {
+	width: 375px;
+	margin:0 auto;
+	overflow: hidden;
+}
+#sm_select span {
+	float: left;
+	display: block;
+	font-size: 11px;
+	font-weight: 300;
+	line-height: 25px;
+	margin:0 10px;
+	color:#666;
+	width:140px;
+	text-align: right;
+	visibility: hidden;
+}
+#sm_select span.right {
+	text-align: left;
+}
+#sm_select:hover span.visible {
+	visibility: visible;
+}
+#sm_select #selector {
 	width:50px;
 	height:25px;
 	line-height: 25px;
 	position: relative;
 	border:1px solid #999;
-	margin: 0 auto;
 	font-size:11px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	overflow: hidden;
+	float: left;
 }
 #sm_select a {
 	display: block;
@@ -18,12 +41,13 @@
 	position: relative;
 	text-decoration: none;
 	color:#aaa;
-	background-color: #D1EFFF;
+	background-color: #ddd;
 }
 #sm_select a.selected {
 	color:#000;
 	background-color: #fff;
 	font-weight: 700;
+	font-size:12px;
 	cursor: default;
 }
 #sm_select a:hover {
@@ -54,6 +78,7 @@
 #sm {
 	width:960px;
 	margin:0 auto;
+	position: relative;
 }
 #sm h2 {
     margin: 10px;
