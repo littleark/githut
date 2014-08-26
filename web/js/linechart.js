@@ -4,9 +4,9 @@ function LineChart(data,options) {
 		HEIGHT=70;
 
 	var margins={
-		top:5,
+		top:12,
 		bottom:15,
-		left:35,
+		left:15,
 		right:15
 	}
 
@@ -213,14 +213,18 @@ function LineChart(data,options) {
 	axes.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate("+padding.left+",0)")
-      .call(xAxis);
+      .call(xAxis)
+
     
     selectTick(xscale.ticks()[xscale.ticks().length-1].getTime());
 
     axes.append("g")
       .attr("class", "y axis")
       .attr("transform", "translate(0,"+(-(HEIGHT-(margins.bottom+margins.top)))+")")
-      .call(yAxis);
+      .call(yAxis)
+      	.selectAll("text")
+      		.attr("dx",23)
+      		.attr("dy",-3)
 
     axes.selectAll("line.ygrid")
 			.data(yscale.ticks(3).filter(function(d){return d>0;}))
