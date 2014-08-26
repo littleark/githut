@@ -126,7 +126,7 @@ d3.csv("web/data/languages.csv",function(d){
 				"PushEventAll":"<h4>Total Pushes</h4>Total number of changes pushed to repositories with a defined language in the selected period of time.",
 				"PushEventRepo":"<h4>Active Repositories</h4>Number of active repositories with a defined language in the selected period.<br/>A repository is considered active if at least one change has been pushed during the selected period of time.",
 				"PushEvent":"<h4>Pushes per Repository</h4>Average number of changes pushed per repository in the selected period of time for repositories with a defined language.",
-				"year":"<h4>Appeared in Year</h4>Year in which the programming language is reported to be appeared.",
+				"year":"<h4>Appeared in Year</h4>Year in which the programming language was released.",
 				"ForkEvent":"<h4>New Forks per Repository</h4>Average number of forks per repository in the selected period of time for repositories with a defined language.",
 				"IssuesEvent":"<h4>Opened Issues per Repository</h4>Average number of opened issues per repository in the selected period of time for repositories with a defined language.",
 				"WatchEvent":"<h4>New Watchers per Repository</h4>Average number of new watchers per repository in the selected period of time for repositories with a defined language."

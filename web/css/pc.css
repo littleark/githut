@@ -60,8 +60,7 @@ html,body {
 #pc div#tooltip {
 	position: absolute;
 	font-size:11px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
+	
 	top:0;
 	bottom:0;
 	z-index:9;
@@ -72,9 +71,10 @@ html,body {
 #pc div#tooltip div {
 	width: 180px;
 	background: rgba(0,0,0,0.8);
-	border:1px solid #999;
 	padding:5px;
 	color:#fff;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 #pc div#tooltip.visible {
 	display: block;
