@@ -14,6 +14,9 @@ function SmallMultiples(nested_data,options) {
 			return (new Date(a.key).getTime()) - (new Date(b.key).getTime());
 		});
 	})
+	nested_data.sort(function(a,b){
+		return d3.descending(a.values[a.values.length-1].values[INDICATOR][METRIC],b.values[b.values.length-1].values[INDICATOR][METRIC])
+	})
 
 	function getNestedValues(indicator,metric) {
 		console.log("getNestedValues",indicator,metric)
@@ -71,7 +74,7 @@ function SmallMultiples(nested_data,options) {
 
 	nested_data=([(function(){
 			var a={
-				key:"Average",
+				key:"GitHub Average",
 				values:{}
 			};
 			a["values"]=avg.map(function(d){
@@ -274,7 +277,7 @@ function SmallMultiples(nested_data,options) {
 	}
 
 	var formats={
-		num: d3.format(",.f"),
+		num: d3.format(",.0f"),
 		perc:d3.format(",.2p"),
 		axis:{
 			num: function(value) {

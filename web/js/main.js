@@ -123,9 +123,9 @@ d3.csv("web/data/languages.csv",function(d){
 			},
 			help:{
 				"name":"<h4>Repository Language</h4>Programmin language of the Repositories.<br/>Ordered by activity rank.",
-				"PushEventAll":"<h4>Total Pushes</h4>Total number of Push events in repositories with a defined language in the selected period of time.",
-				"PushEventRepo":"<h4>Active Repositories</h4>Number of active repositories with a defined language in the selected period.<br/>A repository is considered active if it has received at least one push during the selected period of time.",
-				"PushEvent":"<h4>Pushes per Repository</h4>Average number of push events per repository in the selected period of time for repositories with a defined language.",
+				"PushEventAll":"<h4>Total Pushes</h4>Total number of changes pushed to repositories with a defined language in the selected period of time.",
+				"PushEventRepo":"<h4>Active Repositories</h4>Number of active repositories with a defined language in the selected period.<br/>A repository is considered active if at least one change has been pushed during the selected period of time.",
+				"PushEvent":"<h4>Pushes per Repository</h4>Average number of changes pushed per repository in the selected period of time for repositories with a defined language.",
 				"year":"<h4>Appeared in Year</h4>Year in which the programming language is reported to be appeared.",
 				"ForkEvent":"<h4>New Forks per Repository</h4>Average number of forks per repository in the selected period of time for repositories with a defined language.",
 				"IssuesEvent":"<h4>Opened Issues per Repository</h4>Average number of opened issues per repository in the selected period of time for repositories with a defined language.",
@@ -158,21 +158,6 @@ d3.csv("web/data/languages.csv",function(d){
 				new Date(2014,3,1)
 			]
 		};
-
-		var lasts={}
-		data.filter(function(d){
-			return d.repository_language!="null" && d.date==extents.date[1]
-		}).forEach(function(d){
-			if(!lasts[d.repository_language]) {
-				/*lasts[d.repository_language]=d3.sum(data.filter(function(l){
-					return l.repository_language==d.repository_language && ((l.date>=extents.date[0]) && (l.date<=extents.date[1]))
-				}),function(d){
-					return d.active_repos_by_url
-				})
-				*/
-				lasts[d.repository_language]=d.active_repos_by_url;
-			}
-		});
 
 		var sums={};
 		data.filter(function(d){

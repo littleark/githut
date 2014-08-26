@@ -36,7 +36,7 @@ function ParallelCoordinates(data,options) {
 			.sort(function(a,b){
 				return d3.descending(a.values["PushEventRepo"],b.values["PushEventRepo"]);
 			})
-			.slice(0,25)
+			.slice(0,28)
 	}
 
 	var nested_data=nestData(data);
@@ -55,7 +55,7 @@ function ParallelCoordinates(data,options) {
 		left:70,
 		right:30,
 		top:20,
-		bottom:5
+		bottom:0
 	};
 
 	var marker_width=[
@@ -349,7 +349,7 @@ function ParallelCoordinates(data,options) {
 					.attr("class","axis")
 					.attr("transform",function(d){
 						var x=0,
-							y=HEIGHT-(margins.bottom+margins.top+padding.bottom);
+							y=HEIGHT-(margins.bottom+margins.top+padding.bottom+5);
 						return "translate("+x+","+y+")";
 					})
 
@@ -938,8 +938,8 @@ function ParallelCoordinates(data,options) {
 
 		new_label.append("rect")
 					.attr("class","ix")
-					.attr("y",-14)
-					.attr("height",22)
+					.attr("y",-8)
+					.attr("height",15)
 
 
 		labels
@@ -1050,18 +1050,18 @@ function ParallelCoordinates(data,options) {
 
 				});
 
-		lang_label.append("rect")
+		/*lang_label.append("rect")
 						.attr("class","hover")
 						.attr("x",-(padding.left))
 						.attr("width",padding.left)
 						.attr("y",-13+3)
-						.attr("height",18)
+						.attr("height",18)*/
 
 		var rect=lang_label.append("rect")
 						.attr("x",-(padding.left+margins.left))
 						.attr("width",padding.left+margins.left)
-						.attr("y",-13+3)
-						.attr("height",18)
+						.attr("y",-9)
+						.attr("height",16)
 
 		lang_label.append("text")
 				.attr("x",-10)
