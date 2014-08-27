@@ -11,14 +11,13 @@ The visualization is based on two type of visualization, a Parallel Coordinates 
 
 Data is from Github Archive (http://www.githubarchive.org/).
 
-##Web Site
+###Web Site
 GitHut is published at http://githut.info
 
-##Queries
-=======
+###Queries
 GitHub Archive data is also available on Google BigQuery. Below the two queries used to collect the data for the Parallel Coordinates and Small Multiples visualizations:
 
-###Parallel Coordinates
+####Parallel Coordinates
 Multiple information for grouped by language for a defined quarter
 ```sql
 select 
@@ -48,7 +47,7 @@ group by
   quarter
 ```
 
-###Small Multiples
+####Small Multiples
 Amount of active repository by quarters
 ```sql
 select
