@@ -79,6 +79,7 @@
 	width:960px;
 	margin:0 auto;
 	position: relative;
+	overflow: hidden;
 }
 #sm h2 {
     margin: 10px;

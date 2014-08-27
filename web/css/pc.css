@@ -20,6 +20,9 @@ html,body {
 	background: radial-gradient(ellipse at center,  #ffffff 0%,#e2f6ff 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2f6ff',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
 }
+h1,h2,h3,h4,h5,h6 {
+	text-rendering: optimizeLegibility;
+}
 a {
 	text-decoration: none;
 	color:#006AAD;
@@ -280,6 +283,26 @@ a:hover {
 }
 #pc svg #columns g.axis g.tick.end text {
 	text-anchor:end;
+}
+#contents {
+	width:960px;
+	margin:0 auto;
+	overflow: hidden;
+}
+#contents .description {
+	margin:20px 100px;
+	padding:10px;
+	color:#111;
+	font-size: 13px;
+}
+#contents .description h5 {
+	font-size: 15px;
+	color: #000;
+	font-weight: 400;
+	margin: 0;
+	text-align: center;
+	padding: 0;
+	text-transform: uppercase;
 }
 #footer {
 	width: 600px;
