@@ -41,8 +41,8 @@ function ParallelCoordinates(data,options) {
 
 	var nested_data=nestData(data);
 	
-	var WIDTH=Math.max(Math.round(window.innerWidth*0.8),960);
-		HEIGHT=Math.max(Math.round(window.innerHeight-150),420);
+	var WIDTH=Math.round(window.innerWidth*(window.innerWidth<=960?1:0.8));
+		HEIGHT=Math.min(Math.max(Math.round(window.innerHeight-150),420),600);
 
 	var margins={
 		left:20,
@@ -292,6 +292,7 @@ function ParallelCoordinates(data,options) {
 				.attr("class","title")
 				.attr("x",0)
 				.attr("y",0)
+
 		title
 				.filter(function(d){
 					return d==options.title_column	

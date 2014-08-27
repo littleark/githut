@@ -55,15 +55,8 @@ a:hover {
 	padding: 0;
 	text-transform: uppercase;
 }
-#load {
-	margin:0 auto;
-	min-width: 960px;
-	text-align: center;
-	text-transform: uppercase;
-}
 #pc {
 	margin:0 auto;
-	min-width: 960px;
 	min-height:400px;
 	position: relative;
 }
@@ -285,7 +278,8 @@ a:hover {
 	text-anchor:end;
 }
 #contents {
-	width:960px;
+	width:100%;
+	max-width:960px;
 	margin:0 auto;
 	overflow: hidden;
 }
