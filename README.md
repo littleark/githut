@@ -12,7 +12,7 @@ The visualization is based on two type of visualization, a Parallel Coordinates 
 Data is from Github Archive (http://www.githubarchive.org/).
 
 ###Web Site
-GitHut is published at *http://githut.info*
+GitHut is published at **http://githut.info**
 
 ###Queries
 GitHub Archive data is also available on Google BigQuery. Below the two queries used to collect the data for the Parallel Coordinates and Small Multiples visualizations:
