@@ -292,6 +292,9 @@ function LineChart(data,options) {
     			clearTimeout(to);
     		}
     		to=setTimeout(function(){
+
+    			current=dates.map(function(d){return d.getTime()}).indexOf(date.getTime());
+    			
     			container
     				.selectAll("li")
     				.classed("selected",function(d,i){
