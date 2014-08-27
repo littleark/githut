@@ -71,7 +71,7 @@ function LineChart(data,options) {
 
 
 
-	console.log("DAAAAAAAATAAAAAAA",data);
+	//console.log("DAAAAAAAATAAAAAAA",data);
 	
 	var extents={
 		date:d3.extent(data,function(d){

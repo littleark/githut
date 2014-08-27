@@ -7,7 +7,7 @@ function SmallMultiples(nested_data,options) {
 	var INDICATOR=options.indicator,
 		METRIC=options.metrics[options.metric];
 
-	console.log(options)
+	//console.log(options)
 
 	nested_data.forEach(function(d){
 		d.values=d.values.sort(function(a,b){
@@ -19,7 +19,7 @@ function SmallMultiples(nested_data,options) {
 	})
 
 	function getNestedValues(indicator,metric) {
-		console.log("getNestedValues",indicator,metric)
+		//console.log("getNestedValues",indicator,metric)
 		return flattenArray(nested_data.map(function(d){
 			return d.values.map(function(dd){
 				return dd.values[indicator][metric];
@@ -35,7 +35,7 @@ function SmallMultiples(nested_data,options) {
 			options.extents[d.key][options.metrics.perc]=[0,d3.extent(getNestedValues(d.key,options.metrics.perc))[1]]
 		});
 
-		console.log("EXT",options.extents)
+		//console.log("EXT",options.extents)
 	}
 
 	updateExtents(nested_data);
@@ -70,7 +70,7 @@ function SmallMultiples(nested_data,options) {
 	}
 
 	var avg=createAverage();
-	console.log(avg);
+	//console.log(avg);
 
 	nested_data=([(function(){
 			var a={
@@ -90,7 +90,7 @@ function SmallMultiples(nested_data,options) {
 			return a;
 		}())]).concat(nested_data)
 
-	console.log("++++",nested_data)
+	//console.log("++++",nested_data)
 
 	var WIDTH=160,
 		HEIGHT=WIDTH*9/16;
@@ -117,7 +117,7 @@ function SmallMultiples(nested_data,options) {
 		.enter()
 		.append("div")
 			.attr("id",function(d){
-				console.log(d.key,d)
+				//console.log(d.key,d)
 				return "p"+d.key;
 			})
 			.attr("class","chart")
@@ -125,7 +125,7 @@ function SmallMultiples(nested_data,options) {
 				return i===0;
 			})
 			.classed("one",function(d){
-				console.log("!!!!!!!!!",d)
+				//console.log("!!!!!!!!!",d)
 				return d.values.length===1;
 			})
 
@@ -393,7 +393,7 @@ function SmallMultiples(nested_data,options) {
     	options.metric=metric;
     	METRIC=options.metrics[options.metric];
 
-    	console.log("switch to",INDICATOR,METRIC,options.extents[INDICATOR][METRIC])
+    	//console.log("switch to",INDICATOR,METRIC,options.extents[INDICATOR][METRIC])
 
     	yscale=d3.scale[options.scales[options.metric]]()
 					.domain(options.extents[INDICATOR][METRIC])

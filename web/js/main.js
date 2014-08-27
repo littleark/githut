@@ -34,7 +34,7 @@ d3.csv("web/data/languages.csv",function(d){
 		//console.log(q.repository_language,q)
 		return q;
 	},function(data){
-		console.log(data);
+		//console.log(data);
 		
 		//console.log(unknonw)
 
@@ -67,7 +67,7 @@ d3.csv("web/data/languages.csv",function(d){
 			events[d["repository_language"]].year=d.year;
 			//events["active_repos_by_url"]=d["active_repos_by_url"];
 		})
-		console.log(d3.values(events));
+		//console.log(d3.values(events));
 		//return;
 		pc=new ParallelCoordinates(d3.values(events),{
 			//nested_by_quarter:nested_by_quarter,
@@ -148,7 +148,7 @@ d3.csv("web/data/languages.csv",function(d){
 	},function(data){
 
 		
-		console.log(data)
+		//console.log(data)
 
 		
 
@@ -183,7 +183,7 @@ d3.csv("web/data/languages.csv",function(d){
 				})
 			}	
 		})
-		console.log(sums_quarter)
+		//console.log(sums_quarter)
 
 		qc=new LineChart(d3.entries(sums_quarter).map(function(d){
 			var date=d.key.split("-")

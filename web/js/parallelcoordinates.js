@@ -323,7 +323,7 @@ function ParallelCoordinates(data,options) {
 				tooltip
 					.style("left",function(){
 						var x=xscale(d)+margins.left+padding.left;
-						console.log(d)
+						//console.log(d)
 						if(d!=options.title_column) {
 							x+=marker_width[1]/2;
 						}
@@ -685,7 +685,7 @@ function ParallelCoordinates(data,options) {
 								val2.y=d.values[use];
 
 								//if(col=="name") {
-								//	console.log(d.key,val.y,val2.y,yscales["CreateEvent"](val.y),yscales["CreateEvent"](val2.y))
+								//	//console.log(d.key,val.y,val2.y,yscales["CreateEvent"](val.y),yscales["CreateEvent"](val2.y))
 								//}
 
 								return [val,val2];
@@ -747,7 +747,7 @@ function ParallelCoordinates(data,options) {
 	
 	this.loadData=function(quarter) {
 		//console.log("loading data")
-		console.log(quarter.date)
+		//console.log(quarter.date)
 		if(!!quarter.date.getTime) {
 			quarter="q"+(Math.floor((quarter.date.getMonth()+1)/3)+1)+"-"+quarter.date.getFullYear();
 		}
@@ -795,11 +795,11 @@ function ParallelCoordinates(data,options) {
 				events[d["repository_language"]].year=d.year;
 				//events["active_repos_by_url"]=d["active_repos_by_url"];
 			})
-			console.log(events);
+			//console.log(events);
 
 			nested_data=nestData(d3.values(events));
 
-			console.log("++++++++++++++++++++++++",nested_data)
+			//console.log("++++++++++++++++++++++++",nested_data)
 
 			var languages=languages_group.selectAll("g.lang")
 					.data(nested_data,function(d){
