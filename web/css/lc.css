@@ -136,13 +136,13 @@
 	position: absolute;
 	width: 80px;
 	height:20px;
-	left:7px;
+	left:14px;
 	bottom:-15px;
 	line-height: 20px;
 }
 #qc #timeselect a.arrow {
 	display: block;
-	width:20px;
+	width:15px;
 	float: left;
 	text-align: center;
 	font-weight: 400;
