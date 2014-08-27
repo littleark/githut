@@ -629,7 +629,7 @@ function ParallelCoordinates(data,options) {
 								col:col
 							}
 
-							var delta=10;
+							var delta=5;
 
 							if(options.dimensions.indexOf(col)>-1) {
 
@@ -911,7 +911,7 @@ function ParallelCoordinates(data,options) {
 					if(options.dimensions.indexOf(d.column)>-1) {
 						return d3.format(d.value>100?",.0f":",.2f")(d.value)
 					}
-					var y=d.value/d.ref;
+					var y=d.valuefd.ref;
 					
 					return d3.format(y>100?",.0f":",.2f")(y) 
 				})
