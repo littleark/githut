@@ -337,7 +337,7 @@ a:hover {
 .social {
 	text-align: center;
 	font-size: 23px;
-	width: 90px;
+	width: 110px;
 	height: 23px;
 }
 .social.social-top {
@@ -382,13 +382,14 @@ a:hover {
 	font-size: 10px;
 	font-weight: normal;
 }
+
 @font-face {
-  font-family: 'hc_icons';
-  src: url('../font/hc_icons.eot?42344254');
-  src: url('../font/hc_icons.eot?42344254#iefix') format('embedded-opentype'),
-       url('../font/hc_icons.woff?42344254') format('woff'),
-       url('../font/hc_icons.ttf?42344254') format('truetype'),
-       url('../font/hc_icons.svg?42344254#hc_icons') format('svg');
+  font-family: 'githut';
+  src: url('../font/githut.eot?66889746');
+  src: url('../font/githut.eot?66889746#iefix') format('embedded-opentype'),
+       url('../font/githut.woff?66889746') format('woff'),
+       url('../font/githut.ttf?66889746') format('truetype'),
+       url('../font/githut.svg?66889746#githut') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -397,14 +398,14 @@ a:hover {
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'hc_icons';
-    src: url('../font/hc_icons.svg?42344254#hc_icons') format('svg');
+    font-family: 'githut';
+    src: url('../font/githut.svg?66889746#githut') format('svg');
   }
 }
 */
  
- [class^="mk-"]:before, [class*=" mk-"]:before {
-  font-family: "hc_icons";
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "githut";
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -434,11 +435,7 @@ a:hover {
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.mk-plus-circled:before { content: '\e802'; } /* '' */
-.mk-minus-circled:before { content: '\e803'; } /* '' */
-.mk-down-open:before { content: '\e804'; } /* '' */
-.mk-twitter:before { content: '\e805'; } /* '' */
-.mk-facebook:before { content: '\e806'; } /* '' */
-.mk-gplus:before { content: '\e807'; } /* '' */
-.mk-female:before { content: '\e800'; } /* '' */
-.mk-male:before { content: '\e801'; } /* '' */
+.icon-github:before { content: '\e800'; } /* '' */
+.icon-twitter:before { content: '\e801'; } /* '' */
+.icon-gplus:before { content: '\e802'; } /* '' */
+.icon-facebook:before { content: '\e803'; } /* '' */
