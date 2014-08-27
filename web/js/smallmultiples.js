@@ -7,8 +7,6 @@ function SmallMultiples(nested_data,options) {
 	var INDICATOR=options.indicator,
 		METRIC=options.metrics[options.metric];
 
-	//console.log(options)
-
 	nested_data.forEach(function(d){
 		d.values=d.values.sort(function(a,b){
 			return (new Date(a.key).getTime()) - (new Date(b.key).getTime());
@@ -19,7 +17,6 @@ function SmallMultiples(nested_data,options) {
 	})
 
 	function getNestedValues(indicator,metric) {
-		//console.log("getNestedValues",indicator,metric)
 		return flattenArray(nested_data.map(function(d){
 			return d.values.map(function(dd){
 				return dd.values[indicator][metric];
@@ -35,7 +32,6 @@ function SmallMultiples(nested_data,options) {
 			options.extents[d.key][options.metrics.perc]=[0,d3.extent(getNestedValues(d.key,options.metrics.perc))[1]]
 		});
 
-		//console.log("EXT",options.extents)
 	}
 
 	updateExtents(nested_data);
@@ -70,7 +66,6 @@ function SmallMultiples(nested_data,options) {
 	}
 
 	var avg=createAverage();
-	//console.log(avg);
 
 	nested_data=([(function(){
 			var a={
@@ -88,9 +83,7 @@ function SmallMultiples(nested_data,options) {
 				}
 			})
 			return a;
-		}())]).concat(nested_data)
-
-	//console.log("++++",nested_data)
+		}())]).concat(nested_data);
 
 	var WIDTH=160,
 		HEIGHT=WIDTH*9/16;
@@ -117,7 +110,6 @@ function SmallMultiples(nested_data,options) {
 		.enter()
 		.append("div")
 			.attr("id",function(d){
-				//console.log(d.key,d)
 				return "p"+d.key;
 			})
 			.attr("class","chart")
@@ -125,7 +117,6 @@ function SmallMultiples(nested_data,options) {
 				return i===0;
 			})
 			.classed("one",function(d){
-				//console.log("!!!!!!!!!",d)
 				return d.values.length===1;
 			})
 
@@ -180,7 +171,6 @@ function SmallMultiples(nested_data,options) {
 
 	var xscale=d3.time.scale().domain(options.extents.date).range([0,WIDTH-(margins.left+margins.right+padding.left+padding.right)]);
 	var yscale=d3.scale.sqrt()
-					//.domain([options.extents[INDICATOR][METRIC][0]*0.1,options.extents[INDICATOR][METRIC][1]*1])
 					.domain(options.extents[INDICATOR][METRIC])
 					.range([HEIGHT-(margins.bottom+margins.top),0]).nice();
 
@@ -273,15 +263,14 @@ function SmallMultiples(nested_data,options) {
 	var axis_values={
 		num:[1000,1000,100000],
 		perc:[0.02,0.1,0.2]
-		//perc:[-1,0.01,0.1,0.2]
-	}
+	};
 
 	var formats={
 		num: d3.format(",.0f"),
 		perc:d3.format(",.2p"),
 		axis:{
 			num: function(value) {
-				//return d3.format("s")(value)
+
 				var values=axis_values.num;
 			
 				if(values.indexOf(value)>-1) {
@@ -359,8 +348,6 @@ function SmallMultiples(nested_data,options) {
       .attr("class", "y axis")
       .attr("transform", "translate(0,"+(-(HEIGHT-(margins.bottom+margins.top)))+")")
       .call(yAxis);
-
-    //console.log(yscale.ticks(3))
     
     axes.selectAll("line.ygrid")
 			.data(axis_values[options.metric])
@@ -393,13 +380,10 @@ function SmallMultiples(nested_data,options) {
     	options.metric=metric;
     	METRIC=options.metrics[options.metric];
 
-    	//console.log("switch to",INDICATOR,METRIC,options.extents[INDICATOR][METRIC])
-
     	yscale=d3.scale[options.scales[options.metric]]()
 					.domain(options.extents[INDICATOR][METRIC])
 					.range([HEIGHT-(margins.bottom+margins.top),0]).nice();
 
-    	//yscale.domain(options.extents[INDICATOR][METRIC]);
 		ytickFormat=formats.axis[options.metric];
 		
 

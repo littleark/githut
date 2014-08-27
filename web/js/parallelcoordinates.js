@@ -2,18 +2,14 @@ function ParallelCoordinates(data,options) {
 
 	var self=this;
 
-	//console.log(data);
-
 	var scale_type=options.scale || "linear";
 
 	function nestData(data) {
 		return d3.nest()
 			.key(function(d){
-				//console.log("---------",d)
 				return d.repository_language;
 			})
 			.rollup(function(leaves) {
-				//console.log(leaves)
 				var r={};
 				options.columns.forEach(function(col){
 					r[col]=d3.sum(leaves,function(o){
@@ -28,10 +24,6 @@ function ParallelCoordinates(data,options) {
 			.entries(data)
 			.filter(function(d){
 				return d.key!="null";
-				return true;
-				
-				return d.values["PushEventRepo"]>=1000;
-				//return d.values["active_repos_by_url"]>1000;
 			})
 			.sort(function(a,b){
 				return d3.descending(a.values["PushEventRepo"],b.values["PushEventRepo"]);
@@ -117,9 +109,6 @@ function ParallelCoordinates(data,options) {
 
 	function updateScales() {
 
-			//console.log("NESTED DATA",nested_data)
-
-
 			extents=(function(){
 				var extents={};
 				options.columns.forEach(function(d,i){
@@ -131,8 +120,7 @@ function ParallelCoordinates(data,options) {
 					})
 				})
 				return extents;
-			}())
-			//console.log("extents",extents)
+			}());
 
 			var scales={},
 				wscales={};
@@ -153,10 +141,8 @@ function ParallelCoordinates(data,options) {
 								if(a.values[use]==b.values[use]) {
 									if(d3.ascending(a.key,b.key)>1) {
 										a.values[use]+=inc;
-										//console.log(">>>>>>>>>>",a.key,a.values[use])
 									} else {
 										b.values[use]+=inc;
-										//console.log(">>>>>>>>>>",b.key,b.values[use])
 									}
 									inc+=inc;
 								}
@@ -172,22 +158,19 @@ function ParallelCoordinates(data,options) {
 								return sorting(__a, __b);
 
 							}).map(function(o){
-								//return o.values[d];
 								if(options.dimensions.indexOf(use)>-1) {
 									return o.values[use];
 								}
 								return o.values[use]/((options.dimensions.indexOf(use)>-1)?1:o.values[options.ref])
 							}))
 							.rangePoints([HEIGHT-(margins.top+margins.bottom+padding.top+padding.bottom),0]);
-
-					//console.log(d,scales[d].domain())
 							
 				} else {
 					if(extents[d][0]===0) {
 						extents[d][0]=0.01;
 					}
-					//console.log(d,options.scale_map[d]?options.scale_map[d]:"!!"+scale_type);
-					scales[d]=d3.scale[options.scale_map[d]?options.scale_map[d]:scale_type]().domain(extents[d]).range([HEIGHT-(margins.top+margins.bottom+padding.top+padding.bottom),0]);//.nice()	
+
+					scales[d]=d3.scale[options.scale_map[d]?options.scale_map[d]:scale_type]().domain(extents[d]).range([HEIGHT-(margins.top+margins.bottom+padding.top+padding.bottom),0]);
 				}
 
 				wscales[d]=d3.scale.linear().domain([0,extents[d][1]]).range(marker_width).nice()
@@ -324,7 +307,7 @@ function ParallelCoordinates(data,options) {
 				tooltip
 					.style("left",function(){
 						var x=xscale(d)+margins.left+padding.left;
-						//console.log(d)
+						
 						if(d!=options.title_column) {
 							x+=marker_width[1]/2;
 						}
@@ -375,7 +358,6 @@ function ParallelCoordinates(data,options) {
 
 					var ticks=[
 								0,
-								//width_scales[d].domain()[1]/2,
 								width_scales[d].domain()[1]
 							].map(function(v,i){
 						return {
@@ -429,7 +411,6 @@ function ParallelCoordinates(data,options) {
 
 						var ticks=[
 									0,
-									//width_scales[d].domain()[1]/2,
 									width_scales[d].domain()[1]
 								].map(function(v,i){
 							return {
@@ -449,14 +430,11 @@ function ParallelCoordinates(data,options) {
 					})
 					.select("text")
 						.text(function(d){
-							//console.log("!!!!!!!",d)
 							return d3.format("s")(d.value);
 						})
 	}
 	addAxes();
 
-
-	
 	var labels=labels_group.selectAll("g.labels")
 					.data(nested_data,function(d){
 						return d.key;
@@ -496,12 +474,6 @@ function ParallelCoordinates(data,options) {
 						.attr("rel",function(d){
 							return d.key;
 						})
-						
-	/*languages_group
-		.on("click",function(d){
-			d3.select(self.$this).classed("highlight",!(d3.select(self.$this).classed("highlight")))
-		})*/
-						
 
 	var line = d3.svg.line()
 		    .x(function(d,i) { return d.x; })
@@ -510,9 +482,7 @@ function ParallelCoordinates(data,options) {
 					return yscales[options.use[d.col]||d.col].range()[0]
 				}
 		    	return yscales[options.use[d.col]||d.col](d.y)
-		    })
-		    //.interpolate("cardinal")
-		   // .tension(1)
+		    });
 
 	function createLanguages(languages) {
 		languages.append("g")
@@ -520,13 +490,7 @@ function ParallelCoordinates(data,options) {
 		
 
 		languages.append("g")
-				.attr("class","markers")
-		
-
-		
-		//labels.append("g")
-		//		.attr("class","labels")
-		
+				.attr("class","markers")	
 
 		languages.append("g")
 				.attr("class","lang-label")
@@ -631,9 +595,6 @@ function ParallelCoordinates(data,options) {
 					y=yscales[d.column](d.value)
 				}
 
-				if(d.column=="year") {
-					//console.log(d.lang,d.value,y,yscales[d.column].domain())
-				}
 				return "translate("+x+","+y+")";
 			})
 
@@ -684,10 +645,6 @@ function ParallelCoordinates(data,options) {
 								}
 								val.y=d.values[use];
 								val2.y=d.values[use];
-
-								//if(col=="name") {
-								//	//console.log(d.key,val.y,val2.y,yscales["CreateEvent"](val.y),yscales["CreateEvent"](val2.y))
-								//}
 
 								return [val,val2];
 							}
@@ -747,8 +704,6 @@ function ParallelCoordinates(data,options) {
 	}
 	
 	this.loadData=function(quarter) {
-		//console.log("loading data")
-		//console.log(quarter.date)
 		if(!!quarter.date.getTime) {
 			quarter="q"+(Math.floor((quarter.date.getMonth()+1)/3)+1)+"-"+quarter.date.getFullYear();
 		}
@@ -761,12 +716,10 @@ function ParallelCoordinates(data,options) {
 			q.events=+q.events;
 			
 			q.year=options.programming_languages[q.repository_language.toLowerCase()] || 1970;
-			//console.log(q.repository_language,q)
+			
 			return q;
 
 		},function(data){
-
-			//console.log(data)
 
 			var events={};
 			data.forEach(function(d){
@@ -794,13 +747,13 @@ function ParallelCoordinates(data,options) {
 				}
 				
 				events[d["repository_language"]].year=d.year;
-				//events["active_repos_by_url"]=d["active_repos_by_url"];
+				
 			})
-			//console.log(events);
+			
 
 			nested_data=nestData(d3.values(events));
 
-			//console.log("++++++++++++++++++++++++",nested_data)
+			
 
 			var languages=languages_group.selectAll("g.lang")
 					.data(nested_data,function(d){
@@ -882,17 +835,13 @@ function ParallelCoordinates(data,options) {
 
 	function updateLabels(duration) {
 		var labels=labels_group
-					//.selectAll(".lang")
 					.selectAll(".labels")
 						.selectAll("g.label")
 							.data(function(d){
 								return options.columns
-									/*.filter(function(col){
-										return col!=options.title_column
-									})*/
 									.map(function(col){
 										var use=options.use[col] || col;
-										//console.log(col,use)
+										
 										return {
 											lang:d.key,
 											column:col,
@@ -1002,7 +951,7 @@ function ParallelCoordinates(data,options) {
 		labels
 			.attr("transform",function(d){
 
-				var x=xscale(d.column);//-d.width/2,
+				var x=xscale(d.column);
 					y=yscales[d.column](d.value);
 
 				if(d.column=="year") {
@@ -1051,13 +1000,6 @@ function ParallelCoordinates(data,options) {
 
 				});
 
-		/*lang_label.append("rect")
-						.attr("class","hover")
-						.attr("x",-(padding.left))
-						.attr("width",padding.left)
-						.attr("y",-13+3)
-						.attr("height",18)*/
-
 		var rect=lang_label.append("rect")
 						.attr("x",-(padding.left+margins.left))
 						.attr("width",padding.left+margins.left)
@@ -1070,9 +1012,7 @@ function ParallelCoordinates(data,options) {
 				.text(function(d){
 					return d.values[options.title_column];
 				})
-				//.each(function(d) {
-				//	d.width = this.getBBox().width;
-				//});
+
 	}
 	function updateLangLabels(duration) {
 		languages_group.selectAll(".lang")
@@ -1080,7 +1020,7 @@ function ParallelCoordinates(data,options) {
 				.transition()
 				.duration(duration || options.duration)
 				.attr("transform",function(d){
-					//console.log(yscales[options.title_column].domain())
+					
 					var use=options.use[options.title_column] || options.title_column;
 					var x=xscale(options.title_column),
 						y=yscales[options.title_column](d.values[use]);

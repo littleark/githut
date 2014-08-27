@@ -7,8 +7,6 @@ d3.csv("web/data/languages.csv",function(d){
 
 },function(data){
 
-	//console.log(data);
-
 	var programming_languages={};
 	data.forEach(function(lang){
 		programming_languages[lang["name_lc"]]=lang["Year"];
@@ -31,13 +29,9 @@ d3.csv("web/data/languages.csv",function(d){
 		}
 		
 		q.year=programming_languages[q.repository_language.toLowerCase()] || 1970;
-		//console.log(q.repository_language,q)
+
 		return q;
 	},function(data){
-		//console.log(data);
-		
-		//console.log(unknonw)
-
 
 		var events={};
 		data.forEach(function(d){
@@ -65,17 +59,14 @@ d3.csv("web/data/languages.csv",function(d){
 			}
 			
 			events[d["repository_language"]].year=d.year;
-			//events["active_repos_by_url"]=d["active_repos_by_url"];
+			
 		})
-		//console.log(d3.values(events));
-		//return;
+		
 		pc=new ParallelCoordinates(d3.values(events),{
-			//nested_by_quarter:nested_by_quarter,
 			programming_languages:programming_languages,
 			container:"#pc",
 			scale:"linear",
-			//columns:["name","created","active_repos_by_url","lang_usage","events_per_repo","sum_rep_size","sum_rep_forks","sum_rep_openissues","sum_rep_watchers","year"],
-			columns:["name","PushEventRepo","PushEventAll","PushEvent","ForkEvent","IssuesEvent","WatchEvent","year"],//"CreateEvent"
+			columns:["name","PushEventRepo","PushEventAll","PushEvent","ForkEvent","IssuesEvent","WatchEvent","year"],
 			ref:"lang_usage",
 			title_column:"name",
 			scale_map:{
@@ -116,7 +107,6 @@ d3.csv("web/data/languages.csv",function(d){
 				"lang_usage":"Events",
 				"year":["Appeared","in Year"],
 				"events_per_repo":"Events/Repo",
-				"sum_rep_size":"Repo Size",
 				"ForkEvent":["New Forks","per Repository"],
 				"IssuesEvent":["Opened Issues","per Repository"],
 				"WatchEvent":["New Watchers","per Repository"]
@@ -137,20 +127,13 @@ d3.csv("web/data/languages.csv",function(d){
 		});
 	});
 
-		
-		
-	d3.csv("server/exports/active_quarters.csv",function(d){
+	d3.csv("server/exports/active_quarters.csv?123",function(d){
 
 		d.active_repos_by_url=+d.active_repos_by_url;
 		d.date=new Date(d.year,((+d.quarter)*3-3),1)
 
 		return d;
 	},function(data){
-
-		
-		//console.log(data)
-
-		
 
 		var extents={
 			date:[
@@ -183,7 +166,6 @@ d3.csv("web/data/languages.csv",function(d){
 				})
 			}	
 		})
-		//console.log(sums_quarter)
 
 		qc=new LineChart(d3.entries(sums_quarter).map(function(d){
 			var date=d.key.split("-")
@@ -233,12 +215,8 @@ d3.csv("web/data/languages.csv",function(d){
 							.entries(data.filter(function(d){
 								return d.repository_language!="null" && sums[d.repository_language]>0 && (d.date>=extents.date[0]) && (d.date<=extents.date[1]);
 							}).sort(function(a,b){
-								
-								//return d3.descending(lasts[a.repository_language],lasts[b.repository_language]);
 								return d3.descending(sums[a.repository_language],sums[b.repository_language]);
 							}));
-
-		//console.log("!!!!!!!!!!!!!!!!!",nested_data);
 		
 		sm=new SmallMultiples(nested_data.slice(0,29),{
 			extents:extents,
@@ -278,15 +256,6 @@ d3.csv("web/data/languages.csv",function(d){
 					.selectAll("span[rel="+d+"]")
 					.classed("visible",true)
 			})
-		/*
-		d3.select("#perc")
-			.on("click",function(d){
-				d3.event.preventDefault();
-				d3.select("#num").classed("selected",false)
-				d3.select("#perc").classed("selected",true)
-				sm.switchScale("perc")
-			})
-		*/
 	});
 
 		

@@ -69,9 +69,6 @@ function LineChart(data,options) {
 			.attr("class","linechart")
 			.attr("transform","translate("+margins.left+","+margins.top+")");
 
-
-
-	//console.log("DAAAAAAAATAAAAAAA",data);
 	
 	var extents={
 		date:d3.extent(data,function(d){
@@ -125,7 +122,6 @@ function LineChart(data,options) {
 						d3.select(".x.axis")
 							.selectAll(".tick")
 								.filter(function(t){
-									//console.log(d.date,t)
 									return d.date.getTime()==t.getTime();
 								})
 								.classed("highlight",true)
@@ -188,9 +184,7 @@ function LineChart(data,options) {
 	text.append("tspan")
 			.attr("class","click")
 			.style("text-anchor",function(d,i){
-				var position="middle";
-				//if(i==0)
-					position="start";
+				var position="start";
 				if(i==circles.data().length-1)
 					position="end";
 				return position;
@@ -216,7 +210,7 @@ function LineChart(data,options) {
 				})
 
 
-	var xAxis = d3.svg.axis().scale(xscale).tickSize(3);//.tickValues(extents.date);
+	var xAxis = d3.svg.axis().scale(xscale).tickSize(3);
 	var yAxis = d3.svg.axis().scale(yscale).orient("left").tickValues(yscale.ticks(3).filter(function(d){return d>0;}));
 
 	var xtickFormat=function(value){
