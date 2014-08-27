@@ -3,6 +3,7 @@
 	min-height: 70px;
 	margin:15px auto 10px;
 	text-align: center;
+	position: relative;
 }
 #qc svg {
 	font-family: 'Open Sans', sans-serif;
@@ -130,4 +131,40 @@
 #qc #axes .y .tick line,
 #qc #axes .y path {
 	display: none;
+}
+#qc #timeselect {
+	position: absolute;
+	width: 80px;
+	height:20px;
+	left:7px;
+	bottom:-15px;
+	line-height: 20px;
+}
+#qc #timeselect a.arrow {
+	display: block;
+	width:20px;
+	float: left;
+	text-align: center;
+	font-weight: 400;
+}
+#qc #timeselect ul {
+	margin: 0;
+	padding: 0;
+	width: 40px;
+	height: 20px;
+	text-align: center;
+	display: block;
+	overflow: hidden;
+	float: left;
+	font-size: 12px;
+	font-weight: 400;
+}
+#qc #timeselect ul li {
+	margin: 0;
+	padding: 0;
+	line-height: 20px;
+	display: none;
+}
+#qc #timeselect ul li.selected {
+	display: block;
 }

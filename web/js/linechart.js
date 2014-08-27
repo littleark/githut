@@ -16,6 +16,7 @@ function LineChart(data,options) {
 		left:0,
 		right:0
 	}
+	var timeSelector;
 
 	if(options.extents.date) {
 		data=data.filter(function(d){
@@ -24,6 +25,7 @@ function LineChart(data,options) {
 	}
 
 	var svg=d3.select(options.container)
+			.style("width",Math.round(window.innerWidth*(window.innerWidth<=960?1:0.8))+"px")
 			.append("svg")
 				.attr("width",WIDTH)
 				.attr("height",HEIGHT);
@@ -106,10 +108,11 @@ function LineChart(data,options) {
 			.attr("d",line(data))
 
 
-	var circles=linechart.selectAll("circle")
+	var circles=linechart.selectAll("g.circle")
 				.data(data)
 				.enter()
 				.append("g")
+					.attr("class","circle")
 					.classed("selected",function(d,i){
 						return d.date==extents.date[1]
 					})
@@ -121,35 +124,15 @@ function LineChart(data,options) {
 					.on("mouseover",function(d){
 						d3.select(".x.axis")
 							.selectAll(".tick")
-								.filter(function(t){
+								.classed("highlight",function(t){
 									return d.date.getTime()==t.getTime();
 								})
-								.classed("highlight",true)
 					})
 					.on("mouseout",function(d){
 						d3.select(".x.axis")
 							.selectAll(".tick")
 								.classed("highlight",false)
 					})
-					.on("click",function(d){
-						linechart
-							.selectAll("g")
-							.classed("selected",false);
-						d3.select(this)
-							.classed("selected",true);
-						selectTick(d.date.getTime());
-						options.callback(d);
-					})
-
-	function selectTick(time) {
-		svg.select(".x.axis")
-			.selectAll(".tick")
-				.classed("selected",false)
-				.filter(function(t){
-					return time==t.getTime();
-				})
-				.classed("selected",true)
-	}
 
 
 	var w=(xscale.range()[1])/(circles.data().length-1)
@@ -234,7 +217,7 @@ function LineChart(data,options) {
       .call(xAxis)
 
     
-    selectTick(xscale.ticks()[xscale.ticks().length-1].getTime());
+    
 
     axes.append("g")
       .attr("class", "y axis")
@@ -256,6 +239,95 @@ function LineChart(data,options) {
     			})
     			.attr("y2",function(d){
     				return  - ((HEIGHT - (margins.top+margins.bottom)) - yscale(d));
-    			})
+    			});
 
+    function TimeSelector() {
+    	var container=d3.select(options.selector),
+    		current=xscale.ticks().length-1,
+    		dates=xscale.ticks(),
+    		to=null;
+
+    	container.append("a")
+    			.attr("class","arrow")
+    			.attr("title","Previous Quarter")
+    			.attr("href","#")
+    			.html("&lt;")
+    			.on("click",function(d){
+    				d3.event.preventDefault();
+    				if(current>0) {
+    					current--;
+	    				selectDate(dates[current]);
+	    			}
+    			});
+
+    	container.append("ul")
+    			.selectAll("li")
+    			.data(dates)
+    			.enter()
+    				.append("li")
+    				.classed("selected",function(d,i){
+						return d.getTime()==dates[current].getTime()
+					})
+    				.text(function(d){
+    					return xtickFormat(d);
+    				})
+    	container.append("a")
+    			.attr("class","arrow")
+    			.attr("title","Next Quarter")
+    			.attr("href","#")
+    			.html("&gt;")
+    			.on("click",function(d){
+    				d3.event.preventDefault();
+    				if(current<dates.length-1) {
+    					current++;
+	    				selectDate(dates[current]);
+	    			}
+    			});
+
+    	this.select=function(date) {
+    		selectDate(date,true)
+    	}
+    	function selectDate(date,no_callback) {
+    		if(to) {
+    			clearTimeout(to);
+    		}
+    		to=setTimeout(function(){
+    			container
+    				.selectAll("li")
+    				.classed("selected",function(d,i){
+						return d.getTime()==date.getTime()
+					})
+    			if(!no_callback) {
+    				selectTick(date);
+					options.callback({date:date});	
+    			}
+
+    		},200);
+    	}
+    }
+
+    timeSelector = new TimeSelector();
+
+    linechart.selectAll("g.circle")				
+		.on("click",function(d){
+			selectTick(d.date);
+			options.callback(d);
+		})
+	function selectTick(time) {
+
+		linechart
+			.selectAll("g.circle")
+			.classed("selected",function(t){
+				return time.getTime()==t.date.getTime();
+			});
+
+		svg.select(".x.axis")
+			.selectAll(".tick")
+				.classed("selected",function(t){
+					return time.getTime()==t.getTime();
+				});
+
+		timeSelector.select(time);
+	}
+	selectTick(xscale.ticks()[xscale.ticks().length-1]);
 }

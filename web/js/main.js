@@ -179,6 +179,7 @@ d3.csv("web/data/languages.csv",function(d){
 		}),{
 			container:"#qc",
 			extents:extents,
+			selector:"#timeselect",
 			callback:function(d){
 				pc.loadData(d);
 			}
