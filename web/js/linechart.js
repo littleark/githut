@@ -25,7 +25,7 @@ function LineChart(data,options) {
 	}
 
 	var svg=d3.select(options.container)
-			.style("width",Math.round(window.innerWidth*(window.innerWidth<=960?1:0.8))+"px")
+			//.style("width",Math.round(window.innerWidth*(window.innerWidth<=960?1:0.8))+"px")
 			.append("svg")
 				.attr("width",WIDTH)
 				.attr("height",HEIGHT);

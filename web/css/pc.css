@@ -31,9 +31,11 @@ a:hover {
 	color:#A06535;
 }
 #header {
-	width: 600px;
+	width:80%;
+	min-width: 960px;
 	margin:0 auto 10px;
 	padding-bottom:5px;
+	position: relative;
 }
 #header h1 {
 	font-size: 23px;
@@ -56,6 +58,8 @@ a:hover {
 	text-transform: uppercase;
 }
 #pc {
+	width:80%;
+	min-width: 960px;
 	margin:0 auto;
 	min-height:400px;
 	position: relative;
@@ -337,7 +341,7 @@ a:hover {
 .social.social-top {
 	position: absolute;
 	right:20px;
-	top:20px;
+	top:5px;
 	font-size:20px;
 }
 #footer .social {
