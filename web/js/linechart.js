@@ -7,7 +7,7 @@ function LineChart(data,options) {
 		top:16,
 		bottom:15,
 		left:15,
-		right:15
+		right:20
 	}
 
 	var padding={
