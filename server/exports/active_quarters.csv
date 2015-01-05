@@ -1,5 +1,6 @@
 repository_language,active_repos_by_url,year,quarter
-null,10265,2014,4
+null,2876,2015,1
+null,465880,2014,4
 null,432908,2014,3
 null,359687,2014,2
 null,283083,2014,1
@@ -11,22 +12,25 @@ null,156535,2012,4
 null,152179,2012,3
 null,102068,2012,2
 null,26609,2012,1
-ABAP,3,2014,4
+ABAP,27,2014,4
 ABAP,20,2014,3
 ABAP,5,2014,2
 ABAP,7,2014,1
 ABAP,5,2013,4
 ABAP,4,2013,3
 ABAP,5,2013,2
-AGS Script,16,2014,4
+AGS Script,9,2015,1
+AGS Script,546,2014,4
 AGS Script,171,2014,3
-ANTLR,1,2014,4
+ANTLR,60,2014,4
 ANTLR,77,2014,3
 ANTLR,62,2014,2
 ANTLR,48,2014,1
 ANTLR,12,2013,4
+APL,4,2014,4
 APL,4,2014,3
-ASP,67,2014,4
+ASP,21,2015,1
+ASP,1862,2014,4
 ASP,1324,2014,3
 ASP,1312,2014,2
 ASP,1158,2014,1
@@ -38,10 +42,12 @@ ASP,443,2012,4
 ASP,323,2012,3
 ASP,246,2012,2
 ASP,61,2012,1
-ATS,3,2014,4
+ATS,2,2015,1
+ATS,16,2014,4
 ATS,21,2014,3
 ATS,20,2014,2
-ActionScript,82,2014,4
+ActionScript,17,2015,1
+ActionScript,1957,2014,4
 ActionScript,1950,2014,3
 ActionScript,1997,2014,2
 ActionScript,2130,2014,1
@@ -53,7 +59,8 @@ ActionScript,2120,2012,4
 ActionScript,1922,2012,3
 ActionScript,1747,2012,2
 ActionScript,601,2012,1
-Ada,11,2014,4
+Ada,6,2015,1
+Ada,135,2014,4
 Ada,100,2014,3
 Ada,123,2014,2
 Ada,122,2014,1
@@ -65,14 +72,17 @@ Ada,89,2012,4
 Ada,36,2012,3
 Ada,76,2012,2
 Ada,13,2012,1
-Agda,4,2014,4
+Agda,4,2015,1
+Agda,113,2014,4
 Agda,85,2014,3
 Agda,105,2014,2
 Agda,94,2014,1
 Agda,29,2013,4
+Alloy,4,2014,4
 Alloy,16,2014,3
 Alloy,26,2014,2
-Apex,14,2014,4
+Apex,4,2015,1
+Apex,361,2014,4
 Apex,383,2014,3
 Apex,334,2014,2
 Apex,281,2014,1
@@ -84,7 +94,8 @@ Apex,158,2012,4
 Apex,127,2012,3
 Apex,100,2012,2
 Apex,8,2012,1
-AppleScript,2,2014,4
+AppleScript,2,2015,1
+AppleScript,250,2014,4
 AppleScript,249,2014,3
 AppleScript,425,2014,2
 AppleScript,345,2014,1
@@ -94,7 +105,8 @@ AppleScript,134,2013,2
 AppleScript,114,2013,1
 AppleScript,92,2012,4
 AppleScript,34,2012,3
-Arc,1,2014,4
+Arc,1,2015,1
+Arc,18,2014,4
 Arc,18,2014,3
 Arc,31,2014,2
 Arc,23,2014,1
@@ -106,7 +118,8 @@ Arc,15,2012,4
 Arc,9,2012,3
 Arc,17,2012,2
 Arc,8,2012,1
-Arduino,118,2014,4
+Arduino,58,2015,1
+Arduino,5307,2014,4
 Arduino,4297,2014,3
 Arduino,3869,2014,2
 Arduino,3363,2014,1
@@ -118,10 +131,12 @@ Arduino,1267,2012,4
 Arduino,907,2012,3
 Arduino,666,2012,2
 Arduino,164,2012,1
-AspectJ,2,2014,4
+AspectJ,1,2015,1
+AspectJ,79,2014,4
 AspectJ,58,2014,3
 AspectJ,54,2014,2
-Assembly,114,2014,4
+Assembly,24,2015,1
+Assembly,2264,2014,4
 Assembly,2019,2014,3
 Assembly,1629,2014,2
 Assembly,1453,2014,1
@@ -133,6 +148,7 @@ Assembly,710,2012,4
 Assembly,486,2012,3
 Assembly,528,2012,2
 Assembly,141,2012,1
+Augeas,17,2014,4
 Augeas,35,2014,3
 Augeas,33,2014,2
 Augeas,20,2014,1
@@ -143,7 +159,8 @@ Augeas,12,2013,1
 Augeas,17,2012,4
 Augeas,9,2012,3
 Augeas,8,2012,2
-AutoHotkey,28,2014,4
+AutoHotkey,12,2015,1
+AutoHotkey,388,2014,4
 AutoHotkey,427,2014,3
 AutoHotkey,355,2014,2
 AutoHotkey,308,2014,1
@@ -155,12 +172,14 @@ AutoHotkey,146,2012,4
 AutoHotkey,130,2012,3
 AutoHotkey,116,2012,2
 AutoHotkey,37,2012,1
-AutoIt,10,2014,4
+AutoIt,4,2015,1
+AutoIt,171,2014,4
 AutoIt,166,2014,3
 AutoIt,158,2014,2
 AutoIt,160,2014,1
 AutoIt,39,2013,4
-Awk,5,2014,4
+Awk,2,2015,1
+Awk,138,2014,4
 Awk,132,2014,3
 Awk,102,2014,2
 Awk,109,2014,1
@@ -168,18 +187,24 @@ Awk,87,2013,4
 Awk,64,2013,3
 Awk,71,2013,2
 Awk,17,2013,1
-BlitzBasic,21,2014,4
+Bison,6,2015,1
+Bison,126,2014,4
+BitBake,9,2015,1
+BitBake,55,2014,4
+BlitzBasic,273,2014,4
 BlitzBasic,247,2014,3
 BlitzBasic,250,2014,2
 BlitzBasic,233,2014,1
 BlitzBasic,93,2013,4
-BlitzMax,2,2014,4
+BlitzMax,21,2014,4
 BlitzMax,28,2014,3
-Bluespec,1,2014,4
+Bluespec,2,2015,1
+Bluespec,21,2014,4
 Bluespec,16,2014,3
 Bluespec,8,2014,2
 Bluespec,4,2014,1
 Bluespec,3,2013,4
+Boo,33,2014,4
 Boo,19,2014,3
 Boo,16,2014,2
 Boo,36,2014,1
@@ -191,11 +216,13 @@ Boo,17,2012,4
 Boo,20,2012,3
 Boo,18,2012,2
 Boo,9,2012,1
+Brightscript,2,2015,1
+Brightscript,38,2014,4
 Brightscript,32,2014,3
 Brightscript,40,2014,2
 Brightscript,34,2014,1
 Brightscript,12,2013,4
-Bro,2,2014,4
+Bro,33,2014,4
 Bro,25,2014,3
 Bro,19,2014,2
 Bro,19,2014,1
@@ -207,7 +234,8 @@ Bro,13,2012,4
 Bro,13,2012,3
 Bro,8,2012,2
 Bro,1,2012,1
-C,3316,2014,4
+C,1479,2015,1
+C,73075,2014,4
 C,64597,2014,3
 C,65117,2014,2
 C,62762,2014,1
@@ -219,7 +247,8 @@ C,31734,2012,4
 C,25473,2012,3
 C,24080,2012,2
 C,7855,2012,1
-C#,2323,2014,4
+C#,923,2015,1
+C#,56062,2014,4
 C#,46052,2014,3
 C#,41591,2014,2
 C#,35897,2014,1
@@ -231,7 +260,8 @@ C#,17696,2012,4
 C#,13607,2012,3
 C#,12708,2012,2
 C#,3863,2012,1
-C++,4348,2014,4
+C++,1849,2015,1
+C++,86505,2014,4
 C++,72529,2014,3
 C++,70112,2014,2
 C++,63094,2014,1
@@ -243,7 +273,7 @@ C++,27655,2012,4
 C++,23920,2012,3
 C++,21468,2012,2
 C++,7865,2012,1
-CLIPS,1,2014,4
+CLIPS,50,2014,4
 CLIPS,16,2014,3
 CLIPS,17,2014,2
 CLIPS,35,2014,1
@@ -251,18 +281,21 @@ CLIPS,18,2013,4
 CLIPS,12,2013,3
 CLIPS,17,2013,2
 CLIPS,7,2013,1
+COBOL,25,2014,4
 COBOL,36,2014,3
 COBOL,39,2014,2
 COBOL,35,2014,1
 COBOL,22,2013,4
 COBOL,2,2013,3
-CSS,6943,2014,4
+CSS,2412,2015,1
+CSS,164585,2014,4
 CSS,151499,2014,3
 CSS,125066,2014,2
 CSS,112743,2014,1
 CSS,95491,2013,4
 CSS,59770,2013,3
-Ceylon,4,2014,4
+Cap'n Proto,1,2014,4
+Ceylon,50,2014,4
 Ceylon,36,2014,3
 Ceylon,31,2014,2
 Ceylon,33,2014,1
@@ -272,14 +305,18 @@ Ceylon,19,2013,2
 Ceylon,13,2013,1
 Ceylon,11,2012,4
 Ceylon,3,2012,3
+Chapel,26,2014,4
 Chapel,5,2014,3
+Cirru,1,2014,4
 Cirru,2,2014,3
 Cirru,3,2014,2
+Clean,7,2014,4
 Clean,5,2014,3
 Clean,6,2014,2
 Clean,10,2014,1
 Clean,5,2013,4
-Clojure,272,2014,4
+Clojure,122,2015,1
+Clojure,6840,2014,4
 Clojure,6205,2014,3
 Clojure,5765,2014,2
 Clojure,6183,2014,1
@@ -291,7 +328,8 @@ Clojure,3467,2012,4
 Clojure,2984,2012,3
 Clojure,2764,2012,2
 Clojure,908,2012,1
-CoffeeScript,546,2014,4
+CoffeeScript,163,2015,1
+CoffeeScript,14302,2014,4
 CoffeeScript,12800,2014,3
 CoffeeScript,12138,2014,2
 CoffeeScript,10663,2014,1
@@ -303,7 +341,8 @@ CoffeeScript,5231,2012,4
 CoffeeScript,4633,2012,3
 CoffeeScript,4015,2012,2
 CoffeeScript,1041,2012,1
-ColdFusion,27,2014,4
+ColdFusion,1,2015,1
+ColdFusion,352,2014,4
 ColdFusion,427,2014,3
 ColdFusion,459,2014,2
 ColdFusion,369,2014,1
@@ -315,7 +354,8 @@ ColdFusion,367,2012,4
 ColdFusion,359,2012,3
 ColdFusion,331,2012,2
 ColdFusion,107,2012,1
-Common Lisp,76,2014,4
+Common Lisp,40,2015,1
+Common Lisp,1483,2014,4
 Common Lisp,1280,2014,3
 Common Lisp,1289,2014,2
 Common Lisp,1331,2014,1
@@ -327,10 +367,13 @@ Common Lisp,1074,2012,4
 Common Lisp,897,2012,3
 Common Lisp,813,2012,2
 Common Lisp,307,2012,1
-Component Pascal,1,2014,4
+Component Pascal,37,2014,4
 Component Pascal,25,2014,3
 Component Pascal,6,2014,2
-Coq,24,2014,4
+Cool,1,2015,1
+Cool,1,2014,4
+Coq,7,2015,1
+Coq,233,2014,4
 Coq,202,2014,3
 Coq,188,2014,2
 Coq,133,2014,1
@@ -342,16 +385,19 @@ Coq,88,2012,4
 Coq,96,2012,3
 Coq,78,2012,2
 Coq,22,2012,1
-Crystal,1,2014,4
+Crystal,32,2014,4
 Crystal,23,2014,3
 Crystal,15,2014,2
 Crystal,10,2014,1
 Crystal,3,2013,4
-Cuda,17,2014,4
+Cuda,5,2015,1
+Cuda,502,2014,4
 Cuda,404,2014,3
 Cuda,211,2014,2
+Cycript,7,2014,4
 Cycript,1,2014,3
-D,86,2014,4
+D,35,2015,1
+D,1749,2014,4
 D,1631,2014,3
 D,1650,2014,2
 D,1615,2014,1
@@ -374,12 +420,13 @@ DCPU-16 ASM,33,2012,4
 DCPU-16 ASM,10,2012,3
 DCPU-16 ASM,96,2012,2
 DCPU-16 Assembly,2,2012,2
-DM,31,2014,4
+DM,23,2015,1
+DM,394,2014,4
 DM,346,2014,3
 DM,396,2014,2
 DM,318,2014,1
 DM,120,2013,4
-DOT,4,2014,4
+DOT,43,2014,4
 DOT,49,2014,3
 DOT,217,2014,2
 DOT,266,2014,1
@@ -387,7 +434,8 @@ DOT,277,2013,4
 DOT,198,2013,3
 DOT,224,2013,2
 DOT,72,2013,1
-Dart,82,2014,4
+Dart,29,2015,1
+Dart,1636,2014,4
 Dart,1802,2014,3
 Dart,1512,2014,2
 Dart,1672,2014,1
@@ -398,6 +446,7 @@ Dart,668,2013,1
 Dart,535,2012,4
 Dart,280,2012,3
 Dart,178,2012,2
+Delphi,5,2014,4
 Delphi,4,2014,3
 Delphi,19,2014,2
 Delphi,24,2014,1
@@ -409,9 +458,11 @@ Delphi,467,2012,4
 Delphi,367,2012,3
 Delphi,326,2012,2
 Delphi,120,2012,1
+Dogescript,1,2014,4
 Dogescript,1,2014,3
 Dogescript,8,2014,2
-Dylan,4,2014,4
+Dylan,1,2015,1
+Dylan,22,2014,4
 Dylan,35,2014,3
 Dylan,43,2014,2
 Dylan,55,2014,1
@@ -423,8 +474,10 @@ Dylan,47,2012,4
 Dylan,10,2012,3
 Dylan,29,2012,2
 Dylan,8,2012,1
+E,2,2014,4
 E,1,2014,3
 E,1,2014,2
+Ecl,13,2014,4
 Ecl,12,2014,3
 Ecl,10,2014,2
 Ecl,15,2014,1
@@ -434,7 +487,8 @@ Ecl,9,2013,2
 Ecl,8,2013,1
 Ecl,8,2012,4
 Ecl,5,2012,3
-Eiffel,9,2014,4
+Eiffel,3,2015,1
+Eiffel,84,2014,4
 Eiffel,89,2014,3
 Eiffel,135,2014,2
 Eiffel,92,2014,1
@@ -446,7 +500,8 @@ Eiffel,65,2012,4
 Eiffel,49,2012,3
 Eiffel,55,2012,2
 Eiffel,29,2012,1
-Elixir,47,2014,4
+Elixir,30,2015,1
+Elixir,1210,2014,4
 Elixir,1128,2014,3
 Elixir,850,2014,2
 Elixir,753,2014,1
@@ -458,12 +513,14 @@ Elixir,94,2012,4
 Elixir,70,2012,3
 Elixir,69,2012,2
 Elixir,21,2012,1
-Elm,7,2014,4
+Elm,5,2015,1
+Elm,265,2014,4
 Elm,128,2014,3
 Elm,116,2014,2
 Elm,95,2014,1
 Elm,61,2013,4
-Emacs Lisp,415,2014,4
+Emacs Lisp,237,2015,1
+Emacs Lisp,9978,2014,4
 Emacs Lisp,7499,2014,3
 Emacs Lisp,7436,2014,2
 Emacs Lisp,7774,2014,1
@@ -475,8 +532,10 @@ Emacs Lisp,5039,2012,4
 Emacs Lisp,5058,2012,3
 Emacs Lisp,4178,2012,2
 Emacs Lisp,1581,2012,1
+EmberScript,17,2014,4
 EmberScript,4,2014,3
-Erlang,194,2014,4
+Erlang,39,2015,1
+Erlang,2961,2014,4
 Erlang,2914,2014,3
 Erlang,2971,2014,2
 Erlang,2962,2014,1
@@ -488,7 +547,8 @@ Erlang,2147,2012,4
 Erlang,1826,2012,3
 Erlang,1824,2012,2
 Erlang,617,2012,1
-F#,51,2014,4
+F#,21,2015,1
+F#,1214,2014,4
 F#,952,2014,3
 F#,940,2014,2
 F#,860,2014,1
@@ -500,10 +560,11 @@ F#,339,2012,4
 F#,253,2012,3
 F#,228,2012,2
 F#,91,2012,1
-FLUX,3,2014,4
+FLUX,34,2014,4
 FLUX,38,2014,3
 FLUX,22,2014,2
-FORTRAN,85,2014,4
+FORTRAN,6,2015,1
+FORTRAN,1186,2014,4
 FORTRAN,1097,2014,3
 FORTRAN,1085,2014,2
 FORTRAN,1041,2014,1
@@ -515,7 +576,8 @@ FORTRAN,433,2012,4
 FORTRAN,321,2012,3
 FORTRAN,322,2012,2
 FORTRAN,101,2012,1
-Factor,1,2014,4
+Factor,2,2015,1
+Factor,25,2014,4
 Factor,15,2014,3
 Factor,15,2014,2
 Factor,21,2014,1
@@ -538,6 +600,7 @@ Fancy,7,2012,4
 Fancy,6,2012,3
 Fancy,6,2012,2
 Fancy,1,2012,1
+Fantom,9,2014,4
 Fantom,2,2014,3
 Fantom,5,2014,2
 Fantom,10,2014,1
@@ -549,7 +612,8 @@ Fantom,5,2012,4
 Fantom,5,2012,3
 Fantom,3,2012,2
 Fantom,1,2012,1
-Forth,1,2014,4
+Forth,2,2015,1
+Forth,75,2014,4
 Forth,12,2014,3
 Forth,11,2014,2
 Forth,13,2014,1
@@ -557,25 +621,32 @@ Forth,8,2013,4
 Forth,8,2013,3
 Forth,7,2013,2
 Forth,4,2013,1
-Frege,3,2014,4
+Frege,36,2014,4
 Frege,27,2014,3
 Frege,18,2014,2
+GAMS,18,2014,4
 GAMS,15,2014,3
 GAMS,5,2014,2
-GAP,9,2014,4
+GAP,1,2015,1
+GAP,89,2014,4
 GAP,147,2014,3
 GAP,69,2014,2
-Game Maker Language,19,2014,4
+GDScript,21,2014,4
+Game Maker Language,4,2015,1
+Game Maker Language,232,2014,4
 Game Maker Language,269,2014,3
 Game Maker Language,171,2014,2
+Glyph,8,2014,4
 Glyph,8,2014,3
 Glyph,15,2014,2
 Glyph,10,2014,1
 Glyph,8,2013,4
-Gnuplot,7,2014,4
+Gnuplot,1,2015,1
+Gnuplot,105,2014,4
 Gnuplot,97,2014,3
 Gnuplot,63,2014,2
-Go,863,2014,4
+Go,430,2015,1
+Go,22264,2014,4
 Go,18355,2014,3
 Go,15493,2014,2
 Go,12621,2014,1
@@ -587,7 +658,9 @@ Go,3635,2012,4
 Go,2720,2012,3
 Go,2007,2012,2
 Go,612,2012,1
-Gosu,9,2014,4
+Golo,5,2014,4
+Gosu,2,2015,1
+Gosu,136,2014,4
 Gosu,180,2014,3
 Gosu,139,2014,2
 Gosu,117,2014,1
@@ -601,10 +674,11 @@ Gosu,20,2012,2
 Gosu,7,2012,1
 Grace,1,2014,4
 Grace,3,2014,3
-Grammatical Framework,1,2014,4
+Grammatical Framework,10,2014,4
 Grammatical Framework,12,2014,3
 Grammatical Framework,5,2014,2
-Groovy,191,2014,4
+Groovy,50,2015,1
+Groovy,5041,2014,4
 Groovy,6011,2014,3
 Groovy,5177,2014,2
 Groovy,3474,2014,1
@@ -616,6 +690,7 @@ Groovy,2278,2012,4
 Groovy,1913,2012,3
 Groovy,1869,2012,2
 Groovy,547,2012,1
+HaXe,4,2014,4
 HaXe,6,2014,3
 HaXe,34,2014,2
 HaXe,52,2014,1
@@ -627,10 +702,12 @@ HaXe,345,2012,4
 HaXe,335,2012,3
 HaXe,288,2012,2
 HaXe,81,2012,1
-Harbour,1,2014,4
+Hack,57,2014,4
+Harbour,4,2014,4
 Harbour,3,2014,3
 Harbour,3,2014,2
-Haskell,364,2014,4
+Haskell,212,2015,1
+Haskell,8789,2014,4
 Haskell,7385,2014,3
 Haskell,7863,2014,2
 Haskell,6572,2014,1
@@ -642,7 +719,8 @@ Haskell,4060,2012,4
 Haskell,3647,2012,3
 Haskell,3329,2012,2
 Haskell,1117,2012,1
-Haxe,52,2014,4
+Haxe,32,2015,1
+Haxe,1134,2014,4
 Haxe,1009,2014,3
 Haxe,1112,2014,2
 Haxe,840,2014,1
@@ -650,25 +728,28 @@ Haxe,661,2013,4
 Haxe,695,2013,3
 Haxe,603,2013,2
 Haxe,163,2013,1
-Hy,3,2014,4
+Hy,1,2015,1
+Hy,29,2014,4
 Hy,17,2014,3
 Hy,20,2014,2
-IDL,38,2014,4
+IDL,2,2015,1
+IDL,339,2014,4
 IDL,670,2014,3
 IDL,677,2014,2
 IDL,607,2014,1
 IDL,46,2013,4
-IGOR Pro,1,2014,4
+IGOR Pro,13,2014,4
 IGOR Pro,3,2014,3
-Idris,4,2014,4
+Idris,4,2015,1
+Idris,70,2014,4
 Idris,55,2014,3
 Idris,69,2014,2
 Idris,46,2014,1
 Idris,14,2013,4
-Inform 7,12,2014,4
+Inform 7,73,2014,4
 Inform 7,36,2014,3
 Inform 7,26,2014,2
-Io,1,2014,4
+Io,88,2014,4
 Io,72,2014,3
 Io,35,2014,2
 Io,46,2014,1
@@ -680,6 +761,7 @@ Io,25,2012,4
 Io,30,2012,3
 Io,37,2012,2
 Io,12,2012,1
+Ioke,1,2014,4
 Ioke,8,2014,1
 Ioke,2,2013,2
 Ioke,1,2013,1
@@ -687,15 +769,20 @@ Ioke,2,2012,4
 Ioke,2,2012,3
 Ioke,3,2012,2
 Ioke,5,2012,1
+Isabelle,24,2014,4
 Isabelle,20,2014,3
+J,19,2014,4
 J,15,2014,3
 J,19,2014,2
 J,13,2014,1
 J,12,2013,4
-JSONiq,1,2014,4
+JSONiq,6,2014,4
 JSONiq,4,2014,3
 JSONiq,7,2014,2
-Java,10122,2014,4
+Jasmin,1,2015,1
+Jasmin,4,2014,4
+Java,3304,2015,1
+Java,222852,2014,4
 Java,175968,2014,3
 Java,176906,2014,2
 Java,158534,2014,1
@@ -707,7 +794,8 @@ Java,76588,2012,4
 Java,58012,2012,3
 Java,50334,2012,2
 Java,17264,2012,1
-JavaScript,13659,2014,4
+JavaScript,5096,2015,1
+JavaScript,323938,2014,4
 JavaScript,294832,2014,3
 JavaScript,263214,2014,2
 JavaScript,228264,2014,1
@@ -719,7 +807,8 @@ JavaScript,126264,2012,4
 JavaScript,103523,2012,3
 JavaScript,84893,2012,2
 JavaScript,26239,2012,1
-Julia,82,2014,4
+Julia,54,2015,1
+Julia,1433,2014,4
 Julia,1258,2014,3
 Julia,1183,2014,2
 Julia,1102,2014,1
@@ -730,12 +819,13 @@ Julia,410,2013,1
 Julia,215,2012,4
 Julia,88,2012,3
 Julia,77,2012,2
-KRL,2,2014,4
+KRL,5,2014,4
 KRL,5,2014,3
 KRL,12,2014,2
 KRL,68,2014,1
 KRL,6,2013,4
-Kotlin,20,2014,4
+Kotlin,5,2015,1
+Kotlin,439,2014,4
 Kotlin,165,2014,3
 Kotlin,95,2014,2
 Kotlin,86,2014,1
@@ -747,11 +837,12 @@ Kotlin,44,2012,4
 Kotlin,32,2012,3
 Kotlin,24,2012,2
 Kotlin,1,2012,1
-LSL,2,2014,4
+LOLCODE,3,2014,4
+LSL,36,2014,4
 LSL,21,2014,3
-LabVIEW,8,2014,4
+LabVIEW,214,2014,4
 LabVIEW,74,2014,3
-Lasso,4,2014,4
+Lasso,52,2014,4
 Lasso,44,2014,3
 Lasso,92,2014,2
 Lasso,150,2014,1
@@ -759,7 +850,8 @@ Lasso,197,2013,4
 Lasso,114,2013,3
 Lasso,140,2013,2
 Lasso,231,2013,1
-LiveScript,10,2014,4
+LiveScript,5,2015,1
+LiveScript,268,2014,4
 LiveScript,219,2014,3
 LiveScript,291,2014,2
 LiveScript,303,2014,1
@@ -767,7 +859,8 @@ LiveScript,223,2013,4
 LiveScript,149,2013,3
 LiveScript,115,2013,2
 LiveScript,42,2013,1
-Logos,7,2014,4
+Logos,8,2015,1
+Logos,399,2014,4
 Logos,238,2014,3
 Logos,257,2014,2
 Logos,373,2014,1
@@ -787,8 +880,11 @@ Logtalk,3,2012,4
 Logtalk,4,2012,3
 Logtalk,3,2012,2
 Logtalk,1,2012,1
+LookML,22,2014,4
 LookML,3,2014,3
-Lua,332,2014,4
+LoomScript,5,2014,4
+Lua,200,2015,1
+Lua,8123,2014,4
 Lua,7118,2014,3
 Lua,6680,2014,2
 Lua,6088,2014,1
@@ -800,17 +896,22 @@ Lua,3196,2012,4
 Lua,2793,2012,3
 Lua,1925,2012,2
 Lua,651,2012,1
-M,8,2014,4
+M,1,2015,1
+M,362,2014,4
 M,268,2014,3
 M,277,2014,2
 M,243,2014,1
 M,183,2013,4
 M,151,2013,3
 M,42,2013,2
-Mathematica,34,2014,4
+Makefile,203,2015,1
+Makefile,5251,2014,4
+Mathematica,11,2015,1
+Mathematica,567,2014,4
 Mathematica,383,2014,3
 Mathematica,41,2014,2
-Matlab,265,2014,4
+Matlab,53,2015,1
+Matlab,6052,2014,4
 Matlab,4539,2014,3
 Matlab,4496,2014,2
 Matlab,3506,2014,1
@@ -822,7 +923,8 @@ Matlab,878,2012,4
 Matlab,769,2012,3
 Matlab,1070,2012,2
 Matlab,332,2012,1
-Max,6,2014,4
+Max,3,2015,1
+Max,245,2014,4
 Max,201,2014,3
 Max,268,2014,2
 Max,216,2014,1
@@ -836,10 +938,11 @@ Max/MSP,1,2013,1
 Max/MSP,2,2012,3
 Max/MSP,8,2012,2
 Max/MSP,1,2012,1
-Mercury,4,2014,4
+Mercury,2,2015,1
+Mercury,185,2014,4
 Mercury,111,2014,3
 Mercury,96,2014,2
-Mirah,1,2014,4
+Mirah,6,2014,4
 Mirah,6,2014,3
 Mirah,1,2014,2
 Mirah,9,2014,1
@@ -852,7 +955,7 @@ Mirah,2,2012,3
 Mirah,6,2012,2
 Mirah,1,2012,1
 Modelica,35,2012,1
-Monkey,2,2014,4
+Monkey,47,2014,4
 Monkey,39,2014,3
 Monkey,31,2014,2
 Monkey,22,2014,1
@@ -861,14 +964,16 @@ Monkey,11,2013,3
 Monkey,27,2013,2
 Monkey,12,2013,1
 Moocode,1,2014,2
-MoonScript,3,2014,4
+MoonScript,1,2015,1
+MoonScript,53,2014,4
 MoonScript,45,2014,3
 MoonScript,46,2014,2
 MoonScript,45,2014,1
 MoonScript,25,2013,4
 MoonScript,25,2013,3
 MoonScript,14,2013,2
-Nemerle,2,2014,4
+Nemerle,1,2015,1
+Nemerle,23,2014,4
 Nemerle,33,2014,3
 Nemerle,87,2014,2
 Nemerle,76,2014,1
@@ -880,12 +985,13 @@ Nemerle,24,2012,4
 Nemerle,38,2012,3
 Nemerle,37,2012,2
 Nemerle,14,2012,1
-NetLogo,4,2014,4
+NetLogo,88,2014,4
 NetLogo,52,2014,3
 NetLogo,84,2014,2
 NetLogo,58,2014,1
 NetLogo,20,2013,4
-Nimrod,7,2014,4
+Nimrod,8,2015,1
+Nimrod,178,2014,4
 Nimrod,112,2014,3
 Nimrod,121,2014,2
 Nimrod,113,2014,1
@@ -898,9 +1004,11 @@ Nimrod,19,2012,3
 Nimrod,14,2012,2
 Nimrod,4,2012,1
 Nit,2,2014,3
-Nix,30,2014,4
+Nix,13,2015,1
+Nix,323,2014,4
 Nix,241,2014,3
 Nix,4,2014,2
+Nu,13,2014,4
 Nu,7,2014,3
 Nu,7,2014,2
 Nu,12,2014,1
@@ -912,7 +1020,8 @@ Nu,6,2012,4
 Nu,7,2012,3
 Nu,1,2012,2
 Nu,1,2012,1
-OCaml,111,2014,4
+OCaml,41,2015,1
+OCaml,1778,2014,4
 OCaml,1361,2014,3
 OCaml,1397,2014,2
 OCaml,1415,2014,1
@@ -924,7 +1033,8 @@ OCaml,726,2012,4
 OCaml,557,2012,3
 OCaml,448,2012,2
 OCaml,215,2012,1
-Objective-C,1273,2014,4
+Objective-C,326,2015,1
+Objective-C,36568,2014,4
 Objective-C,36471,2014,3
 Objective-C,36414,2014,2
 Objective-C,34804,2014,1
@@ -936,10 +1046,12 @@ Objective-C,18486,2012,4
 Objective-C,14807,2012,3
 Objective-C,11778,2012,2
 Objective-C,3444,2012,1
-Objective-C++,23,2014,4
+Objective-C++,6,2015,1
+Objective-C++,559,2014,4
 Objective-C++,555,2014,3
 Objective-C++,460,2014,2
-Objective-J,4,2014,4
+Objective-J,1,2015,1
+Objective-J,78,2014,4
 Objective-J,81,2014,3
 Objective-J,67,2014,2
 Objective-J,80,2014,1
@@ -953,6 +1065,7 @@ Objective-J,98,2012,2
 Objective-J,36,2012,1
 Omgrofl,3,2014,1
 Omgrofl,1,2013,2
+Opa,2,2014,4
 Opa,3,2014,3
 Opa,4,2014,2
 Opa,4,2014,1
@@ -964,7 +1077,9 @@ Opa,16,2012,4
 Opa,29,2012,3
 Opa,21,2012,2
 Opa,10,2012,1
-OpenEdge ABL,13,2014,4
+Opal,2,2014,4
+OpenEdge ABL,3,2015,1
+OpenEdge ABL,263,2014,4
 OpenEdge ABL,214,2014,3
 OpenEdge ABL,250,2014,2
 OpenEdge ABL,195,2014,1
@@ -976,19 +1091,25 @@ OpenEdge ABL,84,2012,4
 OpenEdge ABL,50,2012,3
 OpenEdge ABL,51,2012,2
 OpenEdge ABL,21,2012,1
-OpenSCAD,18,2014,4
+OpenSCAD,10,2015,1
+OpenSCAD,547,2014,4
 OpenSCAD,220,2014,3
-Ox,1,2014,4
+Ox,3,2014,4
 Ox,3,2014,3
 Ox,1,2014,2
+Oxygene,3,2014,4
 Oxygene,2,2014,3
 Oxygene,6,2014,2
 Oxygene,17,2014,1
 Oxygene,211,2013,4
-PAWN,4,2014,4
+Oz,1,2015,1
+Oz,15,2014,4
+PAWN,4,2015,1
+PAWN,89,2014,4
 PAWN,66,2014,3
 PAWN,51,2014,2
-PHP,5776,2014,4
+PHP,1946,2015,1
+PHP,138771,2014,4
 PHP,131741,2014,3
 PHP,118272,2014,2
 PHP,114713,2014,1
@@ -1000,10 +1121,13 @@ PHP,62336,2012,4
 PHP,50802,2012,3
 PHP,42745,2012,2
 PHP,14737,2012,1
-Pan,3,2014,4
+Pan,25,2014,4
 Pan,14,2014,3
 Pan,15,2014,2
-Parrot,1,2014,4
+Papyrus,2,2015,1
+Papyrus,19,2014,4
+Parrot,1,2015,1
+Parrot,13,2014,4
 Parrot,12,2014,3
 Parrot,12,2014,2
 Parrot,14,2014,1
@@ -1015,13 +1139,15 @@ Parrot,9,2012,4
 Parrot,9,2012,3
 Parrot,11,2012,2
 Parrot,5,2012,1
-Pascal,70,2014,4
+Pascal,24,2015,1
+Pascal,1270,2014,4
 Pascal,1030,2014,3
 Pascal,976,2014,2
 Pascal,905,2014,1
 Pascal,758,2013,4
 Pascal,172,2013,3
-Perl,685,2014,4
+Perl,245,2015,1
+Perl,16188,2014,4
 Perl,15410,2014,3
 Perl,13969,2014,2
 Perl,13886,2014,1
@@ -1033,14 +1159,17 @@ Perl,11263,2012,4
 Perl,11496,2012,3
 Perl,8266,2012,2
 Perl,2438,2012,1
-Perl6,7,2014,4
+Perl6,14,2015,1
+Perl6,275,2014,4
 Perl6,82,2014,3
 Perl6,89,2014,2
 Perl6,69,2014,1
 Perl6,8,2013,4
-PigLatin,2,2014,4
+PigLatin,1,2015,1
+PigLatin,69,2014,4
 PigLatin,20,2014,3
-Pike,2,2014,4
+Pike,1,2015,1
+Pike,13,2014,4
 Pike,20,2014,3
 Pike,11,2014,2
 Pike,12,2014,1
@@ -1048,6 +1177,7 @@ Pike,13,2013,4
 Pike,10,2013,3
 Pike,19,2013,2
 Pike,5,2013,1
+PogoScript,7,2014,4
 PogoScript,6,2014,3
 PogoScript,4,2014,2
 PogoScript,12,2014,1
@@ -1055,7 +1185,8 @@ PogoScript,17,2013,4
 PogoScript,7,2013,3
 PogoScript,14,2013,2
 PogoScript,2,2013,1
-PowerShell,106,2014,4
+PowerShell,38,2015,1
+PowerShell,3253,2014,4
 PowerShell,2620,2014,3
 PowerShell,1919,2014,2
 PowerShell,1423,2014,1
@@ -1068,7 +1199,8 @@ PowerShell,456,2012,3
 PowerShell,343,2012,2
 PowerShell,26,2012,1
 Powershell,69,2012,1
-Processing,66,2014,4
+Processing,29,2015,1
+Processing,2368,2014,4
 Processing,1502,2014,3
 Processing,1682,2014,2
 Processing,1641,2014,1
@@ -1076,7 +1208,8 @@ Processing,1369,2013,4
 Processing,1031,2013,3
 Processing,1126,2013,2
 Processing,246,2013,1
-Prolog,22,2014,4
+Prolog,22,2015,1
+Prolog,1160,2014,4
 Prolog,374,2014,3
 Prolog,203,2014,2
 Prolog,96,2014,1
@@ -1088,10 +1221,12 @@ Prolog,418,2012,4
 Prolog,299,2012,3
 Prolog,298,2012,2
 Prolog,79,2012,1
-Propeller Spin,5,2014,4
+Propeller Spin,1,2015,1
+Propeller Spin,49,2014,4
 Propeller Spin,57,2014,3
 Propeller Spin,25,2014,2
-Puppet,204,2014,4
+Puppet,41,2015,1
+Puppet,4576,2014,4
 Puppet,4977,2014,3
 Puppet,4879,2014,2
 Puppet,5257,2014,1
@@ -1103,7 +1238,8 @@ Puppet,2317,2012,4
 Puppet,1774,2012,3
 Puppet,1570,2012,2
 Puppet,431,2012,1
-Pure Data,8,2014,4
+Pure Data,1,2015,1
+Pure Data,181,2014,4
 Pure Data,161,2014,3
 Pure Data,133,2014,2
 Pure Data,129,2014,1
@@ -1115,10 +1251,14 @@ Pure Data,76,2012,4
 Pure Data,75,2012,3
 Pure Data,63,2012,2
 Pure Data,22,2012,1
-PureScript,6,2014,4
+PureBasic,1,2015,1
+PureBasic,5,2014,4
+PureScript,3,2015,1
+PureScript,250,2014,4
 PureScript,166,2014,3
 PureScript,78,2014,2
-Python,7006,2014,4
+Python,2419,2015,1
+Python,164852,2014,4
 Python,142272,2014,3
 Python,152104,2014,2
 Python,130546,2014,1
@@ -1130,7 +1270,8 @@ Python,61663,2012,4
 Python,55580,2012,3
 Python,50607,2012,2
 Python,16803,2012,1
-R,660,2014,4
+R,157,2015,1
+R,34268,2014,4
 R,36343,2014,3
 R,32731,2014,2
 R,10817,2014,1
@@ -1142,12 +1283,14 @@ R,1919,2012,4
 R,1451,2012,3
 R,1153,2012,2
 R,414,2012,1
-REALbasic,1,2014,4
+REALbasic,1,2015,1
+REALbasic,23,2014,4
 REALbasic,17,2014,3
 REALbasic,34,2014,2
 REALbasic,23,2014,1
 REALbasic,8,2013,4
-Racket,38,2014,4
+Racket,20,2015,1
+Racket,863,2014,4
 Racket,791,2014,3
 Racket,617,2014,2
 Racket,610,2014,1
@@ -1159,6 +1302,7 @@ Racket,549,2012,4
 Racket,355,2012,3
 Racket,204,2012,2
 Racket,76,2012,1
+Ragel in Ruby Host,8,2014,4
 Ragel in Ruby Host,13,2014,3
 Ragel in Ruby Host,20,2014,2
 Ragel in Ruby Host,14,2014,1
@@ -1166,7 +1310,7 @@ Ragel in Ruby Host,15,2013,4
 Ragel in Ruby Host,10,2013,3
 Ragel in Ruby Host,10,2013,2
 Ragel in Ruby Host,2,2013,1
-Rebol,3,2014,4
+Rebol,76,2014,4
 Rebol,67,2014,3
 Rebol,146,2014,2
 Rebol,16,2014,1
@@ -1178,19 +1322,22 @@ Rebol,31,2012,4
 Rebol,41,2012,3
 Rebol,10,2012,2
 Rebol,6,2012,1
-Red,3,2014,4
+Red,18,2014,4
 Red,15,2014,3
 Red,8,2014,2
+RobotFramework,14,2014,4
 RobotFramework,18,2014,3
 RobotFramework,10,2014,2
 RobotFramework,6,2014,1
 RobotFramework,1,2013,4
+Rouge,1,2014,4
 Rouge,2,2014,2
 Rouge,2,2014,1
 Rouge,1,2013,4
 Rouge,3,2013,3
 Rouge,3,2013,2
-Ruby,5714,2014,4
+Ruby,1612,2015,1
+Ruby,132848,2014,4
 Ruby,132397,2014,3
 Ruby,135781,2014,2
 Ruby,132547,2014,1
@@ -1202,7 +1349,8 @@ Ruby,87405,2012,4
 Ruby,81251,2012,3
 Ruby,76900,2012,2
 Ruby,23912,2012,1
-Rust,182,2014,4
+Rust,183,2015,1
+Rust,4383,2014,4
 Rust,2554,2014,3
 Rust,1787,2014,2
 Rust,1183,2014,1
@@ -1214,15 +1362,18 @@ Rust,255,2012,4
 Rust,196,2012,3
 Rust,148,2012,2
 Rust,77,2012,1
-SAS,9,2014,4
+SAS,110,2014,4
 SAS,87,2014,3
 SAS,37,2014,2
-SQF,25,2014,4
+SQF,20,2015,1
+SQF,598,2014,4
 SQF,253,2014,3
-SQL,9,2014,4
+SQL,1,2015,1
+SQL,82,2014,4
 SQL,170,2014,3
 SQL,2102,2014,2
-Scala,596,2014,4
+Scala,217,2015,1
+Scala,10853,2014,4
 Scala,9457,2014,3
 Scala,9846,2014,2
 Scala,8896,2014,1
@@ -1234,7 +1385,8 @@ Scala,4953,2012,4
 Scala,4006,2012,3
 Scala,3864,2012,2
 Scala,1298,2012,1
-Scheme,66,2014,4
+Scheme,30,2015,1
+Scheme,1667,2014,4
 Scheme,1639,2014,3
 Scheme,1410,2014,2
 Scheme,1321,2014,1
@@ -1246,7 +1398,7 @@ Scheme,543,2012,4
 Scheme,422,2012,3
 Scheme,443,2012,2
 Scheme,149,2012,1
-Scilab,6,2014,4
+Scilab,91,2014,4
 Scilab,54,2014,3
 Scilab,65,2014,2
 Scilab,74,2014,1
@@ -1258,6 +1410,7 @@ Scilab,45,2012,4
 Scilab,40,2012,3
 Scilab,48,2012,2
 Scilab,8,2012,1
+Self,4,2014,4
 Self,4,2014,3
 Self,3,2014,2
 Self,7,2014,1
@@ -1268,7 +1421,8 @@ Self,5,2012,4
 Self,1,2012,3
 Self,2,2012,2
 Self,2,2012,1
-Shell,2768,2014,4
+Shell,1020,2015,1
+Shell,65670,2014,4
 Shell,64455,2014,3
 Shell,53967,2014,2
 Shell,53561,2014,1
@@ -1280,15 +1434,17 @@ Shell,23064,2012,4
 Shell,18835,2012,3
 Shell,16721,2012,2
 Shell,5392,2012,1
+Shen,2,2014,4
 Shen,3,2014,3
 Shen,1,2014,2
-Slash,1,2014,4
+Slash,16,2014,4
 Slash,25,2014,3
 Slash,82,2014,2
 Slash,55,2014,1
 Slash,42,2013,4
 Slash,33,2013,3
-Smalltalk,11,2014,4
+Smalltalk,6,2015,1
+Smalltalk,191,2014,4
 Smalltalk,175,2014,3
 Smalltalk,170,2014,2
 Smalltalk,141,2014,1
@@ -1300,16 +1456,18 @@ Smalltalk,105,2012,4
 Smalltalk,89,2012,3
 Smalltalk,105,2012,2
 Smalltalk,24,2012,1
-SourcePawn,13,2014,4
+SourcePawn,8,2015,1
+SourcePawn,265,2014,4
 SourcePawn,212,2014,3
 SourcePawn,128,2014,2
-Squirrel,3,2014,4
+Squirrel,66,2014,4
 Squirrel,71,2014,3
 Squirrel,83,2014,2
 Squirrel,73,2014,1
 Squirrel,66,2013,4
 Squirrel,9,2013,3
-Standard ML,19,2014,4
+Standard ML,4,2015,1
+Standard ML,327,2014,4
 Standard ML,156,2014,3
 Standard ML,210,2014,2
 Standard ML,226,2014,1
@@ -1321,10 +1479,12 @@ Standard ML,69,2012,4
 Standard ML,49,2012,3
 Standard ML,55,2012,2
 Standard ML,30,2012,1
-Stata,10,2014,4
+Stata,2,2015,1
+Stata,199,2014,4
 Stata,155,2014,3
 Stata,77,2014,2
-SuperCollider,6,2014,4
+SuperCollider,4,2015,1
+SuperCollider,291,2014,4
 SuperCollider,66,2014,3
 SuperCollider,57,2014,2
 SuperCollider,65,2014,1
@@ -1336,16 +1496,19 @@ SuperCollider,21,2012,4
 SuperCollider,50,2012,3
 SuperCollider,64,2012,2
 SuperCollider,30,2012,1
-Swift,383,2014,4
+Swift,151,2015,1
+Swift,11138,2014,4
 Swift,7343,2014,3
 Swift,1989,2014,2
-SystemVerilog,4,2014,4
+SystemVerilog,110,2014,4
 SystemVerilog,52,2014,3
 SystemVerilog,49,2014,2
+TXL,1,2014,4
 TXL,1,2014,1
 TXL,1,2013,4
 TXL,1,2013,1
-Tcl,31,2014,4
+Tcl,6,2015,1
+Tcl,562,2014,4
 Tcl,453,2014,3
 Tcl,462,2014,2
 Tcl,367,2014,1
@@ -1357,12 +1520,14 @@ Tcl,200,2012,4
 Tcl,176,2012,3
 Tcl,254,2012,2
 Tcl,38,2012,1
-TeX,733,2014,4
+TeX,216,2015,1
+TeX,13329,2014,4
 TeX,10007,2014,3
 TeX,10255,2014,2
 TeX,9149,2014,1
 TeX,3278,2013,4
-Turing,1,2014,4
+Thrift,13,2014,4
+Turing,4,2014,4
 Turing,8,2014,3
 Turing,8,2014,2
 Turing,11,2014,1
@@ -1374,7 +1539,8 @@ Turing,6,2012,4
 Turing,14,2012,3
 Turing,14,2012,2
 Turing,4,2012,1
-TypeScript,148,2014,4
+TypeScript,23,2015,1
+TypeScript,2256,2014,4
 TypeScript,2297,2014,3
 TypeScript,2827,2014,2
 TypeScript,3253,2014,1
@@ -1382,15 +1548,16 @@ TypeScript,1785,2013,4
 TypeScript,1320,2013,3
 TypeScript,1105,2013,2
 TypeScript,278,2013,1
-UnrealScript,1,2014,4
+UnrealScript,37,2014,4
 UnrealScript,41,2014,3
 UnrealScript,65,2014,2
 UnrealScript,91,2014,1
 UnrealScript,24,2013,4
-VCL,1,2014,4
+VCL,84,2014,4
 VCL,76,2014,3
 VCL,14,2014,2
-VHDL,26,2014,4
+VHDL,5,2015,1
+VHDL,630,2014,4
 VHDL,387,2014,3
 VHDL,599,2014,2
 VHDL,750,2014,1
@@ -1402,7 +1569,8 @@ VHDL,197,2012,4
 VHDL,129,2012,3
 VHDL,128,2012,2
 VHDL,65,2012,1
-Vala,21,2014,4
+Vala,14,2015,1
+Vala,302,2014,4
 Vala,305,2014,3
 Vala,256,2014,2
 Vala,232,2014,1
@@ -1414,7 +1582,8 @@ Vala,122,2012,4
 Vala,138,2012,3
 Vala,118,2012,2
 Vala,45,2012,1
-Verilog,30,2014,4
+Verilog,12,2015,1
+Verilog,693,2014,4
 Verilog,473,2014,3
 Verilog,523,2014,2
 Verilog,438,2014,1
@@ -1426,7 +1595,8 @@ Verilog,215,2012,4
 Verilog,130,2012,3
 Verilog,136,2012,2
 Verilog,62,2012,1
-VimL,929,2014,4
+VimL,329,2015,1
+VimL,22450,2014,4
 VimL,21724,2014,3
 VimL,20730,2014,2
 VimL,19851,2014,1
@@ -1438,7 +1608,8 @@ VimL,14066,2012,4
 VimL,13209,2012,3
 VimL,11117,2012,2
 VimL,4549,2012,1
-Visual Basic,171,2014,4
+Visual Basic,30,2015,1
+Visual Basic,2634,2014,4
 Visual Basic,2428,2014,3
 Visual Basic,1719,2014,2
 Visual Basic,1585,2014,1
@@ -1450,16 +1621,19 @@ Visual Basic,711,2012,4
 Visual Basic,583,2012,3
 Visual Basic,459,2012,2
 Visual Basic,112,2012,1
+Volt,10,2014,4
 Volt,10,2014,3
 Volt,7,2014,2
 Volt,6,2014,1
 Volt,2,2013,4
-XC,2,2014,4
+WebIDL,1,2014,4
+XC,36,2014,4
 XC,40,2014,3
 XC,73,2014,2
 XC,69,2014,1
 XC,78,2013,4
 XC,27,2013,3
+XML,4,2014,4
 XML,15,2014,3
 XML,46,2014,2
 XML,62,2014,1
@@ -1467,13 +1641,14 @@ XML,100,2013,4
 XML,148,2013,3
 XML,1087,2013,2
 XML,524,2013,1
+XProc,14,2014,4
 XProc,12,2014,3
 XProc,12,2014,2
 XProc,20,2014,1
 XProc,12,2013,4
 XProc,7,2013,3
 XProc,3,2013,2
-XQuery,7,2014,4
+XQuery,176,2014,4
 XQuery,134,2014,3
 XQuery,135,2014,2
 XQuery,105,2014,1
@@ -1485,15 +1660,18 @@ XQuery,63,2012,4
 XQuery,55,2012,3
 XQuery,55,2012,2
 XQuery,23,2012,1
-XSLT,126,2014,4
+XSLT,28,2015,1
+XSLT,2217,2014,4
 XSLT,2023,2014,3
 XSLT,1794,2014,2
 XSLT,1583,2014,1
 XSLT,1384,2013,4
 XSLT,1316,2013,3
 XSLT,443,2013,2
+Xojo,22,2014,4
 Xojo,26,2014,3
-Xtend,6,2014,4
+Xtend,2,2015,1
+Xtend,107,2014,4
 Xtend,110,2014,3
 Xtend,88,2014,2
 Xtend,71,2014,1
@@ -1501,10 +1679,12 @@ Xtend,58,2013,4
 Xtend,37,2013,3
 Xtend,37,2013,2
 Xtend,14,2013,1
-Zephir,2,2014,4
+Zephir,15,2014,4
 Zephir,18,2014,3
 Zephir,7,2014,2
+Zimpl,2,2014,4
 Zimpl,2,2014,3
+eC,3,2014,4
 eC,5,2014,3
 eC,3,2014,2
 eC,5,2014,1
@@ -1514,12 +1694,14 @@ eC,4,2013,2
 eC,5,2013,1
 eC,2,2012,4
 eC,3,2012,3
-nesC,6,2014,4
+nesC,1,2015,1
+nesC,115,2014,4
 nesC,189,2014,3
 nesC,276,2014,2
 nesC,236,2014,1
 nesC,82,2013,4
-ooc,7,2014,4
+ooc,1,2015,1
+ooc,57,2014,4
 ooc,27,2014,3
 ooc,4,2014,2
 ooc,32,2014,1
@@ -1530,13 +1712,15 @@ ooc,35,2013,1
 ooc,34,2012,4
 ooc,8,2012,3
 ooc,33,2012,2
+wisp,1,2014,4
 wisp,5,2014,3
 wisp,8,2014,2
 wisp,6,2014,1
 wisp,3,2013,4
 wisp,4,2013,3
 wisp,1,2013,2
-xBase,8,2014,4
+xBase,2,2015,1
+xBase,41,2014,4
 xBase,53,2014,3
 xBase,42,2014,2
 xBase,38,2014,1

@@ -28,7 +28,7 @@ function ParallelCoordinates(data,options) {
 			.sort(function(a,b){
 				return d3.descending(a.values["PushEventRepo"],b.values["PushEventRepo"]);
 			})
-			.slice(0,28)
+			.slice(0,30)
 	}
 
 	var nested_data=nestData(data);

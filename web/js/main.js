@@ -12,7 +12,7 @@ d3.csv("web/data/languages.csv",function(d){
 		programming_languages[lang["name_lc"]]=lang["Year"];
 	})
 
-	var last_quarter="q3-2014";
+	var last_quarter="q4-2014";
 	var unknonw=[];
 
 	d3.csv("server/exports/"+last_quarter+".csv",function(q){
@@ -125,7 +125,7 @@ d3.csv("web/data/languages.csv",function(d){
 		});
 	});
 
-	d3.csv("server/exports/active_quarters.csv?1234",function(d){
+	d3.csv("server/exports/active_quarters.csv?12345",function(d){
 
 		d.active_repos_by_url=+d.active_repos_by_url;
 		d.date=new Date(d.year,((+d.quarter)*3-3),1)
@@ -136,7 +136,7 @@ d3.csv("web/data/languages.csv",function(d){
 		var extents={
 			date:[
 				new Date(2012,3,1),
-				new Date(2014,6,1)
+				new Date(2014,9,1)
 			]
 		};
 
@@ -217,7 +217,7 @@ d3.csv("web/data/languages.csv",function(d){
 								return d3.descending(sums[a.repository_language],sums[b.repository_language]);
 							}));
 		
-		sm=new SmallMultiples(nested_data.slice(0,29),{
+		sm=new SmallMultiples(nested_data.slice(0,49),{
 			extents:extents,
 			container:"#sm",
 			indicator:"repositories",
