@@ -1,5 +1,4 @@
-GitHut
-==============
+## GitHut
 
 GitHut (http://githut.info) is an attempt to visualize and explore the complexity of the universe of programming languages used across the repositories hosted on GitHub.
 
@@ -11,14 +10,18 @@ The visualization is based on two type of visualization: a Parallel Coordinates 
 
 Data is from Github Archive (http://www.githubarchive.org/).
 
-###Web Site
+### Web Site
+
 GitHut is published at **http://githut.info**
 
-###Queries
+### Queries
+
 GitHub Archive data is also available on Google BigQuery. Below are the two queries used to collect the data for the Parallel Coordinates and Small Multiples visualizations:
 
-####Parallel Coordinates
+#### Parallel Coordinates
+
 Multiple information grouped by language for a defined quarter
+
 ```sql
 select 
   repository_language,
@@ -47,8 +50,10 @@ group by
   quarter
 ```
 
-####Small Multiples
+#### Small Multiples
+
 Count of active repositories by quarter
+
 ```sql
 select
   repository_language,
@@ -68,5 +73,6 @@ order by
   quarter DESC
 ```
 
-###License
+### License
+
 The content of this project itself is licensed under the [Creative Commons Attribution 4.0 license](http://creativecommons.org/licenses/by-nc-nd/4.0/), and the underlying source code used to format and display that content is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
