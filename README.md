@@ -23,15 +23,15 @@ GitHub Archive data is also available on Google BigQuery. Below are the two quer
 Multiple information grouped by language for a defined quarter
 
 ```sql
-select 
+SELECT 
   repository_language,
   type,
-  count(distinct(repository_url)) as active_repos_by_url,
-  count(repository_language) as events,
-  YEAR(created_at) as year,
-  QUARTER(created_at) as quarter
-from [githubarchive:github.timeline]
-where
+  COUNT(distinct(repository_url)) AS active_repos_by_url,
+  COUNT(repository_language) AS events,
+  YEAR(created_at) AS year,
+  QUARTER(created_at) AS quarter
+FROM [githubarchive:github.timeline]
+WHERE
     (
       type = 'PushEvent'
       OR type = 'ForkEvent'
@@ -43,7 +43,7 @@ where
     AND repository_url != ''
     AND YEAR(created_at)= 2014
     AND QUARTER(created_at)=1
-group by 
+GROUP BY 
   repository_language,
   type,
   year,
@@ -55,19 +55,19 @@ group by
 Count of active repositories by quarter
 
 ```sql
-select
+SELECT
   repository_language,
-  count(distinct(repository_url)) as active_repos_by_url,
-  YEAR(created_at) as year,
-  QUARTER(created_at) as quarter,
-from [githubarchive:github.timeline]
-where
+  COUNT(distinct(repository_url)) AS active_repos_by_url,
+  YEAR(created_at) AS year,
+  QUARTER(created_at) AS quarter,
+FROM [githubarchive:github.timeline]
+WHERE
     type="PushEvent"
-group by
+GROUP BY
   repository_language,
   year,
   quarter
-order by
+ORDER BY
   repository_language,
   year DESC,
   quarter DESC
