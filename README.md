@@ -1,5 +1,4 @@
-GitHut
-==============
+## GitHut
 
 GitHut (http://githut.info) is an attempt to visualize and explore the complexity of the universe of programming languages used across the repositories hosted on GitHub.
 
@@ -11,24 +10,28 @@ The visualization is based on two type of visualization: a Parallel Coordinates 
 
 Data is from Github Archive (http://www.githubarchive.org/).
 
-###Web Site
+### Web Site
+
 GitHut is published at **http://githut.info**
 
-###Queries
+### Queries
+
 GitHub Archive data is also available on Google BigQuery. Below are the two queries used to collect the data for the Parallel Coordinates and Small Multiples visualizations:
 
-####Parallel Coordinates
+#### Parallel Coordinates
+
 Multiple information grouped by language for a defined quarter
+
 ```sql
-select 
+SELECT 
   repository_language,
   type,
-  count(distinct(repository_url)) as active_repos_by_url,
-  count(repository_language) as events,
-  YEAR(created_at) as year,
-  QUARTER(created_at) as quarter
-from [githubarchive:github.timeline]
-where
+  COUNT(distinct(repository_url)) AS active_repos_by_url,
+  COUNT(repository_language) AS events,
+  YEAR(created_at) AS year,
+  QUARTER(created_at) AS quarter
+FROM [githubarchive:github.timeline]
+WHERE
     (
       type = 'PushEvent'
       OR type = 'ForkEvent'
@@ -40,33 +43,36 @@ where
     AND repository_url != ''
     AND YEAR(created_at)= 2014
     AND QUARTER(created_at)=1
-group by 
+GROUP BY 
   repository_language,
   type,
   year,
   quarter
 ```
 
-####Small Multiples
+#### Small Multiples
+
 Count of active repositories by quarter
+
 ```sql
-select
+SELECT
   repository_language,
-  count(distinct(repository_url)) as active_repos_by_url,
-  YEAR(created_at) as year,
-  QUARTER(created_at) as quarter,
-from [githubarchive:github.timeline]
-where
+  COUNT(distinct(repository_url)) AS active_repos_by_url,
+  YEAR(created_at) AS year,
+  QUARTER(created_at) AS quarter,
+FROM [githubarchive:github.timeline]
+WHERE
     type="PushEvent"
-group by
+GROUP BY
   repository_language,
   year,
   quarter
-order by
+ORDER BY
   repository_language,
   year DESC,
   quarter DESC
 ```
 
-###License
+### License
+
 The content of this project itself is licensed under the [Creative Commons Attribution 4.0 license](http://creativecommons.org/licenses/by-nc-nd/4.0/), and the underlying source code used to format and display that content is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
